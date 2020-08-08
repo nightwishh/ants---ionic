@@ -97,7 +97,7 @@ card.chat {
 }
 
 ::ng-deep card.chat[chatOpen="true"] card-content.chat .chatHeadsContainer {
-    border-right: 1px solid var(--nav-bd-color);
+    border-right: 1px solid var(--searchbar-bd-color);
     padding-right: 20px;
 }
 
@@ -313,12 +313,17 @@ searchbar {
     margin-right: 20px;
 }
 
-.newMessage>p-input {
-    display: table-cell;
-    vertical-align: middle;
-    border-top: 1px solid var(--nav-bd-color);
+.newMessage>p-input, .newMessage input {
+    /* display: table-cell;
+    vertical-align: middle; */
+    border-top: 1px solid var(--searchbar-bd-color);
 }
-
+.newMessage input { 
+    width: calc(100% - 120px);
+    height: 40px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
 ::ng-deep .newMessage p-input .inp {
     grid-template-columns: 40px auto 100px !important;
 }
@@ -330,7 +335,9 @@ searchbar {
     background: #03aebc;
     color: white;
     font-family: BPG Nino Mtavruli;
-    line-height: 40px;
+    line-height: 0px;
+    margin-top: 20px;
+    float: right;
     cursor: pointer;
     transition: all 0.4s ease-out;
 }

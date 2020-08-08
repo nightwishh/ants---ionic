@@ -1,7 +1,14 @@
 <card>
     <card-header>
-        <i class="material-icons" style="transform: scale(1.5);margin-right: 10px;">account_circle</i>
-        <span style="font-size: 30px;">შესვლა</span>
+        <i class="material-icons" style="transform: scale(1);
+        display: block;
+        float: left;
+        width: 100%;
+        margin-top: 10px">account_circle</i>
+        <span style="font-size: 20px;
+        float: left;
+        width: 100%;
+        margin-top: -20px;">შესვლა</span>
     </card-header>
     <card-content>
         <div *ngIf="!isRegistration;else registration">

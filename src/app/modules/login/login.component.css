@@ -20,12 +20,16 @@ card {
 ::ng-deep card > .card {
     height: auto !important;
     grid-template-rows: 70px auto !important;
+    box-shadow: none !important;
+    border:1px solid var(--searchbar-bd-color);
+    border-radius: 10px;
 }
 card-header {
     text-align: center;
     color: var(--main-green-color);
     border-bottom: 1px solid rgba(0,0,0,0.1);
     line-height: 75px !important;
+    border-radius: 10px 10px 0px 0px;
 }
 card-content {
     padding-top: 20px;

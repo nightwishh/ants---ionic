@@ -169,7 +169,9 @@ body {
     padding: 0;
     background-color: var(--main-bg-color);
 }
-
+* {
+    -webkit-tap-highlight-color: transparent;
+}
 button {
     padding: 15px 25px;
     border-radius: 7px;

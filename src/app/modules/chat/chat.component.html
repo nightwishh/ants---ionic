@@ -117,9 +117,12 @@ src="https://accountants.bitrix24.com/online/antsge" *ngIf="!authUser.bxUserLogg
                 </section> -->
             </section>
             <section class="newMessage">
-                <p-input placeholder="მიწერე..." [setStyle]="{'height':'40px'}" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText" ngDefaultControl>
+                <input type="text" class="antsStyle" placeholder="მიწერე..." style="height: 40px;" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText"/>
+                <button class="sendBtn" (click)="sendMessage()">გაგზავნა</button>
+
+                <!-- <p-input placeholder="მიწერე..." [setStyle]="{'height':'40px'}" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText" ngDefaultControl>
                     <div class="sendBtn" (click)="sendMessage()">გაგზავნა</div>
-                </p-input>
+                </p-input> -->
             </section>
         </div>
 

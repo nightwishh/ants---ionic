@@ -25,6 +25,9 @@
     .logo {
         width: 165px !important;
     }
+    .logo.center {
+        margin-left: calc(50% - 82px) !important;
+    }
     .activeWorkgroup {
         transform: scale(0.7);
         left: 0px !important;
@@ -38,7 +41,7 @@
 }
 
 ::ng-deep app-header[workgroup=true] header {
-    box-shadow: var(--header-shadow-green);
+    /* box-shadow: var(--header-shadow-green); */
     border-bottom: 1px solid var(--main-green-color);
 }
 
@@ -53,7 +56,8 @@ header {
     width: stretch;
     height: 77px;
     background: var(--header-bg-color);
-    box-shadow: var(--header-shadow);
+    /* box-shadow: var(--header-shadow); */
+    border-bottom: 1px solid var(--searchbar-bd-color);
     padding: 0px 15px;
     position: fixed;
     top: 0px;
@@ -74,7 +78,8 @@ aside.menu {
     color: var(--txt-white-color);
     font-family: BPG Nino Mtavruli;
     padding-top: 40px;
-    box-shadow: var(--default-shadow-right);
+    /* box-shadow: var(--default-shadow-right); */
+    border-right: 1px solid var(--searchbar-bd-color);
     z-index: 9;
 }
 
