@@ -1,0 +1,395 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/* Fonts */
+
+@font-face {
+    font-family: FiraGO-Bold;
+    src: url('assets/fonts/Roman/FiraGO-Bold.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Book;
+    src: url('assets/fonts/Roman/FiraGO-Book.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Eight;
+    src: url('assets/fonts/Roman/FiraGO-Eight.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-ExtraBold;
+    src: url('assets/fonts/Roman/FiraGO-ExtraBold.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-ExtraLight;
+    src: url('assets/fonts/Roman/FiraGO-ExtraLight.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Four;
+    src: url('assets/fonts/Roman/FiraGO-Four.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Hair;
+    src: url('assets/fonts/Roman/FiraGO-Hair.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Heavy;
+    src: url('assets/fonts/Roman/FiraGO-Heavy.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Light;
+    src: url('assets/fonts/Roman/FiraGO-Light.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Medium;
+    src: url('assets/fonts/Roman/FiraGO-Medium.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Regular;
+    src: url('assets/fonts/Roman/FiraGO-Regular.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-SemiBold;
+    src: url('assets/fonts/Roman/FiraGO-SemiBold.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Thin;
+    src: url('assets/fonts/Roman/FiraGO-Thin.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-Two;
+    src: url('assets/fonts/Roman/FiraGO-Two.woff2');
+}
+
+@font-face {
+    font-family: FiraGO-UltraLight;
+    src: url('assets/fonts/Roman/FiraGO-UltraLight.woff2');
+}
+
+@font-face {
+    font-family: BPG Nino Mtavruli;
+    src: url('assets/fonts/bpg_nino_mtavruli_normal.ttf');
+}
+
+html:root {
+    --main-bg-color: #fff;
+    --main-orange-color: #FF7229;
+    --main-blue-color: #1692ff;
+    --main-darkblue-color: #232757;
+    --main-green-color: #03AEBC;
+    --main-lightgreen-color:#3ec762;
+    --main-red-color:#bf3a3a;
+
+    --header-txt-color: #404040;
+    --header-txt-color-invert: #FFF;
+    --header-bg-color: #fff;
+    --input-bg-color: rgba(0, 0, 0, 0.07);
+    --input-bg-color-hover: rgba(0, 0, 0, 0.1);
+    --input-bd-color: rgba(0, 0, 0, 0.2);
+    --default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, .2);
+    --default-shadow-right: 0px 1px 3px rgba(0, 0, 0, 0.12), 1px 1px 3px rgba(0, 0, 0, .2);
+    --default-shadow-bottom: 0 2px 3px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.2);
+    --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, .2);
+    --header-shadow-green: 0 1px 3px rgba(3, 174, 188, 0.1), 0 1px 5px rgba(3, 174, 188, 0.2);
+    --input-txt-color: var(--header-txt-color);
+    --input-placeholder-txt-color: #404040;
+    --input-txt-color-hover: var(--default-txt-color);
+    --nav-bg-color: #f8f8f8;
+    --nav-bd-color: #CFCFCF;
+    --nav-shadow-color: #dedede;
+    --nav-txt-color: #232757;
+    --h1-txt-color: var(--main-orange-color);
+    --h2-txt-color: var(--main-darkblue-color);
+    --searchbar-bd-color: rgba(0, 0, 0, 0.1);
+    --popup-bg-color: #fff;
+    --popup-bd-color: #fff;
+    --popup-header-color: #fff;
+    --txt-white-color: #FFF;
+    --grid-row-even-color: rgba(0, 0, 0, .05);
+    --default-txt-color: #404040;
+    --default-txt-color-invert: #FFF;
+    --default-disable-color:rgba(0,0,0,.26);
+    --default-hover-color: rgba(0,0,0,.1);
+}
+
+html[dark=true]:root {
+    --main-bg-color: #1d1d1d;
+    --main-orange-color: #FF7229;
+    --main-blue-color: #1692ff;
+    --main-darkblue-color: #232757;
+    --main-green-color: #03AEBC;
+    --main-lightgreen-color:#3ec762;
+    --main-red-color:#bf3a3a;
+    
+    --header-txt-color: #FFF;
+    --header-txt-color-invert: #404040;
+    --header-bg-color: #2b2b2b;
+    --input-bg-color: rgba(255, 255, 255, 0.07);
+    --input-bg-color-hover: rgba(255, 255, 255, 1);
+    --input-bd-color: rgba(0, 0, 0, 0.3);
+    --default-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, .1);
+    --default-shadow-right: 0px 1px 3px rgba(0, 0, 0, 0.12), 1px 1px 3px rgba(0, 0, 0, .2);
+    --default-shadow-bottom: 0 2px 3px rgba(0, 0, 0, 0.12), 0 2px 3px rgba(0, 0, 0, 0.2);
+    --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, .2);
+    --header-shadow-green: 0 1px 3px rgba(3, 174, 188, 0.1), 0 1px 5px rgba(3, 174, 188, 0.2);
+    --input-txt-color: var(--header-txt-color);
+    --input-placeholder-txt-color: #b2b2b2;
+    --input-txt-color-hover: var(--default-txt-color-invert);
+    --nav-bg-color: #232323;
+    --nav-bd-color: #000;
+    --nav-shadow-color: #000;
+    --nav-txt-color: #FFF;
+    --h1-txt-color: var(--main-orange-color);
+    --h2-txt-color: var(--default-txt-color);
+    --searchbar-bd-color: rgba(0, 0, 0, 0.1);
+    --popup-bg-color: #313131;
+    --popup-bd-color: #000;
+    --popup-header-color: #212121;
+    --grid-row-even-color: var(--main-bg-color);
+    --default-txt-color: #FFF;
+    --default-txt-color-invert: #404040;
+    --default-disable-color:rgba(255,255,255,.26);
+    --default-hover-color: rgba(255,255,255,.1);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--main-bg-color);
+}
+
+button {
+    padding: 15px 25px;
+    border-radius: 7px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.09);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    outline: none;
+    font-family: BPG Nino Mtavruli;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--default-txt-color);
+}
+
+button[border=false] {
+    box-shadow: none;
+    border: 0px;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    opacity: 1;
+}
+button.transparent {
+    font-size: 13px;
+    color: var(--main-blue-color);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    box-shadow: none;
+    height: 40px;
+    padding: 10px 25px;
+}
+input.antsStyle,
+.mat-form-field.antsStyle {
+    border-radius: 7px;
+    background: var(--input-bg-color);
+    border: 0px;
+    height: 30px;
+    outline: none;
+    padding: 0px 10px;
+    transition: 0.3s all ease-in-out;
+}
+
+.mat-form-field.antsStyle>.mat-form-field-wrapper {
+    padding-bottom: 0px !important;
+    height: 100%;
+    display: flex;
+}
+
+.mat-form-field.antsStyle .mat-form-field-underline {
+    display: none;
+}
+
+.mat-form-field.antsStyle .mat-form-field-flex {
+    align-items: center !important;
+}
+
+.mat-form-field.antsStyle .mat-form-field-infix {
+    border: 0px !important;
+}
+
+.mat-form-field.antsStyle * {
+    color: var(--default-txt-color);
+}
+
+mat-calendar * {
+    /* background-color: var(--main-bg-color); */
+    /* color: var(--default-txt-color); */
+}
+.antsStyle:disabled, .mat-form-field.antsStyle.mat-form-field-disabled{
+    background:rgba(0,0,0,0.12) !important;
+}
+
+select.antsStyle {
+    margin-top: 15px;
+    height: 40px;
+    border-radius: 7px;
+    margin-left: 10px;
+    background: var(--input-bg-color);
+    border: none;
+    outline: none;
+    padding: 0px 10px;
+    transition: 0.3s all ease-in-out;
+}
+
+select.antsStyle:hover:not(:disabled) {
+    background: var(--input-bg-color-hover);
+    color: var(--input-txt-color-hover);
+}
+
+select {
+    font-family: FiraGO-Regular;
+    color: var(--default-txt-color);
+}
+.antsStyle[disabled]:hover:not(:disabled) {
+    background-color: var(--input-bg-color) !important;
+}
+input.antsStyle:hover:not(:disabled),
+input.antsStyle:focus-within:not(:disabled) {
+    background: var(--input-bg-color-hover);
+}
+
+body p,
+span,
+div,
+input {
+    font-family: FiraGO-Regular;
+}
+
+.capitalLetters {
+    font-family: BPG Nino Mtavruli !important;
+}
+
+.textEllipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.draggable {
+    position: absolute !important;
+    z-index: 99;
+    /* more than anything */
+    transition: none !important;
+    /* left:0px; */
+    /* top: 0px; */
+}
+
+.mat-paginator-page-size-label {
+    display: none;
+}
+
+@media only screen and (max-width: 460px) {
+    app-header[sidebar="true"][expandmenu="false"]~main.InteractionArea {
+        margin-left: 0px !important;
+    }
+    app-header[sidebar="true"][expandmenu="true"]~main.InteractionArea {
+        margin-left: 0px !important;
+    }
+}
+
+app-header~main.InteractionArea {
+    margin-top: 77px;
+    transition: all 0.45s ease-out;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+
+app-header[sidebar="true"][expandmenu="false"]~main.InteractionArea {
+    float: left;
+    margin-left: 64px;
+}
+
+app-header[sidebar="true"][expandmenu="true"]~main.InteractionArea {
+    float: left;
+    margin-left: 249px;
+}
+
+app-header[workgroup=true]~main.InteractionArea {
+    padding-top: 0px;
+}
+
+app-modal.request-modal-loader {
+    display: none;
+}
+
+app-modal.request-modal-loader.show {
+    display: inherit !important;
+}
+
+.notAuthorized::before {
+    position: fixed;
+    content: "ფუნქცია ხელმისაწვდომია მოდერაციის შემდეგ";
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    height: 100%;
+    /* height: -moz-available; */
+    height: -webkit-fill-available;
+    height: stretch;
+    background: rgba(3, 174, 188, 0.1);
+    backdrop-filter: saturate(180%) blur(2px);
+    z-index: 1;
+    color: #03aebc;
+    text-align: center;
+    padding-top: 180px;
+    font-size: 30px;
+    font-family: FiraGO-bold;
+    top: 0;
+    left: 0;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

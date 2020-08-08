@@ -1,0 +1,134 @@
+<section class="tasksTable">
+    <button style="background: var(--main-green-color);color: white; margin: 20px 30px;" (click)="addNewTask()">ახალი ამოცანა</button>
+    <mat-table [dataSource]="dataSource" matSort>
+        <!-- <ng-container matColumnDef="newCommentsCount">
+            <mat-header-cell *matHeaderCellDef [ngClass]="'w-50'">
+                <div mat-sort-header="newCommentsCount">
+                    
+                </div>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" [ngClass]="'w-50'"><span class="commentsNotif" *ngIf="element.newCommentsCount > 0">{{element.newCommentsCount}}</span></mat-cell>
+        </ng-container> -->
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>
+                <div mat-sort-header="id">
+                    ID
+                </div>
+                <input class="antsStyle" clickStopPropagation type="text" (keyup)="applyFilter('id',$event.target.value)" />
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef>
+                <div mat-sort-header>
+                    დასახელება
+                </div>
+                <input class="antsStyle" type="text" (keyup)="applyFilter('title',$event.target.value)" />
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef>
+                <div mat-sort-header>
+                    სტატუსი
+                </div>
+                <select (change)="applyFilter('status',$event.target.value)" class="antsStyle">
+            <option value="">ყველა</option>
+            <option value="1">ახალი</option>
+            <option value="2">მოლოდინში</option>
+            <option value="3">მიმდინარე</option>
+            <option value="4">თითქმის დასრულებული</option>
+            <option value="5">დასრულებული</option>
+            <option value="6">შენელებული</option>
+            <option value="7">უარყოფილი / შეჩერებული</option>
+          </select>
+                <!-- <input class="antsStyle" type="text" (keyup)="applyFilter('status',$event.target.value)" /> -->
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{getStatusName(element.status)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="deadline">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ვადა </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{toDate(element.deadline)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="created_by">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="createdByLastName"> შექმნა </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.creator.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="responsible">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="responsibleLastName"> შემსრულებელი </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.responsible.name}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="create_date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="createdDate"> შექმნის თარიღი </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{toDate(element.createdDate)}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="status_changed_date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="statusChangedDate"> სტატუსის ცვლილების თარიღი </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{toDate(element.statusChangedDate)}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayCols"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayCols;" (click)="showTaskDetails(row)"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons [length]="totalTasks" (page)="pageChanged($event)"></mat-paginator>
+</section>
+
+<popup [(visible)]="showNewTaskPopup" [draggable]="false" [setStyle]="{'height':'auto'}" (onHide)="newTaskPopupHide()" [closeOnModalClick]="false">
+    <p-header style="color:var(--default-txt-color)" id="pheader">{{newTask.id ? 'ამოცანა' : 'დაამატე ახალი ამოცანა'}}</p-header>
+    <p-content class="newTask">
+        <!-- <p-input placeholder="ამოცანის დასახელება" [(ngModel)]="newTask.title" ngDefaultControl [disabled]="!canEdit()"></p-input> -->
+        <input type="text" class="antsStyle input" placeholder="ამოცანის დასახელება" [title]="newTask.title" [(ngModel)]="newTask.title" [disabled]="!canEdit() || !newTask.editing" />
+        <div style="float: left; width: 100%;width: -moz-available;width: -webkit-fill-available;width: stretch;text-align: right;" *ngIf="workGroupActive()">
+            <mat-form-field [ngClass]="'antsStyle'" style="margin-top: 15px;float: left; height: 40px; font-size: 13px;" (click)="picker.open()">
+                <mat-label>დამთავრების თარიღი</mat-label>
+                <input matInput [matDatepicker]="picker" [disabled]="!canEdit() || !newTask.editing" [(ngModel)]="newTask.deadline">
+                <mat-datepicker-toggle matSuffix [for]="picker" style="font-size:16px"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <select class="responsibleSelect antsStyle" [(ngModel)]="newTask.responsibleId" [disabled]="!canEdit() || !newTask.editing">
+             <option value="" disabled selected>აირჩიეთ პასუხისმგებელი</option>
+             <option value="{{user.ID}}" *ngFor="let user of workgroup.users">{{user.name}}</option>
+            </select>
+        </div>
+        <!-- <p-textedit style="height:150px; width: 460px; float:left; margin-top: 10px;" [(ngModel)]="newTask.description" ngDefaultControl></p-textedit> -->
+
+        <p-input #taskDescription style="max-height:350px; min-height: 200px;" type="textarea" [(ngModel)]="newTask.description" placeholder="ამოცანის აღწერა" ngDefaultControl [disabled]="!canEdit() || !newTask.editing"></p-input>
+        <div class="filesSection noselect" *ngIf="newTask.hasFiles">
+            <span>ფაილები</span>
+            <a class="file" *ngFor="let file of newTask.attachedFiles" href="{{file.download_url}}">{{file.name}}</a>
+        </div>
+        <a class="allCommentsBtn" (click)="showComments()" *ngIf="canComment()">{{newTask.lastComment.postmessage == "" ? "დაამატე კომენტარი" : "ყველა კომენტარი / დაამატე კომენტარი"}}</a>
+        <div class="comment" style="background: #ddefff; margin-top: 10px; margin-bottom: 30px;" *ngIf="canComment()">
+            <span>{{newTask.lastComment.author}}</span>
+            <p>{{newTask.lastComment.postmessage}}</p>
+            <p class="commentDate">{{toDate(newTask.lastComment.postdate)}}</p>
+        </div>
+
+        <button class="btnEditTask" (click)="newTask.editing = true" *ngIf="canEdit() && !newTask.editing">
+            <span class="material-icons">edit</span>
+            შეცვლა
+        </button>
+
+        <button class="saveNewTask" (click)="saveNewTask()" *ngIf="canEdit() && newTask.editing">შენახვა</button>
+        <i class="material-icons iconBtn deleteTask noselect" (click)="deleteTask(newTask.id)" *ngIf="canDelete() && newTask.editing">delete</i>
+        <button class="saveNewTask finishTask" style="width: 160px;float:left; margin-left: 0px;" (click)="completeTask()" *ngIf="canFinish()">
+      <span class="material-icons" style="float: left; font-size: 15px;">done</span>
+      დასრულება</button>
+    </p-content>
+</popup>
+<popup [(visible)]="showCommentsPopup" [draggable]="true" [closeOnModalClick]="false">
+    <p-header style="color:var(--default-txt-color)" id="commentheader">დაამატე კომენტარი</p-header>
+    <p-content class="commentTask" style="width: 460px;">
+        <div class="commentsSection">
+            <div class="comment" *ngFor="let comment of allComments">
+                <span>{{comment['AUTHOR_NAME']}}</span>
+                <p>{{comment['POST_MESSAGE']}}</p>
+                <p class="commentDate">{{toDate(comment['POST_DATE'])}}</p>
+            </div>
+        </div>
+        <p-input [setStyle]="{'height':'100px','margin-top':'10px','grid-template-columns':'30px auto 30px'}" type="textarea" [(ngModel)]="newTask.newComment" placeholder="დაწერეთ კომენტარი" ngDefaultControl></p-input>
+        <button class="saveNewTask" (click)="addComment()">შენახვა</button>
+    </p-content>
+
+</popup>

@@ -1,0 +1,134 @@
+<iframe class="chat" 
+src="https://accountants.bitrix24.com/online/antsge" *ngIf="!authUser.bxUserLoggedIn(); else chat">
+</iframe> <!-- Just Live chat when user is not logged in BX -->
+
+<ng-template #chat>
+<card class="chat" [attr.chatOpen]="chatOpen">
+    <card-header class="chat">ჩატი</card-header>
+    <card-content class="chat">
+        <div class="chatHeadsContainer">
+            <searchbar placeholder="მოძებნეთ" [(ngModel)]="searchChatText" (ngModelChange)="ngModelChange($event)" ngDefaultControl></searchbar>
+            <section class="recentChats" *ngIf="showRecentChats();else showSearchChats">
+                <section [attr.chatID]="getChatID(ch.id,ch.type)" class="chatHead noselect" *ngFor="let ch of recentChats" (click)="openChat(ch,ch.type)" [attr.selected]="isChatSelected(getChatID(ch.id,ch.type))">
+                    <span class="chatDate" *ngIf="differentDateString(ch.message.date)">{{currentDateStr}}</span>
+                    <span class="chatIconContainer">
+                        <span class="Circle noselect" [style.backgroundColor]="ch.avatar.color">
+                            <i class="material-icons">supervisor_account</i>
+                        </span>
+                    </span>
+                    <div class="chatTitleContainer" [attr.unread]="ch.counter > 0">
+                        <span class="chatTitle textEllipsis">
+                            <span class="counter" *ngIf="ch.counter > 0">{{ch.counter}}</span>
+                            {{minimizeChatName(ch.title)}}</span>
+                        <span class="messagePreview textEllipsis">
+                            <i class="material-icons" *ngIf="ch.message.status == 'received'">reply</i>
+                            {{ch.message.text}}</span>
+                    </div>
+                </section>
+            </section>
+
+
+
+            <ng-template #showSearchChats>
+                <section class="searchChats">
+                    <section [attr.chatID]="getChatID(ch.id,'chat')" class="chatHead noselect" *ngFor="let ch of searchChats" (click)="openChat(ch,'chat')" [attr.selected]="isChatSelected(getChatID(ch.id,'chat'))">
+                        <span class="chatIconContainer">
+                            <span class="Circle noselect" [style.backgroundColor]="ch.color">
+                                <i class="material-icons">supervisor_account</i>
+                            </span>
+                        </span>
+                        <span class="chatTitleContainer">
+                            {{ch.name}}
+                        </span>
+                    </section>
+                </section>
+            
+                <section class="searchUsers">
+                    <section [attr.chatID]="getChatID(us.id,'user')" class="chatHead noselect" *ngFor="let us of searchUsers" (click)="openChat(us,'user')" [attr.selected]="isChatSelected(getChatID(us.id,'user'))">
+                        <span class="chatIconContainer">
+                            <span class="Circle noselect" [style.backgroundColor]="us.color">
+                                <i class="material-icons">supervisor_account</i>
+                            </span>
+                        </span>
+                        <span class="chatTitleContainer">
+                            {{us.name}}
+                        </span>
+                    </section>
+                </section>
+            </ng-template>
+        </div>
+
+        <div class="chatOpenContainer" *ngIf="openedChat.ID">
+            <app-modal class="loaderModal" *ngIf="showLoader" [innerStyle]="{'width':'100%','height':'100%', 'left':'auto', 'top':'auto', 'position':'absolute','background-color':'rgba(255,255,255,0.7)','z-index':'auto'}"> <!-- main modal with loader in it (REquest Loader) -->
+                <app-loader invert=true></app-loader>
+             </app-modal>
+
+             <section class="chatInfo">
+                <span class="arrowBack noselect" (click)="backToChatList()"><i class="material-icons" style="display: block;">keyboard_arrow_left</i>
+                    უკან
+                </span>
+                <span class="openChatIconContainer">
+                    <span class="Circle noselect" [style.backgroundColor]="openedChat.color">
+                        <i class="material-icons">supervisor_account</i>
+                    </span>
+                </span>
+                <span class="chatTitleContainer">
+                    {{openedChat.name}}
+                </span>
+                <!-- <span style="
+                
+    font-family: BPG Nino Mtavruli;
+    margin-left: 20px;
+    text-decoration: underline;
+    margin-left: 70px;
+    font-size: 14px;
+    position: absolute;
+    margin-top: -25px;
+                ">წევრები
+                    <div style="display: none;">
+                        <span class="members" *ngFor="let member of openedChat.users">{{member.name}}</span>
+                    </div>
+                </span> -->
+             </section>
+
+            <section class="messages" *ngIf="chatOpen" #messages>
+                <section class="message" *ngFor="let message of openedChat.reversedMessages" [attr.mymessage]="message.author_id == authUser.bxUserID">
+                    <!-- <span class="openChatIconContainer" (click)="openChatByID(message.author_id,'user',true)"> -->
+                        <!-- <span class="Circle noselect" [style.backgroundColor]="getAvatar(message.author_id)">
+                            <i class="material-icons">supervisor_account</i>
+                        </span> -->
+                        <!-- <span class="personName">{{getPersonName(message.author_id)}}</span> -->
+                    <!-- </span> -->
+                    <!-- <span class="messageText">{{message.text}}</span> -->
+                    <span class="messageText">
+                        <span class="personName" *ngIf="message.author_id != authUser.bxUserID" (click)="openChatByID(message.author_id,'user',true)" [style.color]="getAvatar(message.author_id)">{{getPersonName(message.author_id)}}</span>
+                        <p-input #messageView type="textarea" [id]="message.id" [filesPreview]="getMessageFilePreviews(message)" [inlineText]="true" [setStyle]="{'padding-top':'5px', 'padding-bottom':'5px'}" [(ngModel)]="message.text" ngDefaultControl [disabled]="true"></p-input>
+                    </span>
+                    <span class="messageDate">{{toDateOrTime(message.date)}}</span>
+                </section>
+                <!-- <section class="message my">
+                    <span class="openChatIconContainer">
+                        <span class="Circle noselect" [style.backgroundColor]="">
+                            <i class="material-icons">supervisor_account</i>
+                        </span>
+                    </span>
+                    <span class="messageText">Hello</span>
+                    <span class="messageDate">9:33</span>
+                </section> -->
+            </section>
+            <section class="newMessage">
+                <p-input placeholder="მიწერე..." [setStyle]="{'height':'40px'}" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText" ngDefaultControl>
+                    <div class="sendBtn" (click)="sendMessage()">გაგზავნა</div>
+                </p-input>
+            </section>
+        </div>
+
+
+    </card-content>
+</card>
+</ng-template>
+
+<!-- <card visible=true modal=false>
+    <card-header id="cardHeader">chatting</card-header>
+    <card-content>hello</card-content>
+</card> -->

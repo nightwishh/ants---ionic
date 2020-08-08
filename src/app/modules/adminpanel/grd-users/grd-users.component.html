@@ -1,0 +1,31 @@
+<!-- <div class="gridUsersContainer">
+  <app-loader class="gridUsersLoader" *ngIf="showLoader"></app-loader>
+<mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.fullName}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.phone}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bxEmail">
+      <mat-header-cell *matHeaderCellDef> bxEmail </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.bxEmail}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="userRowClick(row)"></mat-row>
+    
+  </mat-table>
+<mat-paginator #paginator [pageSizeOptions]="[2, 5, 10, 20]" [pageSize]="5" (page)="onPage($event)" showFirstLastButtons></mat-paginator>
+</div> -->
+<grid #grd webMethod="Users/GrdAllUsers" [pageSize]="5" [setStyle]="{margin:'10px 10px 10px 20px'}" (onRowClick)="userRowClick($event)">
+  <column fieldName="fullName" header="სახელი"></column>
+  <column fieldName="email" header="მეილი"></column>
+  <column fieldName="phone" header="მობილური"></column>
+  <column fieldName="bxEmail" header="ბიტრიქსის მეილი"></column>
+</grid>

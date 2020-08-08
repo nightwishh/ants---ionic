@@ -1,0 +1,54 @@
+@media only screen and (max-width: 460px) {
+  ::ng-deep app-org-details {
+    width: 100% !important;
+  }
+  ::ng-deep card.orgDetails .card {
+    width: auto !important;
+  }
+}
+::ng-deep app-org-details {
+  float: left;
+  padding: 40px 30px;
+  width: 500px;
+  box-sizing: border-box;
+}
+
+::ng-deep card.orgDetails {
+  float: left;
+  clear: both;
+  margin-top: 20px;
+}
+
+::ng-deep card.orgDetails .card {
+  grid-template-rows: minmax(100px, auto) !important;
+  height: auto;
+  border-radius: 10px;
+}
+
+.orgDetails input,
+.orgDetails select {
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 0px;
+  height: 30px;
+  margin-top: 15px;
+}
+
+card-content.orgDetails {
+  padding: 15px;
+}
+
+::ng-deep card.orgDetails:first-child {
+  margin-top: 0px !important;
+}
+
+.saveDetails {
+  width: 150px;
+  background-color: var(--main-lightgreen-color);
+  color: white;
+  margin-top: 20px;
+}
+.successMessage {
+    color: var(--main-lightgreen-color);
+    font-size: 20px;
+}

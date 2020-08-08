@@ -1,0 +1,46 @@
+@media only screen and (max-width: 460px) {
+    card {
+        margin-left: calc(50% - 175px) !important;
+    }
+    card-content {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+    ::ng-deep card > .card {
+        width: 350px !important;
+    }
+}
+/* */
+card {
+    margin-top: 120px;
+    float: left;
+    margin-left: calc(50% - 250px);
+    height: 320px;
+}
+::ng-deep card > .card {
+    height: auto !important;
+    grid-template-rows: 70px auto !important;
+}
+card-header {
+    text-align: center;
+    color: var(--main-green-color);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    line-height: 75px !important;
+}
+card-content {
+    padding-top: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-bottom: 40px;
+}
+::ng-deep card-content p-input .loginStyles {
+    height: 40px !important;
+    margin-top: 20px;
+}
+.registerBtn {
+    float: right; 
+    margin-top: 15px; 
+    width: 150px; 
+    background: var(--main-green-color); 
+    color: var(--txt-white-color);
+}

@@ -1,0 +1,14 @@
+<!-- <card class="workgroups" innerClass="tasksCard noselect" *ngFor="let wg of workgroups;let i=index" [attr.ID]="wg.ID" (click)="changeWorkgroup(i)" [attr.selected]="wg.ID == selectedWorkGroup()">
+    <card-content class="workgroups">
+        <p style="font-size: 35px; margin: 0px;">{{wg.NAME}}</p>
+        <p style="font-size: 15px; font-family: BPG Nino Mtavruli;">{{wg.NUMBER_OF_MEMBERS}} წევრი</p>
+        
+    </card-content>
+</card> -->
+
+<div class="wgPanel">
+    <nav *ngFor="let wg of workgroups;let i=index" [attr.ID]="wg.ID" (click)="changeWorkgroupCookie(i)" [attr.selected]="wg.ID == selectedWorkGroup()">
+        <!-- <i class="material-icons">account_box</i> -->
+        <span class="title">{{wg.NAME}}</span>
+    </nav>
+</div>

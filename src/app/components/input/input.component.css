@@ -1,0 +1,70 @@
+::ng-deep p-input:disabled .inp, ::ng-deep p-input[disabled="true"] .inp, ::ng-deep p-input[ng-reflect-disabled] > .inp {
+    background:rgba(0,0,0,0.12) !important;
+}
+.inp {
+    display: grid;
+    grid-template-columns: 40px auto;
+    text-align: center;
+    width: auto;
+    border-radius: 7px;
+    background: var(--input-bg-color);
+    height: 100%;
+    /* margin-left: 20px; */
+    transition: 0.3s all ease-in-out;
+    overflow: hidden;
+    white-space: break-spaces;
+    word-break: break-all;
+    /* position: relative; */
+    /* top: calc(50% - 20px); */
+}
+.inp:hover, .inp:focus-within {
+    background: var(--input-bg-color-hover);
+}
+
+.inp i.material-icons {
+    font-size: 15px;
+    color: var(--main-orange-color);
+    line-height: 40px;
+    /* margin-right: 10px; */
+}
+
+.inp:hover input, .inp:focus-within input {
+    color: var(--input-txt-color-hover);
+}
+
+.inp:hover textarea, .inp:focus-within textarea {
+    color: var(--input-txt-color-hover);
+}
+
+.inp input {
+    float: left;
+    background: transparent;
+    border: 0px;
+    height: auto;
+    margin-top: 0px;
+    outline: none;
+    color: var(--default-txt-color);
+    font-family: FiraGO-Regular;
+}
+
+input::placeholder {
+    color: var(--input-placeholder-txt-color);
+    font-family: FiraGO-Light;
+}
+textarea, .textarea {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: FiraGO-Book;
+    font-size: 14px;
+    padding-top: 10px;
+    margin: 0px;
+    resize: none;
+    text-align: left;
+    white-space: break-spaces;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+.imgPreview {
+    width: 200px;
+}

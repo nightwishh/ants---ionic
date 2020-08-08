@@ -1,0 +1,47 @@
+@media only screen and (max-width: 460px) {
+    .container {
+        zoom: 0.8;
+        margin-left: 40px !important;
+    }
+}
+.container {
+    width: 350px;
+    height: 500px;
+    box-shadow: var(--default-shadow);
+    border-radius: 10px;
+    float: left;
+    margin-left: 20px;
+    margin-top: 40px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 40px;
+    cursor: pointer;
+}
+.container:hover, .container:hover h2 {
+    background-color: #efefef;
+    color: var(--main-green-color);
+}
+.container > img {
+    width: 100px;
+    float: left;
+    margin-left: calc(50% - 50px);
+    margin-top: 60px;
+}
+.container h1, .container h2, .container span, .container p {
+    float: left;
+    clear: both;
+    width: 100%;
+    text-align: center;
+    font-family: BPG Nino Mtavruli;
+}
+.container h2 {
+    color: var(--main-green-color);
+}
+.container button {
+    clear: both;
+    float: left;
+    background-color: var(--main-green-color);
+    color: white;
+    width: 100%;
+    margin-top: 50px;
+}

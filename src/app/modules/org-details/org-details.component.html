@@ -1,0 +1,62 @@
+<div *ngIf="!sent; else alreadySent">
+<h1 style="font-family:BPG Nino Mtavruli">შეავსეთ კომპანიის დეტალები</h1>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="tin">კომპანიის საიდენტიფიკაციო კოდი:</label>
+        <input id="tin" [(ngModel)]="org.tin" class="antsStyle" type="text" />
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="workType">აირჩიე საქმიანობის სფერო:</label>
+        <select [(ngModel)]="org.businessTypeID" id="workType" class="antsStyle">
+            <option value="მომსახურება">მომსახურება</option>
+            <option value="სარესტორნო ბიზნესი">სარესტორნო ბიზნესი</option>
+            <option value="წარმოება და რეალიზაცია">წარმოება და რეალიზაცია</option>
+            <option value="სასტუმრო">სასტუმრო</option>
+            <option value="დისტრიბუცია">დისტრიბუცია</option>
+            <option value="დეველოპერული">დეველოპერული</option>
+            <option value="საცალო ვაჭრობა">საცალო ვაჭრობა</option>
+            <option value="სხვა">სხვა</option>
+        </select>
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="workDescr">მოკლედ აღწერეთ თქვენი საქმიანობა:</label>
+        <input id="workDescr" [(ngModel)]="org.businessDescription" class="antsStyle" type="text" />
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="cashRegister">სალარო აპარატების რაოდენობა</label>
+        <input id="cashRegister" [(ngModel)]="org.cashRegistersCount" class="antsStyle" type="text" />
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="transactions">საბანკო ტრანზაქციების რაოდენობა თვეში ( საშუალო მაჩვენებელი)</label>
+        <input id="transactions" [(ngModel)]="org.transactionsCount" class="antsStyle" type="text" />
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="vatPayer">ხართ თუ არა დღგ-ს გადამხდელი?</label>
+        <select id="vatPayer" [(ngModel)]="org.vatTypeID" class="antsStyle">
+            <option value="კი">კი</option>
+            <option value="არა">არა</option>
+            <option value="ჯერ არა, მაგრამ მალე მომიწევს გადამხდელად რეგისტრაცია">ჯერ არა, მაგრამ მალე მომიწევს გადამხდელად რეგისტრაცია</option>
+        </select>
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
+        <label for="employees">თანამშრომლების რაოდენობა:</label>
+        <input id="employees" [(ngModel)]="org.empCount" class="antsStyle" type="text" />
+    </card-content>
+</card>
+<button class="saveDetails" (click)="saveOrgDetails()">შენახვა</button>
+</div>
+<ng-template #alreadySent>
+    <h1 class="successMessage">კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში</h1>
+</ng-template>

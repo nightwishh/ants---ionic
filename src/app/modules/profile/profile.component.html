@@ -1,0 +1,41 @@
+<card class="profile">
+    <card-header><span class="headerTitle">შენი პროფილი</span><button class="btnChange" [attr.editing]="editing"
+            (click)="cancelChanges()">{{editing ? 'ცვლილების გაუქმება' : 'შეცვლა'}}</button></card-header>
+    <card-content>
+        <!-- <button class="transparent" (click)="navigate('OrgDetails');"
+            style="margin-top: 20px; line-height: 20px; color: #f1a700">შეავსე კომპანიის დეტალები<span
+                class="material-icons"
+                style="float: left;; font-size:18px; margin-right: 10px;">business</span></button> -->
+
+        <p>ელ-ფოსტა</p>
+        <p-label [(ngModel)]="user.email" [autoFocus]="false" [editControls]="false" editingDirection="horizontal">
+        </p-label>
+        <p>პაროლი <span style="font-family: BPG Nino Mtavruli;" *ngIf="editing">(<span class="changePass noselect"
+                    (click)="changePasswordPopup = true">შეცვლა</span>)</span></p>
+        <p-label text="******" [autoFocus]="false" [editControls]="false" editingDirection="horizontal"></p-label>
+        <p>სახელი, გვარი</p>
+        <p-label [(ngModel)]="user.fullName" [autoFocus]="false" [(editing)]="editing" [editControls]="false"
+            editingDirection="horizontal"></p-label>
+        <p>მობილურის ნომერი</p>
+        <p-label [(ngModel)]="user.phone" [autoFocus]="false" [(editing)]="editing" [editControls]="false"
+            editingDirection="horizontal"></p-label>
+
+        <!-- <p>პაროლი</p> -->
+        <!-- <p-label [(ngModel)]="user.password" [autoFocus]="false" style="border: 0px;" [editControls]="false" [(editing)]="editing" editingDirection="horizontal"></p-label> -->
+        <!-- <p>გაიმეორეთ პაროლი</p> -->
+        <!-- <p-label [(ngModel)]="user.confirmPassword" [autoFocus]="false" style="border: 0px;" [editControls]="false" [(editing)]="editing" editingDirection="horizontal"></p-label> -->
+        <button class="saveProfile" *ngIf="editing" (click)="changeUserProfileClick()">შენახვა</button>
+
+    </card-content>
+</card>
+<popup [(visible)]="changePasswordPopup" [draggable]="true" [setStyle]="{'height':'auto','padding-bottom':'20px'}">
+    <p-header>შეცვალეთ პაროლი</p-header>
+    <p-content class="changePassword">
+        <input type="password" [(ngModel)]="userPasswords.oldPassword" class="antsStyle"
+            placeholder="არსებული პაროლი" />
+        <input type="password" [(ngModel)]="userPasswords.newPassword" class="antsStyle" placeholder="ახალი პაროლი" />
+        <input type="password" [(ngModel)]="userPasswords.confirmNewPassword" class="antsStyle"
+            placeholder="გაიმეორეთ ახალი პაროლი" />
+        <button class="savePassword" (click)="changePasswordClick()">შენახვა</button>
+    </p-content>
+</popup>

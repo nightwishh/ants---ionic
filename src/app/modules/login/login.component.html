@@ -1,0 +1,24 @@
+<card>
+    <card-header>
+        <i class="material-icons" style="transform: scale(1.5);margin-right: 10px;">account_circle</i>
+        <span style="font-size: 30px;">შესვლა</span>
+    </card-header>
+    <card-content>
+        <div *ngIf="!isRegistration;else registration">
+        <p-input placeholder="ელ.ფოსტა" mIcon="mail" setClass="loginStyles" [(ngModel)]="userCredentials.email" ngDefaultControl></p-input>
+        <p-input type="password" placeholder="პაროლი" mIcon="lock" setClass="loginStyles" [(ngModel)]="userCredentials.password" ngDefaultControl></p-input>
+        <button style="float: right; margin-top: 15px; width: 150px; background: var(--main-green-color); color: var(--txt-white-color);" (click)="authenticate()">შესვლა</button>
+        <button [attr.border]=false style="float: right;clear: both;width: 150px;" (click)="isRegistration = true">რეგისტრაცია</button>
+        </div>
+        <ng-template #registration>
+            <p-input placeholder="ელ.ფოსტა" mIcon="mail" setClass="loginStyles" [(ngModel)]="userRegistration.email" ngDefaultControl></p-input>
+            <p-input type="password" placeholder="პაროლი" mIcon="lock" setClass="loginStyles" [(ngModel)]="userRegistration.password" ngDefaultControl></p-input>
+            <p-input type="password" placeholder="გაიმეორეთ პაროლი" mIcon="lock" setClass="loginStyles" [(ngModel)]="userRegistration.confirmPassword" ngDefaultControl></p-input>
+            <p-input placeholder="სახელი, გვარი" mIcon="account_box" setClass="loginStyles" [(ngModel)]="userRegistration.fullName" ngDefaultControl></p-input>
+            <p-input placeholder="მობილურის ნომერი" mIcon="contact_phone" setClass="loginStyles" [(ngModel)]="userRegistration.phone" ngDefaultControl></p-input>
+
+            <button class="registerBtn" (click)="register()">რეგისტრაცია</button>    
+            <button class="loginBtn" [attr.border]=false style="float: right;clear: both;width: 150px;" (click)="isRegistration = false">შესვლა</button>    
+        </ng-template>
+    </card-content>
+</card>

@@ -1,0 +1,430 @@
+@media only screen and (max-width: 700px) {
+    .userArea {
+        max-width: 115px !important;
+        padding: 0px 20px !important;
+    }
+    .userInitials {
+        display: inherit !important;
+    }
+    .userInitials .arrowDown {
+        display: none !important;
+    }
+    .currentPageTitle {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .userArea {
+        max-width: 45px !important;
+        padding: 0px 10px !important;
+    }
+    aside.menu {
+        width: 10px !important;
+    }
+    .logo {
+        width: 165px !important;
+    }
+    .activeWorkgroup {
+        transform: scale(0.7);
+        left: 0px !important;
+    }
+     ::ng-deep app-header[expandMenu="true"]>.activeWorkgroup {
+        display: none !important;
+    }
+    /* header:hover ~ .activeWorkgroup {
+        display: none;
+    } */
+}
+
+::ng-deep app-header[workgroup=true] header {
+    box-shadow: var(--header-shadow-green);
+    border-bottom: 1px solid var(--main-green-color);
+}
+
+::ng-deep app-header[workgroup=true]>.activeWorkgroup {
+    display: block;
+}
+
+header {
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    height: 77px;
+    background: var(--header-bg-color);
+    box-shadow: var(--header-shadow);
+    padding: 0px 15px;
+    position: fixed;
+    top: 0px;
+    z-index: 9;
+    left: 0px;
+    text-align: center;
+}
+
+aside.menu {
+    width: 64px;
+    left: 0px;
+    top: 77px;
+    height: 100%;
+    background: var(--main-green-color);
+    position: fixed;
+    transition: all 0.3s ease-out;
+    overflow: hidden;
+    color: var(--txt-white-color);
+    font-family: BPG Nino Mtavruli;
+    padding-top: 40px;
+    box-shadow: var(--default-shadow-right);
+    z-index: 9;
+}
+
+@media only screen and (min-width: 460px) {
+    aside.menu:hover {
+        width: 249px !important;
+    }
+}
+
+aside.menu[expand="true"] {
+    width: 249px !important;
+}
+
+.logo {
+    background-image: url("/assets/imgs/logo.png");
+    width: 200px;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+}
+
+.logo.center {
+    margin-left: calc(50% - 100px);
+}
+
+.logo.left {
+    float: left;
+}
+
+.logo.right {
+    float: right;
+}
+
+.logo:hover {
+    opacity: 0.4;
+}
+
+.menuBtn {
+    background: var(--main-bg-color);
+    float: left;
+    padding: 5px;
+    position: relative;
+    top: calc(50% - 18px);
+    color: var(--main-green-color);
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+}
+
+.menuBtn:hover {
+    filter: brightness(0.9);
+}
+
+.menuBtn[expand="true"] {
+    filter: brightness(0.85);
+}
+
+.userArea {
+    width: auto;
+    padding: 0px 30px;
+    height: 77px;
+    float: right;
+    background: gainsboro;
+    border-radius: 0;
+    margin-top: 0px;
+    display: grid;
+    background: transparent;
+    color: var(--default-txt-color);
+    cursor: pointer;
+    transition: all 0.45s ease-out;
+    position: relative;
+}
+
+.userArea:hover {
+    background: var(--nav-bg-color);
+    color: var(--default-txt-color);
+}
+
+.userArea:hover>.userPanel {
+    display: block;
+}
+
+.workgroup {
+    background: #1692ff !important;
+}
+
+.workgroupName {
+    width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    display: none;
+    top: calc(100% - 350px);
+}
+
+.listWorkgroup {
+    vertical-align: middle;
+    font-size: 20px;
+    padding: 2px;
+    background: white;
+    color: black;
+    border-radius: 18px;
+    margin-top: -2px;
+    margin-left: 5px;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.workgroup .workgroupName {
+    display: block;
+}
+
+.userArea .userInitials {
+    place-self: center;
+    display: table;
+}
+
+.userInitials span.fullName {
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 150px;
+}
+
+.userInitials i.arrowDown {
+    display: table-cell;
+    vertical-align: middle;
+    margin-left: 10px;
+    text-align: right;
+    width: 30px;
+}
+
+aside.menu nav {
+    padding-left: 15px;
+    padding-right: 15px;
+    display: table;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    background-color: rgba(255, 255, 255, 0);
+    height: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+}
+
+aside.menu nav[tabSelected=true] {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+aside.menu nav i {
+    height: 100%;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    width: 34px;
+    min-width: 34px;
+}
+
+aside.menu nav span.moduleName {
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding-left: 15px;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-right: 30px;
+    transition: all 0.3s ease-in;
+    opacity: 0;
+}
+
+aside.menu[expand="false"] nav span.moduleName {
+    transition-delay: 0s;
+    transition: all 0s ease-in;
+    opacity: 0;
+}
+
+aside.menu[expand="true"] nav span.moduleName,
+aside.menu:hover nav span.moduleName {
+    transition-delay: 0.2s;
+    opacity: 1;
+}
+
+aside.menu nav:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+aside.menu .counter {
+    width: 20px;
+    height: 20px;
+    background: #ea0000;
+    color: white;
+    border-radius: 20px;
+    position: absolute;
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: middle;
+    right: 10px;
+    margin-top: 15px;
+    transition: all 0.3s ease-out;
+}
+
+aside.menu[expand=false] .counter {
+    margin-top: 5px !important;
+}
+
+.activeWorkgroup {
+    z-index: 9;
+    height: 40px;
+    position: fixed;
+    width: 360px;
+    top: 56px;
+    text-align: center;
+    background-color: var(--main-bg-color);
+    color: var(--main-green-color);
+    line-height: 40px;
+    box-shadow: var(--header-shadow-green);
+    left: calc(50% - 180px);
+    border-radius: 15px;
+    border: 1px solid;
+    display: none;
+}
+
+.activeWorkgroup .wgPanel {
+    width: 360px;
+    height: 200px;
+    background: inherit;
+    margin: auto;
+}
+
+.userPanel {
+    position: absolute;
+    top: 77px;
+    background: #404040;
+    width: 300px;
+    height: auto;
+    right: 0px;
+    background: var(--nav-bg-color);
+    color: var(--default-txt-color);
+    /* transition: all 0.4s ease-out; */
+    display: none;
+}
+
+.userPanel>nav,
+.wgPanel>nav {
+    padding: 20px 40px;
+    text-align: center;
+    display: table;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    cursor: pointer;
+}
+
+.userPanel>nav:hover,
+.wgPanel>nav:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.userPanel>nav i,
+.userPanel>nav span,
+.wgPanel>nav i,
+.wgPanel>nav span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.userPanel>nav i,
+.wgPanel>nav i {
+    text-align: center;
+}
+
+.userPanel>nav span,
+.wgPanel>nav span {
+    text-align: left;
+}
+
+.activeWgCenter {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.activeWgCenter .wgName {
+    display: inline-flex;
+    width: auto;
+    overflow: hidden;
+    height: 40px;
+    max-width: 230px;
+    margin-right: 10px;
+    font-family: BPG Nino Mtavruli;
+    font-weight: bold;
+}
+
+.activeWgCenter>.wgPanel {
+    display: none;
+}
+
+.activeWorkgroup:hover {
+    border-radius: 15px 15px 0px 0px;
+    border: 0px;
+    box-shadow: var(--default-shadow);
+}
+
+.activeWorkgroup:hover .wgPanel,
+.activeWgCenter:hover>.wgPanel,
+.wgPanel:hover {
+    display: block;
+    color: var(--default-txt-color);
+    margin-top: -1px;
+}
+
+.activeWgCenter:hover>.listWorkgroup {
+    filter: invert(0.8);
+}
+
+.currentPageTitle {
+    /* position: absolute;
+    vertical-align: middle;
+    left: 0px;
+    display: contents;
+    line-height: 60px;
+    font-size: 22px;
+    font-family: BPG Nino Mtavruli;
+    color: var(--default-txt-color);
+    font-weight: bold; */
+    position: absolute;
+    font-size: 22px;
+    font-family: BPG Nino Mtavruli;
+    color: var(--default-txt-color);
+    font-weight: bold;
+    float: left;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+
+/* footer.chatFooter {
+    position: fixed;
+    bottom: 0px;
+    height: 50px;
+    width: -webkit-fill-available;
+    z-index: 9;
+} */

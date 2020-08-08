@@ -1,0 +1,89 @@
+::ng-deep app-drive {
+    float: left;
+    margin: 40px 30px;
+}
+::ng-deep card .card.driveCards {
+    grid-template-rows: auto !important;
+    width: 250px !important;
+    height: 250px !important;
+    cursor: pointer;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+::ng-deep card.driveCards card-content {
+    place-self: center;
+    text-align: center;
+    color: var(--default-txt-color);
+}
+
+::ng-deep card.driveCards card-content i {
+    font-size: 80px;
+}
+
+::ng-deep card.driveCards card-content.folder i {
+    color: #ffad15;
+}
+::ng-deep card.driveCards card-content.file i {
+    color: #1692ff;
+}
+::ng-deep card.driveCards card-content .title {
+    text-align: center;
+    margin: 0px;
+}
+::ng-deep card.driveCards .driveCards:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+::ng-deep card.driveCards .newFolderBtn {
+    background: #ffad15;
+    color: white;
+    margin-top: 10px;
+}
+::ng-deep card.driveCards.newFolder[active=true] label i.material-icons {
+    color: rgba(0,0,0,0.7) !important;
+}
+::ng-deep card.driveCards .btnfile { /* For P-INPUT Confirm Btn */
+    color: white;
+    margin-top: 10px;
+    background: #1692ff;
+}
+::ng-deep card.driveCards .btnfolder {
+    color: white;
+    margin-top: 10px;
+    background: #ffad15;
+}
+::ng-deep card.driveCards .moreIcon {
+    position: absolute; 
+    right: 0px; 
+    bottom: 0px; 
+    padding: 10px; 
+    font-size: 20px; 
+    color: #404040 !important;
+}
+::ng-deep card.driveCards .moreIcon:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+::ng-deep card[copied=true] .card.driveCards {
+    background-color: rgba(0,0,0,0.05);
+}
+::ng-deep card[copied=true] .card.driveCards::before {
+    content: "დაკოპირებული";
+    position: absolute;
+    padding: 10px;
+    padding-top: 15px;
+    font-family: BPG Nino Mtavruli;
+    color: var(--main-blue-color)
+}
+.copyShareLink {
+    float: right;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.copyShareLink:hover {
+    opacity: 0.8;
+}
+.copyShareLink[copied="true"] {
+    color: #3dd23d;
+}

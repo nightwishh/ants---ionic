@@ -1,0 +1,102 @@
+/* ::ng-deep card .tasksCard {
+    grid-template-rows: auto !important;
+    width: 300px !important;
+    height: 300px !important;
+    cursor: pointer;
+}
+::ng-deep card.workgroups {
+    float: left;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+::ng-deep app-workgroups {
+    float: left;
+    margin-top: 40px;
+}
+::ng-deep card.workgroups card-content.workgroups {
+    place-self: center !important;
+    text-align: center;
+}
+::ng-deep card.workgroups .tasksCard:hover {
+    background-color: rgba(0,0,0,0.05);
+}
+
+::ng-deep card.workgroups[selected=true] > .card {
+    background-color: #4a4a4a;
+    color: #1692ff;
+} */
+
+.wgPanel {
+    width: 360px;
+    height: auto;
+    max-height: 450px;
+    overflow: auto;
+    background: var(--main-bg-color);
+    margin: auto;
+    box-shadow: var(--default-shadow);
+    border-radius: 0px 0px 15px 15px;
+}
+
+.wgPanel>nav {
+    padding: 5px 40px;
+    text-align: center;
+    display: table;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    cursor: pointer;
+}
+
+.wgPanel>nav[selected="true"] {
+    color: var(--main-green-color);
+}
+
+.wgPanel>nav:hover {
+    background-color: var(--input-bg-color-hover);
+    color: var(--input-txt-color-hover);
+}
+
+.wgPanel>nav i,
+.wgPanel>nav span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.wgPanel>nav i {
+    text-align: center;
+}
+
+.wgPanel>nav span {
+    text-align: center;
+    font-family: BPG Nino Mtavruli;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

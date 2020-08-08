@@ -1,0 +1,44 @@
+<header>
+    <div class="currentPageTitle">{{getCurrentPageTitle()}}</div>
+    <div *ngIf="sideBar" class="menuBtn noselect" [attr.expand]="expandMenu">
+        <i class="material-icons" style="transform: scale(1.2);float: left;" (click)="expandMenu = !expandMenu">menu</i>
+    </div>
+    <div class="logo" [ngClass]="logoPosition" (click)="navigate('Home')"></div>
+    <div class="userArea noselect" *ngIf="authUser.token">
+        <div class="userInitials">
+        <span class="fullName textEllipsis">{{authUser.fullName}}</span>
+        <i class="material-icons arrowDown">keyboard_arrow_down</i>
+        </div>
+        
+        <div class="userPanel">
+            <nav (click)="navigate('Profile');">
+                <i class="material-icons">account_box</i>
+                <span class="title">პროფილი</span>
+            </nav>
+            <nav (click)="logout()">
+                <i class="material-icons">power_settings_new</i>
+                <span class="title">გამოსვლა</span>
+            </nav>
+        </div>
+    </div>
+</header>
+<div class="activeWorkgroup" *ngIf="authUser.userLoggedIn()">
+    <span class="activeWgCenter">
+        <span class="wgName">
+            {{authUser.workgroup.name}}
+        </span>
+        <i class="material-icons listWorkgroup">keyboard_arrow_down</i>
+        <div class="wgPanel">
+            <app-workgroups></app-workgroups>
+        </div>
+    </span>
+</div>
+
+<aside *ngIf="sideBar" class="menu noselect" [ngClass]="authUser.workgroup.active == true ? 'workgroup' : ''" [attr.expand]="expandMenu">
+    <nav *ngFor="let module of authUser.modules" (click)="navigate(module.url)" [attr.tabSelected]="tabSelected(module)">
+        <i class="material-icons">{{module.iconName}}</i>
+        <span class="moduleName capitalLetters">{{module.moduleName}}</span>
+        <span class="counter" *ngIf="moduleHasNotifications(module) && getNotifications(module.ID) > 0">{{getNotifications(module.ID) > 9 ? '9+' : getNotifications(module.ID)}}</span>
+    </nav>
+
+</aside>

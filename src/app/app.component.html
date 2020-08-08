@@ -1,0 +1,14 @@
+<ng-container *ngIf="userLoggedIn;else notLoggedIn">
+    <app-header></app-header>
+    <main class="InteractionArea">
+        <router-outlet></router-outlet>
+        <!-- <div class="notAuthorized" *ngIf="!isBxUser">ფუნქცია ხელმისაწვდომია მოდერაციის შემდეგ</div> -->
+    </main>
+</ng-container>
+<ng-template #notLoggedIn>
+    <app-header logoPosition="center" [sideBar]="false"></app-header>
+    <app-login></app-login>
+</ng-template>
+<app-modal class="request-modal-loader"> <!-- main modal with loader in it (REquest Loader) -->
+    <app-loader></app-loader>
+ </app-modal>

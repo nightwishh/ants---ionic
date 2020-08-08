@@ -1,0 +1,8 @@
+{
+  "name": "account-ants",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

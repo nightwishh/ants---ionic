@@ -1,0 +1,2 @@
+<pre class="textarea" *ngIf="editing" contenteditable (focusout)="onFocusOut()" [innerHtml]="ngModelRich" (input)="onContentChange($event.target.innerHTML)"></pre>
+<pre class="textarea" *ngIf="!editing" (click)="onFocus()" (focusout)="onFocusOut()" [innerHtml]="ngModelRich" (input)="onContentChange($event.target.innerHTML)"></pre>

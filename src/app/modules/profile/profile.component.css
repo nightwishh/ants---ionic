@@ -1,0 +1,108 @@
+@media only screen and (max-width: 460px) {
+
+    ::ng-deep card.profile > div.card {
+        width: 300px !important;
+    }
+    card.profile .headerTitle {
+        font-size: 18px !important;
+    }
+    card.profile .btnChange {
+        font-size: 9px !important;
+        padding: 10px 10px !important;
+    }
+
+}
+
+::ng-deep app-profile {
+    float: left;
+    width: -webkit-fill-available;
+    height: 100%;
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: stretch;
+    padding: 40px;
+}
+
+card.profile {
+    float: left;
+}
+card.profile .headerTitle {
+    font-size: 30px;
+}
+card.profile p-label {
+    float: left;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    color: #a2a2a2;
+}
+::ng-deep card.profile p-label input {
+    height: 40px;
+    font-size: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+card.profile .saveProfile {
+    background-color: #3ec762;
+    color:white;
+    margin-top: 30px;
+    width: 100%;
+}
+card.profile .changePass {
+    color: var(--main-blue-color);
+    font-family: BPG Nino Mtavruli;
+    cursor: pointer;
+    font-size: 14px;
+}
+card.profile p {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    font-family: BPG Nino Mtavruli;
+    float: left;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+
+card.profile .btnChange {
+    float: right;
+    font-size: 13px;
+    color: var(--main-blue-color);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    box-shadow: none;
+    height: 40px;
+    padding: 10px 25px;
+    margin-top: 30px;
+}
+
+card.profile .btnChange[editing="true"] {
+    color: white;
+    background: var(--main-red-color);
+}
+
+card.profile .btnChange:hover {
+    opacity: 0.8;
+
+}
+::ng-deep p-content.changePassword {
+    padding-top: 5px;
+}
+::ng-deep p-content.changePassword input {
+    box-sizing: border-box;
+    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    width: stretch;
+    height: 40px;
+    margin-top: 15px;
+}
+::ng-deep p-content.changePassword button.savePassword {
+    background-color: var(--main-lightgreen-color);
+    width: 100%;
+    color: white;
+    margin-top: 20px;
+}

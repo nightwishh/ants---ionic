@@ -1,0 +1,435 @@
+@media only screen and (max-width: 1000px) {
+     ::ng-deep card.chat[chatOpen="true"] card-content.chat {
+        padding-left: 3px !important;
+    }
+     ::ng-deep card.chat[chatOpen="true"] .chatHeadsContainer {
+        padding-right: 3px !important;
+    }
+     ::ng-deep card.chat[chatOpen="true"] card-content.chat {
+        grid-template-columns: auto !important;
+    }
+     ::ng-deep card.chat[chatOpen="true"] card-content.chat .chatHeadsContainer {
+        display: none;
+    }
+     ::ng-deep card.chat[chatOpen="true"] card-content.chat .chatInfo .arrowBack {
+        display: table-cell;
+        cursor: pointer;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+     ::ng-deep card.chat[chatOpen="false"] .card {
+        width: -webkit-fill-available !important;
+    }
+     ::ng-deep card-content.chat {
+        grid-template-columns: auto !important;
+    }
+}
+
+::ng-deep card.chat p-input[type="textarea"] .inp {
+    grid-template-columns: auto !important;
+    padding: 10px;
+}
+
+
+/* 
+@media only screen and (min-width:460px) and (max-width: 1000px) {
+    ::ng-deep card.chat[chatOpen="true"] card-content.chat {
+        grid-template-columns: 145px auto !important;
+    }
+    ::ng-deep card.chat[chatOpen=true] card-content.chat .chatTitleContainer {
+        display: table-row !important;
+        font-size: 15px !important;
+    }
+    ::ng-deep card.chat[chatOpen=true] card-content.chat .chatIconContainer {
+        padding-left: 30px !important;
+    }
+    ::ng-deep card.chat[chatOpen=true] card-content.chat .chatHead {
+        border-radius: 0px !important;
+    }
+} */
+
+iframe.chat {
+    width: 600px;
+    height: 560px;
+    border: 0px;
+    overflow: hidden;
+    margin-left: 50px;
+    margin-top: 50px;
+    box-shadow: var(--default-shadow-right);
+    border-radius: 7px;
+}
+
+card.chat {
+    float: left;
+    margin: 30px;
+    margin-top: 40px;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+
+::ng-deep card.chat .card {
+    grid-template-rows: 60px auto !important;
+    margin-left: 0px;
+    border-radius: 10px;
+}
+
+::ng-deep card-header.chat {
+    line-height: 65px !important;
+    font-size: 25px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, .13);
+    color: var(--default-txt-color);
+    border-radius: 10px 10px 0px 0px;
+}
+
+::ng-deep card-content.chat {
+    padding-top: 10px;
+    overflow: hidden;
+}
+
+::ng-deep card.chat[chatOpen="true"]>div.card {
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+
+::ng-deep card.chat[chatOpen="true"] card-content.chat .chatHeadsContainer {
+    border-right: 1px solid var(--nav-bd-color);
+    padding-right: 20px;
+}
+
+.chatHeadsContainer {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.chatHeadsContainer .recentChats {
+    width: 100%;
+    overflow: hidden;
+}
+
+.chatHead {
+    float: left;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    min-width: 400px;
+    display: table;
+    margin: 10px 0px;
+    background-color: transparent;
+    border-radius: 25px;
+    cursor: pointer;
+    outline: none;
+}
+
+.chatHead:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+.chatHead[selected=true] {
+    background-color: rgba(0, 0, 0, .07);
+}
+
+span.chatIconContainer {
+    display: table-cell;
+    width: 70px;
+}
+
+span.openChatIconContainer {
+    display: table-cell;
+    width: 70px;
+}
+
+.openChatIconContainer .Circle {
+    width: 40px;
+    height: 40px;
+}
+
+.openChatIconContainer .Circle>* {
+    font-size: 16px;
+}
+
+span.Circle {
+    display: table;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 100px;
+    text-align: center;
+}
+
+span.Circle>* {
+    display: table-cell;
+    vertical-align: middle;
+    color: white;
+}
+
+.chatTitleContainer {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: left;
+    color: var(--default-txt-color);
+    background: transparent;
+}
+
+.chatTitleContainer[unread=true] {
+    font-weight: bold;
+}
+
+.chatTitleContainer span.chatTitle {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--default-txt-color);
+    font-weight: bold;
+    width: 340px;
+}
+
+.chatTitle>.counter {
+    width: 20px;
+    height: 20px;
+    background: #ea0000;
+    color: white;
+    float: left;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+    margin-right: 5px;
+}
+
+.chatTitleContainer span.messagePreview {
+    display: block;
+    font-size: 13px;
+    color: var(--default-txt-color);
+    width: 340px;
+}
+
+.chatTitleContainer span.messagePreview>i.material-icons {
+    font-size: 13px;
+    color: var(--default-txt-color);
+}
+
+.chatDate {
+    display: table-caption;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 10;
+    margin-bottom: 20px;
+    color: var(--default-txt-color);
+}
+
+searchbar {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+::ng-deep card card-content.chat {
+    display: grid;
+    grid-template-columns: 460px auto;
+}
+
+::ng-deep card.chat[chatOpen="true"] card-content.chat {
+    grid-template-columns: 345px auto;
+}
+
+.chatOpenContainer {
+    margin-left: 20px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.messages {
+    overflow-y: scroll;
+    height: calc(100% - 170px);
+    padding-top: 20px;
+}
+
+.messages .message {
+    display: table;
+    margin-bottom: 20px;
+}
+
+.messages .message[mymessage=true] {
+    margin-right: 0px;
+    margin-left: auto;
+    direction: rtl;
+    margin-right: 20px;
+}
+
+.messages .message[mymessage=true] .messageText {
+    /* background: #4adeea; */
+    background: #ffffff;
+    border: 1px solid #dcdcdc;
+}
+
+.message .messageText {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px 15px;
+    background: #e4e4e4;
+    border-radius: 10px;
+    max-width: 320px;
+    direction: ltr;
+    word-break: break-all;
+}
+
+.message .messageDate {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 13px;
+    padding: 0px 10px;
+    color: var(--default-txt-color);
+}
+
+.message .personName {
+    text-align: left;
+    display: block;
+    font-size: 11px;
+    color: var(--default-txt-color);
+    font-family: BPG Nino Mtavruli;
+    font-weight: bold;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.message[mymessage=true] .personName {
+    display: none;
+}
+
+.newMessage {
+    height: 80px;
+    bottom: 0px;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+    display: table;
+    margin-right: 20px;
+}
+
+.newMessage>p-input {
+    display: table-cell;
+    vertical-align: middle;
+    border-top: 1px solid var(--nav-bd-color);
+}
+
+::ng-deep .newMessage p-input .inp {
+    grid-template-columns: 40px auto 100px !important;
+}
+
+.sendBtn {
+    width: 100px;
+    height: 40px;
+    font-size: 13px;
+    background: #03aebc;
+    color: white;
+    font-family: BPG Nino Mtavruli;
+    line-height: 40px;
+    cursor: pointer;
+    transition: all 0.4s ease-out;
+}
+
+.sendBtn:hover {
+    background: #05939e;
+}
+
+.loaderModal {
+    float: left;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.chatInfo {
+    width: calc(100% - 20px);
+    height: 60px;
+    background: transparent;
+    /* border-bottom: 1px solid var(--nav-bd-color); */
+    padding-top: 10px;
+}
+
+.chatInfo .chatTitleContainer {
+    border-bottom: 2px solid #d4d4d4;
+}
+
+.chatInfo .arrowBack {
+    display: table-cell;
+    padding-right: 30px;
+    color: var(--default-txt-color);
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* Bitrix Chat Styles */
+
+
+/* 
+table.main-wrapper {
+    background: white;
+    }
+    .main-wrapper-content-cell {
+    padding:0px !important;
+    }
+    .main-wrapper-footer {
+    display:none;
+    }
+    .main-title {
+    display:none;
+    }
+    .bx-livechat-copyright {
+    display:none;
+    }
+    .content-wrap {
+        width: 100%!important;
+        height: 100%;
+        padding:0px !important;
+    }
+    body {
+    overflow:hidden;
+    } */
+
+
+/* 
+    .bx-livechat-alert-box.bx-livechat-form-show {
+        display: none;
+    } */
+
+
+/* Bitrix chat styles End */
