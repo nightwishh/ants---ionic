@@ -12,6 +12,7 @@ import { getMatFormFieldDuplicatedHintError } from '@angular/material/form-field
 import { async } from '@angular/core/testing';
 import { reverse } from 'dns';
 import { ReversePipe } from 'src/app/pipes/reverse.pipe';
+import { Key } from 'readline';
 
 @Component({
   selector: 'app-chat',
@@ -46,6 +47,7 @@ export class ChatComponent implements OnInit {
   
   // @HostListener('messages:scroll', ['$event']) // for window scroll events
   alreadyScrolledToTop:boolean = false;
+  chatScrollEvent:boolean = false;
   onChatScroll(event:Event) {
     // load more messages when scroll to top
     var elem = (event.target as HTMLElement)
@@ -237,14 +239,18 @@ export class ChatComponent implements OnInit {
     this.openedChat.name = chat["name"] || chat["chat"]["name"];
     this.openedChat.color = chat["color"] || chat["avatar"]["color"];
    }
-setTimeout(() => {
-  this.zone.runOutsideAngular(() => {
-    var msgsView = this.messagesView.nativeElement as HTMLElement;
-    msgsView.addEventListener('scroll', (e)=> {
-      this.onChatScroll(e);
-    });
-  });
-  }, 100);
+
+   if (!this.chatScrollEvent) {
+    setTimeout(() => {
+      this.chatScrollEvent = true;
+      this.zone.runOutsideAngular(() => {
+        var msgsView = this.messagesView.nativeElement as HTMLElement;
+        msgsView.addEventListener('scroll', (e)=> {
+          this.onChatScroll(e);
+        });
+      });
+      }, 100); 
+   }
  }
 @ViewChild("messageView",{static:false}) messageView:InputComponent;
  msgScrollToBottomTimer = null;
@@ -307,6 +313,10 @@ setTimeout(() => {
 
  openChatByUserID() {
 
+ }
+
+ keypress(event) {
+   if (event.code == "Enter") this.sendMessage();
  }
 
 sendMessage() {

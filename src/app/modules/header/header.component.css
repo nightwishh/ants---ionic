@@ -78,7 +78,7 @@ aside.menu {
     color: var(--txt-white-color);
     font-family: BPG Nino Mtavruli;
     padding-top: 40px;
-    /* box-shadow: var(--default-shadow-right); */
+    box-shadow: var(--default-shadow-right);
     border-right: 1px solid var(--searchbar-bd-color);
     z-index: 9;
 }

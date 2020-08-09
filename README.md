@@ -10,7 +10,7 @@ get packages then
 4. (Optional) test run `ng serve`
 5. Prepare project for mobile 
 // For Android
-`ionic cordova prepare android`
+`ionic cordova prepare android --prod`
 
 if some errors happened, like `could not find necessary files ./config.xml` folder not found
 run `ionic integrations enable cordova --add` this will enable integration with cordova for this project and downloads `resources` folder for android

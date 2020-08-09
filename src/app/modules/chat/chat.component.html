@@ -117,7 +117,7 @@ src="https://accountants.bitrix24.com/online/antsge" *ngIf="!authUser.bxUserLogg
                 </section> -->
             </section>
             <section class="newMessage">
-                <input type="text" class="antsStyle" placeholder="მიწერე..." style="height: 40px;" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText"/>
+                <input type="text" class="antsStyle" placeholder="მიწერე..." style="height: 40px;" (keypress)="keypress($event)" [(ngModel)]="newMessageText"/>
                 <button class="sendBtn" (click)="sendMessage()">გაგზავნა</button>
 
                 <!-- <p-input placeholder="მიწერე..." [setStyle]="{'height':'40px'}" (onEnterKey)="sendMessage()" [(ngModel)]="newMessageText" ngDefaultControl>
