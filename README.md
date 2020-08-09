@@ -11,9 +11,15 @@ get packages then
 5. Prepare project for mobile 
 // For Android
 `ionic cordova prepare android`
+
 if some errors happened, like `could not find necessary files ./config.xml` folder not found
 run `ionic integrations enable cordova --add` this will enable integration with cordova for this project and downloads `resources` folder for android
 if `resources/something.xx` not found then run again remove `ionic cordova platform rm android`, manually remove config.xml and `ionic integrations enable cordova --add`
+
+after `ionic cordova prepare android` command ends, run `ionic cordova run android`
+if run android didn't work, open `platforms/android` project into android studio and run from there
+
+
 // For iOS
 `ionic cordova prepare ios`
 
