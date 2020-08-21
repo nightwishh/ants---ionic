@@ -8,6 +8,7 @@ export class newBxUser {
   password:string = null;
   antsEmail:string = null;
   refreshToken:string = "";
+  accessToken:string = "";
 }
 
 @Component({
@@ -25,10 +26,14 @@ export class AdminpanelComponent implements OnInit {
   ngOnInit(): void {
     setInterval(() => {
       try {
-        var ifr = document.getElementById("ifr") as HTMLIFrameElement;
-        var ifrDoc = (ifr.contentWindow || ifr.contentDocument) as any;
-        this.newBxUser.refreshToken = String(ifrDoc["document"].getElementById("refreshToken").value);
-        this.newBxUser.email = String(ifrDoc["document"].getElementById("email").value);
+        // var ifr = document.getElementById("ifr") as HTMLIFrameElement;
+        // var ifrDoc = (ifr.contentWindow || ifr.contentDocument) as any;
+        // this.newBxUser.refreshToken = String(ifrDoc["document"].getElementById("refreshToken").value);
+        // this.newBxUser.email = String(ifrDoc["document"].getElementById("email").value);
+        if (String(this.commonService.getCookie("newBxRefreshToken")).length == 0) return;
+        this.newBxUser.accessToken = String(this.commonService.getCookie("newBxAccessToken"));
+        this.newBxUser.refreshToken = String(this.commonService.getCookie("newBxRefreshToken"));
+        this.newBxUser.email = String(this.commonService.getCookie("newBxEmail"));
       }
       catch{}
     }, 2000);
@@ -36,11 +41,13 @@ export class AdminpanelComponent implements OnInit {
   saveNewBxUser() {
     this.commonService.post("Users/SetBxUser",this.newBxUser,() => {
       alert("ოპერაცია წარმატებით დასრულდა");
+      location.href = "/";
     })
   }
   deleteNewBxUser() {
     this.commonService.post("Users/DeleteBxUser",this.newBxUser,() => {
       alert("ოპერაცია წარმატებით დასრულდა");
+      location.href = "/";
     })
   }
   isAdmin:boolean = false;

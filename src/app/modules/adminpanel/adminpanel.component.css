@@ -16,3 +16,16 @@ button {
 .backBtn > span.material-icons {
     font-size: 16px;
 }
+.authBx {
+    border: 1px solid;
+    padding: 10px;
+    float: left;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    background: var(--main-blue-color);
+    text-decoration: none;
+    font-family: BPG Nino Mtavruli;
+    font-size: 14px;
+}
