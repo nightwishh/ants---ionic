@@ -33,7 +33,7 @@ const routes: Routes = [
   {path:"Sales", component:UnderconstructionComponent},
   {path:"Reports", component:UnderconstructionComponent},
   {path:"OrgDetails", component:OrgDetailsComponent},
-  {path:"Pricing", component:PricingComponent},
+  // {path:"Pricing", component:PricingComponent},
   {path:"AuthBitrix", component:AuthBitrixComponent},
   {path:"Admpnl", component:AdminpanelComponent},
   {path:"Admpnl/:tabActive", component:AdminpanelComponent},

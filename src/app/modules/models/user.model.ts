@@ -7,7 +7,7 @@ export class UserCredentials {
 }
 export class UserRegistration extends UserCredentials {
   public fullName:string;
-  public phone:string;
+  public phone:string = "";
   public confirmPassword:string;
 }
 export class UserProfile extends UserRegistration {

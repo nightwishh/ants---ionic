@@ -44,13 +44,15 @@ export class HeaderComponent implements OnInit {
       this.getChatNotificationsService();
     },10000)
   }
-  navigate(route:string) {
+  navigate(route:string) { 
     const mq = window.matchMedia("(max-width: 460px)");
     if (mq.matches)
     this.expandMenu = false;
     this.router.navigate([route]);
   }
-
+  logoClick() {
+    location.href = "/";
+  }
   logout() {
     this.authUser.logout();
   }
@@ -78,6 +80,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getChatNotificationsService() {
+    if (this.commonService.getCookie("bxat") == null || this.commonService.getCookie("bxat").length == 0) return;
+
     this.commonService.getBX("im.counters.get",{},(data) => {
       var chatCounter = (data.result.TYPE.CHAT + data.result.TYPE.DIALOG) | 0;
 

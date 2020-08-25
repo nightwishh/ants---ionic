@@ -3,7 +3,7 @@
     <div *ngIf="sideBar" class="menuBtn noselect" [attr.expand]="expandMenu">
         <i class="material-icons" style="transform: scale(1.2);float: left;" (click)="expandMenu = !expandMenu">menu</i>
     </div>
-    <div class="logo" [ngClass]="logoPosition" (click)="navigate('Home')"></div>
+    <div class="logo" [ngClass]="logoPosition" (click)="logoClick()"></div>
     <div class="userArea noselect" *ngIf="authUser.token">
         <div class="userInitials">
         <span class="fullName textEllipsis">{{authUser.fullName}}</span>
