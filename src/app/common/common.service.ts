@@ -15,8 +15,8 @@ export class CommonService {
   }
   get baseUrl():string {
     if (location.href.includes("localhost")) {
-    return "https://apiants.azurewebsites.net/";;
-    // return "http://localhost:51731/";
+    // return "https://apiants.azurewebsites.net/";;
+    return "https://localhost:5001/";
     }
     else 
     return "https://apiants.azurewebsites.net/";

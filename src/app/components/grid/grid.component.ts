@@ -1,10 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { element } from 'protractor';
-import { Grid, GridService, FilterParam } from 'src/app/services/grid.service';
+import { Grid, GridService, FilterParam, DataType } from 'src/app/services/grid.service';
 import { Observable } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { CommonFunctions } from 'src/app/common/common-functions';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'grid',
@@ -127,7 +128,8 @@ export class GridColumn {
 export class ColumnComponent implements OnInit {
   @Input() fieldName:string;
   @Input() header:string;
-  
+  @Input() dataType:DataType = DataType.String;
+
   constructor(private grid:GridComponent) {
 
   }

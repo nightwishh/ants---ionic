@@ -23,9 +23,10 @@
   </mat-table>
 <mat-paginator #paginator [pageSizeOptions]="[2, 5, 10, 20]" [pageSize]="5" (page)="onPage($event)" showFirstLastButtons></mat-paginator>
 </div> -->
-<grid #grd webMethod="Users/GrdAllUsers" [pageSize]="5" [setStyle]="{margin:'10px 10px 10px 20px'}" (onRowClick)="userRowClick($event)">
+<grid #grd webMethod="Users/GrdAllUsers" [pageSize]="5" [setStyle]="{margin:'10px 10px 10px 10px'}" (onRowClick)="userRowClick($event)">
   <column fieldName="fullName" header="სახელი"></column>
   <column fieldName="email" header="მეილი"></column>
+  <column fieldName="create_date_str" header="რეგისტრაციის თარიღი"></column>
   <column fieldName="phone" header="მობილური"></column>
   <column fieldName="bxEmail" header="ბიტრიქსის მეილი"></column>
 </grid>
