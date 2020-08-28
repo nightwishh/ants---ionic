@@ -4,11 +4,13 @@ import { Authuser } from 'src/app/common/authuser';
 import { ActivatedRoute } from '@angular/router';
 import { Users } from './grd-users/services/grd-users.service';
 export class newBxUser {
+  antsUserID:number = null;
   email:string = null;
   password:string = null;
   antsEmail:string = null;
   refreshToken:string = "";
   accessToken:string = "";
+  hasBitrix:boolean = false;
 }
 
 @Component({
@@ -25,6 +27,7 @@ export class AdminpanelComponent implements OnInit {
   
   ngOnInit(): void {
     setInterval(() => {
+      if (this.newBxUser.hasBitrix) return;
       try {
         // var ifr = document.getElementById("ifr") as HTMLIFrameElement;
         // var ifrDoc = (ifr.contentWindow || ifr.contentDocument) as any;
@@ -59,7 +62,10 @@ export class AdminpanelComponent implements OnInit {
     }
 
   onRowClick(event:Users) {
+    this.newBxUser.antsUserID = event.ID;
+    this.newBxUser.email = event.bxEmail;
     this.newBxUser.antsEmail = event.email;
+    this.newBxUser.hasBitrix = event.has_bx;
     this.tab = 1;
   }
 }

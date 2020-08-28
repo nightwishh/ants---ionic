@@ -117,7 +117,7 @@ export class DriveComponent implements OnInit {
   ngOnInit(): void {
     if (Authuser.bxToken.length == 0 && this.commonService.getCookie("questionnaire") != "1") {
       setTimeout(() => {
-        location.href = "/OrgDetails";
+        location.href = "/Chat";
       }, 7000);
     }
   }

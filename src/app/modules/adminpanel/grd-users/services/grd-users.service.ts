@@ -30,10 +30,10 @@ export class GrdUsersService {
    }
 }
 export interface Users {
-  id:number;
+  ID:number;
   fullName:string;
   email:string;
-  bx_email:string;
-  bx_password:string;
+  bxEmail:string;
   phone:number;
+  has_bx:boolean;
 }

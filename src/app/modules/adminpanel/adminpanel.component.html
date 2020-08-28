@@ -1,18 +1,21 @@
 <div style="padding:40px;" *ngIf="isAdmin;else notAdmin">
     <div class="container" *ngIf="tab==1">
     <p class="backBtn" (click)="tab = 2"><span class="material-icons">arrow_back_ios</span>უკან დაბრუნება</p>
+        <div class="userStatus" *ngIf="newBxUser.hasBitrix">აქტიური</div>
+        <p *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0" style="font-size: 14px; clear: both;">პორტალის მეილი</p>
         <input type="text" class="antsStyle" [(ngModel)]="newBxUser.antsEmail"
-            placeholder="მომხმარებლის(Ants) მეილი" /><br />
+            placeholder="მომხმარებლის(Ants) მეილი" disabled /><br />
+        <p *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0" style="font-size: 14px;">ბიტრიქსის მეილი</p>
         <input type="text" class="antsStyle" [(ngModel)]="newBxUser.email" disabled
             placeholder="ახალი მომხმარებლის(Bitrix) მეილი" /><br />
-        <input type="password" class="antsStyle" [(ngModel)]="newBxUser.password" autocomplete="new-password"
+        <input type="password" class="antsStyle" *ngIf="!newBxUser.hasBitrix" [(ngModel)]="newBxUser.password" autocomplete="new-password"
             placeholder="ახალი მომხმარებლის(Bitrix) პაროლი" /> <br />
 
-        <a class="authBx" href="https://accountants.bitrix24.com/oauth/authorize/?response_type=code&client_id=local.5eec97f99a5dd3.72311743&redirect_uri=app_URL" *ngIf="!newBxUser.email && !newBxUser.refreshToken" target="_blank">ბიტრიქსის ავტორიზაცია</a>
-        <button *ngIf="newBxUser.email && newBxUser.refreshToken" (click)="saveNewBxUser()">შენახვა</button>
-        <!-- <button (click)="deleteNewBxUser()" style="margin-left:10px;background-color: red;">წაშლა</button> -->
+        <a class="authBx" href="https://accountants.bitrix24.com/oauth/authorize/?response_type=code&client_id=local.5eec97f99a5dd3.72311743&redirect_uri=app_URL" *ngIf="!newBxUser.email && !newBxUser.refreshToken && !newBxUser.hasBitrix" target="_blank">ბიტრიქსის ავტორიზაცია</a>
+        <button *ngIf="newBxUser.email && newBxUser.refreshToken && !newBxUser.hasBitrix" (click)="saveNewBxUser()">შენახვა</button>
+        <button *ngIf="newBxUser.hasBitrix && newBxUser.antsUserID > 0" (click)="deleteNewBxUser()" style="margin-left:0px;background-color: red;">ბიტრიქსის წაშლა</button>
 
-        <div style="border: 1px solid var(--main-blue-color); width: 320px; padding: 10px; margin-top: 70px;">
+        <div *ngIf="!newBxUser.hasBitrix" style="border: 1px solid var(--main-blue-color); width: 320px; padding: 10px; margin-top: 70px;">
             <p style="width: 300px;color: var(--main-blue-color);">გაიარე ავტორიზაცია ბიტრიქსის ახალი იუზერით შენ
                 ბრაუზერში, დააჭირე <b>ბიტრიქსის ავტორიზაციას</b> და დაელოდე</p>
             <p style="width: 300px;color: var(--main-red-color);">ქვედა (<span style="color: #48a6c3;">შიფრის

@@ -29,3 +29,12 @@ button {
     font-family: BPG Nino Mtavruli;
     font-size: 14px;
 }
+.userStatus {
+    float: left;
+    background: var(--main-lightgreen-color);
+    color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
