@@ -239,3 +239,6 @@ mat-paginator {
 ::ng-deep .imgPreview {
     width: 200px;
 }
+p, span {
+    word-break: break-word;
+}

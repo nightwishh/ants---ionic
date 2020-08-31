@@ -64,6 +64,7 @@ textarea, .textarea {
     white-space: break-spaces;
     overflow: auto;
     padding-bottom: 10px;
+    word-break: break-word;
 }
 .imgPreview {
     width: 200px;
