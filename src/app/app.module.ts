@@ -46,6 +46,7 @@ import { AuthBitrixComponent } from './modules/auth-bitrix/auth-bitrix.component
 import { GrdUsersComponent } from './modules/adminpanel/grd-users/grd-users.component';
 import { GridComponent, ColumnComponent } from './components/grid/grid.component';
 import { TestGridComponent } from './modules/test-grid/test-grid.component';
+import { Push } from '@ionic-native/push/ngx';
 
 
 @NgModule({
@@ -99,7 +100,7 @@ import { TestGridComponent } from './modules/test-grid/test-grid.component';
     MatSortModule,
     DragDropModule
   ],
-  providers: [{provide: MatPaginatorIntl, useClass:CustomMatPaginatorIntl}, MatDatepickerModule],
+  providers: [{provide: MatPaginatorIntl, useClass:CustomMatPaginatorIntl}, MatDatepickerModule, Push],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
