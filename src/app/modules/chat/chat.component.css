@@ -74,6 +74,7 @@ card.chat {
     grid-template-rows: 60px auto !important;
     margin-left: 0px;
     border-radius: 10px;
+    zoom: 0.8;
 }
 
 ::ng-deep card-header.chat {
