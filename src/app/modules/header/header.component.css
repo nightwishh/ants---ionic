@@ -32,17 +32,14 @@
         transform: scale(0.7);
         left: 0px !important;
     }
-     ::ng-deep app-header[expandMenu="true"]>.activeWorkgroup {
+    aside[expand=true] ~ .activeWorkgroup {
         display: none !important;
     }
-    /* header:hover ~ .activeWorkgroup {
-        display: none;
-    } */
 }
 
 ::ng-deep app-header[workgroup=true] header {
     /* box-shadow: var(--header-shadow-green); */
-    border-bottom: 1px solid var(--main-green-color);
+    /* border-bottom: 1px solid var(--main-green-color); */
 }
 
 ::ng-deep app-header[workgroup=true]>.activeWorkgroup {
@@ -70,7 +67,7 @@ aside.menu {
     width: 64px;
     left: 0px;
     top: 77px;
-    height: 100%;
+    height: calc(100% - 117px); /* 117px = 77px(header) + 40px(paddingTop) */
     background: var(--main-green-color);
     position: fixed;
     transition: all 0.3s ease-out;
@@ -81,10 +78,11 @@ aside.menu {
     box-shadow: var(--default-shadow-right);
     border-right: 1px solid var(--searchbar-bd-color);
     z-index: 9;
+    overflow-y:  auto;
 }
 
 @media only screen and (min-width: 460px) {
-    aside.menu:hover {
+    aside.menu:hover:not(.userMenu) {
         width: 249px !important;
     }
 }
@@ -142,7 +140,7 @@ aside.menu[expand="true"] {
 
 .userArea {
     width: auto;
-    padding: 0px 30px;
+    padding: 0px 28px;
     height: 77px;
     float: right;
     background: gainsboro;
@@ -159,10 +157,6 @@ aside.menu[expand="true"] {
 .userArea:hover {
     background: var(--nav-bg-color);
     color: var(--default-txt-color);
-}
-
-.userArea:hover>.userPanel {
-    display: block;
 }
 
 .workgroup {
@@ -185,13 +179,14 @@ aside.menu[expand="true"] {
     vertical-align: middle;
     font-size: 20px;
     padding: 2px;
-    background: white;
+    /* background: white; */
     color: black;
     border-radius: 18px;
     margin-top: -2px;
     margin-left: 5px;
     cursor: pointer;
     transform: scale(1);
+    transition: 0.2s all ease-out;
 }
 
 .workgroup .workgroupName {
@@ -273,7 +268,9 @@ aside.menu:hover nav span.moduleName {
 aside.menu nav:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-
+aside.menu.userMenu nav:hover {
+    background-color: var(--main-bg-color);
+}
 aside.menu .counter {
     width: 20px;
     height: 20px;
@@ -298,21 +295,18 @@ aside.menu[expand=false] .counter {
     z-index: 9;
     height: 40px;
     position: fixed;
-    width: 360px;
+    width: 300px;
     top: 56px;
     text-align: center;
-    background-color: var(--main-bg-color);
+    background-color: #f4f4f4;
     color: var(--main-green-color);
     line-height: 40px;
-    box-shadow: var(--header-shadow-green);
-    left: calc(50% - 180px);
+    left: calc(50% - 150px);
     border-radius: 15px;
-    border: 1px solid;
     display: none;
 }
-
 .activeWorkgroup .wgPanel {
-    width: 360px;
+    width: auto;
     height: 200px;
     background: inherit;
     margin: auto;
@@ -320,15 +314,13 @@ aside.menu[expand=false] .counter {
 
 .userPanel {
     position: absolute;
-    top: 77px;
     background: #404040;
-    width: 300px;
+    width: 100%;
     height: auto;
     right: 0px;
-    background: var(--nav-bg-color);
+    background: transparent;
     color: var(--default-txt-color);
     /* transition: all 0.4s ease-out; */
-    display: none;
 }
 
 .userPanel>nav,
@@ -369,6 +361,7 @@ aside.menu[expand=false] .counter {
 .activeWgCenter {
     cursor: pointer;
     display: inline-block;
+    width: 100%;
 }
 
 .activeWgCenter .wgName {
@@ -389,7 +382,8 @@ aside.menu[expand=false] .counter {
 .activeWorkgroup:hover {
     border-radius: 15px 15px 0px 0px;
     border: 0px;
-    box-shadow: var(--default-shadow);
+    /* box-shadow: var(--default-shadow); */
+    border: 1px solid #f4f4f4;
 }
 
 .activeWorkgroup:hover .wgPanel,
@@ -402,6 +396,7 @@ aside.menu[expand=false] .counter {
 
 .activeWgCenter:hover>.listWorkgroup {
     filter: invert(0.8);
+    transform:rotate(180deg);
 }
 
 .currentPageTitle {
@@ -433,3 +428,50 @@ aside.menu[expand=false] .counter {
     width: -webkit-fill-available;
     z-index: 9;
 } */
+
+
+aside.menu.userMenu {
+    float: right;
+    right: 0;
+    left: auto !important;
+    width: 0;
+    box-shadow: none;
+    border: 0;
+    background-color: #f4f4f4;
+    padding-top: 0px;
+    height: calc(100% - 77px);
+    border-left:1px solid var(--searchbar-bd-color);
+    box-sizing: border-box;
+}
+.userArea[expand=true] {
+    background-color: #f4f4f4;
+}
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

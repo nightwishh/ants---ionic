@@ -72,4 +72,8 @@ export class WorkgroupsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addCompany() {
+    location.href = "/OrgDetails"
+  }
+
 }

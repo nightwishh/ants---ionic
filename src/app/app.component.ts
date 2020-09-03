@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Authuser } from "./common/authuser";
 import { CommonService } from "./common/common.service";
 import { Location } from "@angular/common";
-import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
+// import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 import { Platform } from "@ionic/angular";
 
 @Component({
@@ -16,7 +16,9 @@ export class AppComponent implements OnInit {
   userLoggedIn: Boolean = false;
   isBxUser: boolean = false;
   showBxNotAuthorized: boolean = false;
-  constructor(private push: Push, private platform: Platform) {
+  // constructor(private push: Push, private platform: Platform) {
+  constructor() {
+
     this.userLoggedIn = Authuser.userLoggedIn();
     this.isBxUser = Authuser.bxToken.length > 0;
 
@@ -25,12 +27,14 @@ export class AppComponent implements OnInit {
     // }))
   }
   ngOnInit() {
-    setTimeout(() => {
-      console.log("Hey");
-      if (this.platform.is("android") || this.platform.is("ios"))
-      this.pushSetup();
-    }, 100);
+    // setTimeout(() => {
+    //   console.log("Hey");
+    //   if (this.platform.is("android") || this.platform.is("ios"))
+    //   this.pushSetup();
+    // }, 100);
   }
+
+  /*
   pushSetup() {
     this.push.hasPermission().then((res: any) => {
       if (res.isEnabled) {
@@ -98,4 +102,5 @@ export class AppComponent implements OnInit {
       .on("error")
       .subscribe((error) => console.error("Error with Push plugin", error));
   }
+  */
 }

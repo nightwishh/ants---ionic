@@ -4,24 +4,35 @@
         <i class="material-icons" style="transform: scale(1.2);float: left;" (click)="expandMenu = !expandMenu">menu</i>
     </div>
     <div class="logo" [ngClass]="logoPosition" (click)="logoClick()"></div>
-    <div class="userArea noselect" *ngIf="authUser.token">
+    <div class="userArea noselect" *ngIf="authUser.token" [attr.expand]="expandUserMenu" (click)="expandUserMenu = !expandUserMenu">
         <div class="userInitials">
         <span class="fullName textEllipsis">{{authUser.fullName}}</span>
-        <i class="material-icons arrowDown">keyboard_arrow_down</i>
-        </div>
-        
-        <div class="userPanel">
-            <nav (click)="navigate('Profile');">
-                <i class="material-icons">account_box</i>
-                <span class="title">პროფილი</span>
-            </nav>
-            <nav (click)="logout()">
-                <i class="material-icons">power_settings_new</i>
-                <span class="title">გამოსვლა</span>
-            </nav>
+        <i class="material-icons arrowDown">more_vert</i>
         </div>
     </div>
 </header>
+
+<aside *ngIf="sideBar" class="menu noselect" [ngClass]="authUser.workgroup.active == true ? 'workgroup' : ''" [attr.expand]="expandMenu">
+    <nav *ngFor="let module of authUser.modules" (click)="navigate(module.url)" [attr.tabSelected]="tabSelected(module)">
+        <i class="material-icons">{{module.iconName}}</i>
+        <span class="moduleName capitalLetters">{{module.moduleName}}</span>
+        <span class="counter" *ngIf="moduleHasNotifications(module) && getNotifications(module.ID) > 0">{{getNotifications(module.ID) > 9 ? '9+' : getNotifications(module.ID)}}</span>
+    </nav>
+
+</aside>
+<aside class="menu userMenu noselect" [attr.expand]="expandUserMenu">
+    <div class="userPanel">
+        <nav (click)="navigate('Profile');">
+            <i class="material-icons">account_box</i>
+            <span class="title">პროფილი</span>
+        </nav>
+        <nav (click)="logout();">
+            <i class="material-icons">power_settings_new</i>
+            <span class="title">გამოსვლა</span>
+        </nav>
+    </div>
+</aside>
+
 <div class="activeWorkgroup" *ngIf="authUser.userLoggedIn()">
     <span class="activeWgCenter">
         <span class="wgName">
@@ -33,12 +44,3 @@
         </div>
     </span>
 </div>
-
-<aside *ngIf="sideBar" class="menu noselect" [ngClass]="authUser.workgroup.active == true ? 'workgroup' : ''" [attr.expand]="expandMenu">
-    <nav *ngFor="let module of authUser.modules" (click)="navigate(module.url)" [attr.tabSelected]="tabSelected(module)">
-        <i class="material-icons">{{module.iconName}}</i>
-        <span class="moduleName capitalLetters">{{module.moduleName}}</span>
-        <span class="counter" *ngIf="moduleHasNotifications(module) && getNotifications(module.ID) > 0">{{getNotifications(module.ID) > 9 ? '9+' : getNotifications(module.ID)}}</span>
-    </nav>
-
-</aside>

@@ -27,14 +27,16 @@
 } */
 
 .wgPanel {
-    width: 360px;
+    width: 100%;
     height: auto;
     max-height: 450px;
     overflow: auto;
     background: var(--main-bg-color);
     margin: auto;
-    box-shadow: var(--default-shadow);
+    /* box-shadow: var(--default-shadow); */
     border-radius: 0px 0px 15px 15px;
+    border: 1px solid #f4f4f4;
+    margin-left: -1px;
 }
 
 .wgPanel>nav {
@@ -53,14 +55,15 @@
 }
 
 .wgPanel>nav:hover {
-    background-color: var(--input-bg-color-hover);
+    background-color: #f4f4f4;
     color: var(--input-txt-color-hover);
 }
 
 .wgPanel>nav i,
 .wgPanel>nav span {
-    display: table-cell;
+    display: table;
     vertical-align: middle;
+    width: 100%;
 }
 
 .wgPanel>nav i {
@@ -69,7 +72,13 @@
 
 .wgPanel>nav span {
     text-align: center;
-    font-family: BPG Nino Mtavruli;
+    font-family: FiraGO-Book;
+    vertical-align: middle;
+}
+
+.wgPanel .addCompany > .material-icons {
+    vertical-align: middle;
+    display: inline;
 }
 
 

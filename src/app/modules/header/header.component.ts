@@ -24,6 +24,10 @@ export class HeaderComponent implements OnInit {
   get workgroup():Boolean {
     return this.authUser.workgroup.active;
   }
+  
+  @HostBinding("attr.expandUserMenu")
+  expandUserMenu:boolean = false;
+
 
   notificationsCounter:Object[] = [{moduleID:0,counter:0}];
   modules:Module[];
@@ -44,14 +48,15 @@ export class HeaderComponent implements OnInit {
       this.getChatNotificationsService();
     },10000)
   }
-  navigate(route:string) { 
+  navigate(route:string) {
     const mq = window.matchMedia("(max-width: 460px)");
     if (mq.matches)
     this.expandMenu = false;
+    this.expandUserMenu = false;
     this.router.navigate([route]);
   }
   logoClick() {
-    location.href = "/";
+    location.href = "/";	
   }
   logout() {
     this.authUser.logout();
