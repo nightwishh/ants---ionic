@@ -258,7 +258,9 @@ export class CommonService {
   }
 
   setToken(token:string) {
-    this.setCookie("at",token);
+    var dt = new Date();
+    dt.setDate(90);
+    this.setCookieExpire("at",token,dt);
     location.reload();
   }
   setBXToken(token:string) {

@@ -70,16 +70,18 @@ export class ChatComponent implements OnInit {
   recentChatsInterval:any;
   ngOnInit(): void {
     this.getRecentChats();
-    this.recentChatsInterval = setInterval(() => {
-      this.getRecentChats();
-      if (this.chatOpen)
-      this.refreshChatMessages();
-    }, 10000);
+    this.setIntervals();
     // if (this.route.snapshot.params["id"] && !this.chatOpen) {
     //   this.openChatByID(this.route.snapshot.params["id"],this.openedChat.type);
     // }
   }
-
+  async setIntervals() {
+    this.recentChatsInterval = setInterval(async () => {
+      await this.getRecentChats();
+      if (this.chatOpen)
+      this.refreshChatMessages();
+    }, 10000);
+  }
   ngOnDestroy() {
     clearInterval(this.recentChatsInterval);
     this.elementRef.nativeElement.remove();
@@ -121,13 +123,14 @@ export class ChatComponent implements OnInit {
     },null,false)
   }
 
-  getRecentChats() {
+  async getRecentChats() {
    if (location.pathname == "/Chat") {
-    this.commonService.getBX("im.recent.get",{},(data) => {
+    await this.commonService.getBXAsync("im.recent.get",{},async (data) => {
       var internalChats = (data.result as Object[]).filter(x=>x["lines"] == null); // get only internal chats 
       this.recentChats = [];
       internalChats.forEach(element => {
         var obj = this.recentChats.find(x=>x["id"] == element["id"]) || null;
+        if (element["id"] == this.openedChat.ID) this.refreshChatMessages(true);
         if (obj == null) // do not add duplicates
           this.recentChats.push(element);
       });
@@ -172,8 +175,10 @@ export class ChatComponent implements OnInit {
  }
 
  async refreshChatMessages(force:boolean = false) {
+   if (!force && !this.openedChat.hasNewMessages) return;
+   this.scrollMessagesToBottom();
    var msgsView = this.messagesView.nativeElement as HTMLElement;
-  if (this.chatOpen && ((msgsView.scrollTop > this.scrollPartByPercentage(msgsView,85)) || force))
+  if (this.chatOpen)
       await this.openChatByID(this.openedChat.ID,this.openedChat.type,false);
  }
  loadOlderMessages(lastMessageID:number) {
@@ -318,7 +323,14 @@ export class ChatComponent implements OnInit {
  keypress(event) {
    if (event.code == "Enter") this.sendMessage();
  }
-
+ getSetLastMessage(chatID:string, messageID:number,messageText:string) {
+   if (this.openedChat.ID == chatID) {
+    this.openedChat.lastMessage = new message();
+    this.openedChat.lastMessage.id = messageID;
+    this.openedChat.lastMessage.text = messageText;
+   }
+  return messageText;
+ }
 sendMessage() {
   //  console.log(this.newMessageText);
   //  console.log(this.openedChat["ID"]);

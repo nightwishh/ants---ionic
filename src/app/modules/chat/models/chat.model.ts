@@ -21,9 +21,13 @@ export class recentChat {
     public color:string = "";
     
     public messages:message[];
+    public lastMessage:message;
     public users:Object[];
     public files:file[];
     public reversedMessages:message[];
+    public get hasNewMessages():boolean {
+        return !(this.messages[0].id == this.lastMessage.id)
+    }
     reverseMessages() {
         if (this.messages.length > 0)
         this.reversedMessages = this.messages.slice().reverse();

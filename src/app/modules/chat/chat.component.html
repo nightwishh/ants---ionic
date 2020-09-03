@@ -27,7 +27,7 @@
                                 {{minimizeChatName(ch.title)}}</span>
                             <span class="messagePreview textEllipsis">
                                 <i class="material-icons" *ngIf="ch.message.status == 'received'">reply</i>
-                                {{ch.message.text}}</span>
+                                {{getSetLastMessage(ch.id,ch.message.id,ch.message.text)}}</span>
                         </div>
                     </section>
                 </section>
