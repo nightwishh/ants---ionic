@@ -15,6 +15,7 @@ import { OrgDetailsComponent } from './modules/org-details/org-details.component
 import { PricingComponent } from './modules/pricing/pricing.component';
 import { AuthBitrixComponent } from './modules/auth-bitrix/auth-bitrix.component';
 import { TestGridComponent } from './modules/test-grid/test-grid.component';
+import { GetfileComponent } from './modules/getfile/getfile.component';
 
 
 const routes: Routes = [
@@ -37,7 +38,8 @@ const routes: Routes = [
   {path:"AuthBitrix", component:AuthBitrixComponent},
   {path:"Admpnl", component:AdminpanelComponent},
   {path:"Admpnl/:tabActive", component:AdminpanelComponent},
-  {path:"TestGrid", component:TestGridComponent},
+  {path:"GetFile/:id", component:GetfileComponent},
+  // {path:"TestGrid", component:TestGridComponent},
   {path:"**", redirectTo:""},
   // {path:"Login", component:LoginComponent},  
   // {path:"Header", component:HeaderComponent, canActivate:[Authuser]}

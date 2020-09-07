@@ -104,6 +104,7 @@
                 </section>
 
                 <section class="messages" *ngIf="chatOpen" #messages>
+                    <div class="loadOlderMessages" (click)="loadOlderMessages()" *ngIf="showLoadOlderMessages">ჩატვირთე ძველი მესიჯები</div>
                     <section class="message" *ngFor="let message of openedChat.reversedMessages"
                         [attr.mymessage]="message.author_id == authUser.bxUserID">
                         <!-- <span class="openChatIconContainer" (click)="openChatByID(message.author_id,'user',true)"> -->
@@ -122,7 +123,14 @@
                                 [setStyle]="{'padding-top':'5px', 'padding-bottom':'5px'}" [(ngModel)]="message.text"
                                 ngDefaultControl [disabled]="true"></p-input>
                         </span>
-                        <span class="messageDate">{{toDateOrTime(message.date)}}</span>
+                        <span class="messageDate">
+                            <div class="sending" style="zoom: 0.35;" *ngIf="message.id == -1;else showMsgDate">
+                                <app-loader [invert]="true"></app-loader>
+                            </div>
+                            <ng-template #showMsgDate>
+                                {{toDateOrTime(message.date)}}
+                            </ng-template>
+                        </span>
                     </section>
                     <!-- <section class="message my">
                     <span class="openChatIconContainer">

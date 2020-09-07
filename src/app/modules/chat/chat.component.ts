@@ -13,6 +13,7 @@ import { async } from '@angular/core/testing';
 import { reverse } from 'dns';
 import { ReversePipe } from 'src/app/pipes/reverse.pipe';
 import { Key } from 'readline';
+import { BxCountersService } from 'src/app/services/bx-counters.service';
 
 @Component({
   selector: 'app-chat',
@@ -41,7 +42,7 @@ export class ChatComponent implements OnInit {
 
   showLoader:boolean = false;
 
-  constructor(private commonService:CommonService, private elementRef: ElementRef, private cdRef:ChangeDetectorRef, private zone:NgZone) { 
+  constructor(private commonService:CommonService,private bxNotifService:BxCountersService, private elementRef: ElementRef, private cdRef:ChangeDetectorRef, private zone:NgZone) { 
     
   }
   
@@ -55,7 +56,7 @@ export class ChatComponent implements OnInit {
       if (!this.alreadyScrolledToTop) {
         var length = this.openedChat.messages.length;
         if (length > 0) {
-          this.loadOlderMessages(this.openedChat.messages[length - 1].id);
+          this.loadOlderMessages();
           this.alreadyScrolledToTop = true;       
         }
       }
@@ -75,12 +76,23 @@ export class ChatComponent implements OnInit {
     //   this.openChatByID(this.route.snapshot.params["id"],this.openedChat.type);
     // }
   }
+  lastNotifCount:number = 0;
   async setIntervals() {
     this.recentChatsInterval = setInterval(async () => {
-      await this.getRecentChats();
-      if (this.chatOpen)
+      if (this.bxNotifService.notifications.TYPE.DIALOG > this.lastNotifCount)
+      {
+        this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
+        await this.getRecentChats();
+      }
+      for (var i in this.bxNotifService.notifications.DIALOG) {
+        if (this.openedChat.ID == i) { // if opened chat has notifications reload messages
+          this.openedChat.hasNewMessages = true;
+          break;
+        }
+      }
+      if (this.chatOpen && this.openedChat.hasNewMessages)
       this.refreshChatMessages();
-    }, 10000);
+    }, 3000);
   }
   ngOnDestroy() {
     clearInterval(this.recentChatsInterval);
@@ -175,26 +187,37 @@ export class ChatComponent implements OnInit {
  }
 
  async refreshChatMessages(force:boolean = false) {
-   if (!force && !this.openedChat.hasNewMessages) return;
    this.scrollMessagesToBottom();
    var msgsView = this.messagesView.nativeElement as HTMLElement;
-  if (this.chatOpen)
-      await this.openChatByID(this.openedChat.ID,this.openedChat.type,false);
+  if (this.chatOpen) {
+    this.openedChat.hasNewMessages = false;
+    await this.openChatByID(this.openedChat.ID,this.openedChat.type,false);
+  }
  }
- loadOlderMessages(lastMessageID:number) {
+ showLoadOlderMessages:boolean = true;
+ loadOlderMessages() {
    if (!this.chatOpen) return;
-
+    var msgsLength = this.openedChat.messages.length;
+   if (msgsLength > 0)
+   var lastMessageID = this.openedChat.messages[msgsLength - 1].id
+   //lastMessageID = this.openedChat
+   
    var params = "?dialog_id=" + this.openedChat.ID + "&LAST_ID=" + lastMessageID;
+   this.showLoader = true;
    return this.commonService.getBX("im.dialog.messages.get" + params,{},(data) => { 
+    this.showLoader = false;
     var oldMessages:[{}] = data.result.messages;
     var files:[{}] = data.result.files;
-    if (data.result.messages != null && data.result.messages.length == 0) return;
+    if (data.result.messages != null && data.result.messages.length == 0) {
+      this.showLoadOlderMessages = false;
+      return;
+    }
 
     files.forEach(element => {
       var fl = new file();
       fl.id = element["id"];
       fl.name = element["name"];
-      fl.urlDownload = element["urlDownload"];
+      // fl.urlDownload = "";
       fl.size = element["size"];
       fl.type = element["type"];
       this.openedChat.files.push(fl);
@@ -268,6 +291,7 @@ export class ChatComponent implements OnInit {
    var params = "?dialog_id=" + chatID;
    this.commonService.getBXAsync("im.dialog.messages.get" + params,{},async (data) => {
      this.showLoader = false;
+     this.showLoadOlderMessages = true;
      this.prevOpenedChat = Object.assign([{}],this.prevOpenedChat,this.openedChat);
      this.openedChat.messages = data.result.messages;
      this.openedChat.reverseMessages();
@@ -281,9 +305,11 @@ export class ChatComponent implements OnInit {
      }
 
      this.openedChat.files = data.result.files;
+     this.openedChat.hasNewMessages = false;
      if (this.openedChat.messages.length > 0 && this.openedChat.messages[0].unread) {
       var readMsgParams = "?dialog_id=" + chatID + "&message_id=" + this.openedChat.messages[0]["id"] // last message ID to read
-      this.commonService.getBX("im.dialog.read" + readMsgParams,{},null,null,false); 
+      this.commonService.getBX("im.dialog.read" + readMsgParams,{},null,null,false);
+      this.getRecentChats();
      }          
 
      if (loader) { // if loader is true that means we are opening new chat, if loader is false means we're refreshing msgs
@@ -344,10 +370,21 @@ sendMessage() {
    
    var bodyParams = {};
    bodyParams["message"] = this.newMessageText;
+
+   var msg = new message();
+   msg.text = this.newMessageText;
+   msg.id = -1;
+   msg.author_id = this.authUser.bxUserID;
+   this.openedChat.messages.unshift(msg);
+   this.openedChat.reverseMessages();
+   this.scrollMessagesToBottom();
    this.newMessageText = "";
+   
    this.commonService.getBX("im.message.add" + params,bodyParams,async () => {
-      await this.refreshChatMessages(true);
-      this.scrollMessagesToBottom();
+     msg.id = 0;
+     msg.date = new Date();
+      // await this.refreshChatMessages(true);
+      // this.scrollMessagesToBottom();
    },null,false)
  }
 

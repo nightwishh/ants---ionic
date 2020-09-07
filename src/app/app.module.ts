@@ -46,6 +46,7 @@ import { AuthBitrixComponent } from './modules/auth-bitrix/auth-bitrix.component
 import { GrdUsersComponent } from './modules/adminpanel/grd-users/grd-users.component';
 import { GridComponent, ColumnComponent } from './components/grid/grid.component';
 import { TestGridComponent } from './modules/test-grid/test-grid.component';
+import { GetfileComponent } from './modules/getfile/getfile.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { TestGridComponent } from './modules/test-grid/test-grid.component';
     GrdUsersComponent,
     TestGridComponent,
     GridComponent,
-    ColumnComponent
+    ColumnComponent,
+    GetfileComponent
   ],
   imports: [
     BrowserModule,

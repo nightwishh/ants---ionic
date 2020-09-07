@@ -101,7 +101,12 @@ card.chat {
     border-right: 1px solid var(--searchbar-bd-color);
     padding-right: 20px;
 }
-
+::ng-deep card.chat[chatOpen="true"] .loadOlderMessages {
+    text-align: center;
+    color: var(--main-blue-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
 .chatHeadsContainer {
     overflow-x: hidden;
     overflow-y: auto;

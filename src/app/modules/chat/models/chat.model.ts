@@ -25,9 +25,7 @@ export class recentChat {
     public users:Object[];
     public files:file[];
     public reversedMessages:message[];
-    public get hasNewMessages():boolean {
-        return !(this.messages[0].id == this.lastMessage.id)
-    }
+    public hasNewMessages:boolean = false;
     reverseMessages() {
         if (this.messages.length > 0)
         this.reversedMessages = this.messages.slice().reverse();
@@ -52,11 +50,11 @@ export class file extends attachedObject {
     public id:number;
     public name:string;
     public type:string;
-    public urlDownload = this.download_url;
-    public urlPreview:string;
-    public urlShow:string;
+    // public urlDownload = this.download_url;
+    // public urlPreview:string;
+    // public urlShow:string;
     constructor() {
         super();
-        super.download_url = this.urlDownload;
+        // super.download_url = this.urlDownload;
     }
 }

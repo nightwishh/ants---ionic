@@ -86,12 +86,13 @@ export class CommonService {
 
   handleBxErrors(err) {
     if (err == null || err.error == null) return;
-
     if (err.error.error == "expired_token") {
       Authuser.getUserData(null,true);
       // alert("გთხოვთ თავიდან გაიაროთ ავტორიზაცია");
       // Authuser.logout();
+      return;
     }
+    if (err.ok == false) return "retry";
   }
 
   post(url:string, params:any = null, fnSuccess:Function = null,fnError:Function = null, showLoading:boolean = true, responseTypeJson:boolean = true) {
@@ -134,7 +135,7 @@ export class CommonService {
     if (this.getCookie("bxat").length == 0 && (params["auth"] == null || params["auth"].length == 0)) return;
 
     var bxheaders = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8'});
-    bxheaders.append("Access-Control-Allow-Origin",location.href);
+    bxheaders.append("Access-Control-Allow-Origin","*");
     if (params["auth"] != null && params["auth"].length > 0) 
       {}
     else

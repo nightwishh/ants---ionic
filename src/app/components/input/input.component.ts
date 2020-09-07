@@ -77,11 +77,11 @@ export class InputComponent implements OnInit {
     var previewsHtml:string[] = [];
     if (this.filesPreview.length > 0) {
       this.filesPreview.forEach(file => {
-        var fileUrl = file.urlDownload || file.download_url;
-        if (file.type == "image")
-         previewsHtml.push("<img class='imgPreview' src='" + fileUrl + "' width='300px' />");
-        else 
-         previewsHtml.push("<a href='" + fileUrl + "'>"+ file.name + "</a>");
+        var fileUrl = "/GetFile/" + file.id;
+        // if (file.type == "image")
+        //  previewsHtml.push("<img class='imgPreview' src='" + fileUrl + "' width='300px' />");
+        // else 
+         previewsHtml.push("<a href='" + fileUrl + "' target='_blank'>"+ file.name + "</a>");
       })
     }
     return previewsHtml;

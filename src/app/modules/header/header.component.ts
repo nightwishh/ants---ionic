@@ -3,6 +3,7 @@ import { ActivatedRoute, Navigation, Router, RoutesRecognized } from '@angular/r
 import { Route } from '@angular/compiler/src/core';
 import { CommonService } from 'src/app/common/common.service';
 import { Authuser, Module } from 'src/app/common/authuser';
+import { BxCountersService } from 'src/app/services/bx-counters.service';
 
 @Component({
   selector: 'app-header',
@@ -32,7 +33,7 @@ export class HeaderComponent implements OnInit {
   notificationsCounter:Object[] = [{moduleID:0,counter:0}];
   modules:Module[];
   authUser = Authuser;
-  constructor(private router:Router, private route:ActivatedRoute, private commonService:CommonService) { 
+  constructor(private router:Router, private route:ActivatedRoute, private bxCounterService:BxCountersService) { 
     Authuser.getUserData();
     Authuser.getUserModules();
     this.getChatNotificationsService();
@@ -84,18 +85,21 @@ export class HeaderComponent implements OnInit {
       return 0;
   }
 
-  getChatNotificationsService() {
-    if (this.commonService.getCookie("bxat") == null || this.commonService.getCookie("bxat").length == 0) return;
+  async getChatNotificationsService() {
+    await this.bxCounterService.getNotifications();
+    var data = this.bxCounterService.notifications;
 
-    this.commonService.getBX("im.counters.get",{},(data) => {
-      var chatCounter = (data.result.TYPE.CHAT + data.result.TYPE.DIALOG) | 0;
+    for (var i in data.DIALOG) {
+      console.log(i)
+    }
+
+    var chatCounter = (data.TYPE.CHAT + data.TYPE.DIALOG) | 0;
 
       var notif = this.getNotifications(1,true); // if notifs are already here then update - not push
       if (notif != null)
           notif["counter"]=chatCounter;
       else
         this.notificationsCounter.push({moduleID:1,counter:chatCounter}); // chat
-    },null,false);
   }
   reload() {
     location.reload();
