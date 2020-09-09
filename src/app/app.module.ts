@@ -47,6 +47,7 @@ import { GrdUsersComponent } from './modules/adminpanel/grd-users/grd-users.comp
 import { GridComponent, ColumnComponent } from './components/grid/grid.component';
 import { TestGridComponent } from './modules/test-grid/test-grid.component';
 import { GetfileComponent } from './modules/getfile/getfile.component';
+import { ReportsComponent } from './modules/reports/reports.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { GetfileComponent } from './modules/getfile/getfile.component';
     TestGridComponent,
     GridComponent,
     ColumnComponent,
-    GetfileComponent
+    GetfileComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,

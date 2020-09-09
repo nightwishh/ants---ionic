@@ -16,10 +16,13 @@ import { PricingComponent } from './modules/pricing/pricing.component';
 import { AuthBitrixComponent } from './modules/auth-bitrix/auth-bitrix.component';
 import { TestGridComponent } from './modules/test-grid/test-grid.component';
 import { GetfileComponent } from './modules/getfile/getfile.component';
+import { ReportsComponent } from './modules/reports/reports.component';
 
 
 const routes: Routes = [
   {path:"", component:TasksComponent},
+  {path:"", component:LoginComponent, outlet:"NotLoggedIn"},
+  {path:"Registration/:id", component:LoginComponent, outlet:"NotLoggedIn"},
   {path:"Home", component:TasksComponent},
   {path:"Home/:id", component:TasksComponent},
   {path:"Chat", component:ChatComponent},
@@ -32,8 +35,9 @@ const routes: Routes = [
   {path:"Drive/:id", component:DriveComponent},
   {path:"Profile", component:ProfileComponent},
   {path:"Sales", component:UnderconstructionComponent},
-  {path:"Reports", component:UnderconstructionComponent},
+  {path:"Reports", component:ReportsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent},
+  {path:"OrgDetails", component:OrgDetailsComponent, outlet:"NotLoggedIn"},
   // {path:"Pricing", component:PricingComponent},
   {path:"AuthBitrix", component:AuthBitrixComponent},
   {path:"Admpnl", component:AdminpanelComponent},

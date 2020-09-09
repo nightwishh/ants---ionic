@@ -7,7 +7,7 @@
 </ng-container>
 <ng-template #notLoggedIn>
     <app-header logoPosition="center" [sideBar]="false"></app-header>
-    <app-login></app-login>
+    <router-outlet name="NotLoggedIn"></router-outlet>
 </ng-template>
 <app-modal class="request-modal-loader"> <!-- main modal with loader in it (REquest Loader) -->
     <app-loader></app-loader>
