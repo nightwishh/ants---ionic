@@ -24,6 +24,10 @@
   grid-template-rows: minmax(100px, auto) !important;
   height: auto;
   border-radius: 10px;
+  background: transparent !important;
+  border-left: 1px solid var(--main-green-color);
+  border-right: 1px solid var(--main-green-color);
+  box-shadow: none !important;
 }
 
 .orgDetails input,

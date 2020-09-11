@@ -4,6 +4,7 @@ import { CommonService } from 'src/app/common/common.service';
 import { write, accessSync } from 'fs';
 import { HttpRequest, HttpClient, HttpHeaders } from '@angular/common/http';
 import { strict } from 'assert';
+import { Authuser } from 'src/app/common/authuser';
 
 @Component({
   selector: 'app-org-details',
@@ -15,6 +16,7 @@ export class OrgDetailsComponent implements OnInit {
   constructor(private elementRef: ElementRef, private commonService:CommonService) { }
   org:Questionnaire = new Questionnaire();
   public sent:boolean = false;
+  userLoggedIn = Authuser.userLoggedIn()
   ngOnInit(): void {
     this.sent = false;
     if (this.commonService.getCookie("questionnaire") == "1") {
@@ -36,7 +38,13 @@ export class OrgDetailsComponent implements OnInit {
     this.elementRef.nativeElement.remove();
   }
   saveOrgDetails() {
-    this.commonService.post("Questionnaire/SaveQuestionnaire",this.org, () => {
+    var url = "";
+    if (this.userLoggedIn)
+      url = "Questionnaire/SaveQuestionnaire";
+    else
+      url = "Questionnaire/SaveQuestionnaireN";
+    
+    this.commonService.post(url,this.org, () => {
       alert("ოპერაცია წარმატებით დასრულდა.");
       this.sent = true;
       this.commonService.setCookie("questionnaire","1");

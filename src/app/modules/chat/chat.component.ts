@@ -79,10 +79,11 @@ export class ChatComponent implements OnInit {
   lastNotifCount:number = 0;
   async setIntervals() {
     this.recentChatsInterval = setInterval(async () => {
+      await this.getRecentChats();
+
       if (this.bxNotifService.notifications.TYPE.DIALOG > this.lastNotifCount)
       {
         this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
-        await this.getRecentChats();
       }
       for (var i in this.bxNotifService.notifications.DIALOG) {
         if (this.openedChat.ID == i) { // if opened chat has notifications reload messages
@@ -92,7 +93,7 @@ export class ChatComponent implements OnInit {
       }
       if (this.chatOpen && this.openedChat.hasNewMessages)
       this.refreshChatMessages();
-    }, 3000);
+    }, 4500);
   }
   ngOnDestroy() {
     clearInterval(this.recentChatsInterval);

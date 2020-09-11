@@ -55,6 +55,21 @@
         <input id="employees" [(ngModel)]="org.empCount" class="antsStyle" type="text" />
     </card-content>
 </card>
+<card class="orgDetails" *ngIf="!userLoggedIn">
+    <card-content class="orgDetails">
+        <label for="email">საკონტაქტო მეილი:</label>
+        <input id="email" [(ngModel)]="org.email" class="antsStyle" type="text" />
+        <br />
+        <br />
+        <label for="email">საკონტაქტო მობილურის ნომერი:</label>
+        <input id="email" [(ngModel)]="org.phone" class="antsStyle" type="text" />
+        <br />
+        <br />
+        <label for="email">სახელი გვარი:</label>
+        <input id="email" [(ngModel)]="org.fullName" class="antsStyle" type="text" />
+
+    </card-content>
+</card>
 <button class="saveDetails" (click)="saveOrgDetails()">შენახვა</button>
 </div>
 <ng-template #alreadySent>

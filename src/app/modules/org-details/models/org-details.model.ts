@@ -6,4 +6,7 @@ export class Questionnaire {
    public transactionsCount:number;
    public vatTypeID:string;
    public empCount:number;
+   public fullName:string;
+   public phone:string;
+   public email:string;
 }
