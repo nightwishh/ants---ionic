@@ -81,10 +81,11 @@ export class ChatComponent implements OnInit {
     this.recentChatsInterval = setInterval(async () => {
       await this.getRecentChats();
 
-      if (this.bxNotifService.notifications.TYPE.DIALOG > this.lastNotifCount)
-      {
-        this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
-      }
+      // if (this.bxNotifService.notifications.TYPE.DIALOG > this.lastNotifCount)
+      // {
+      //   this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
+      // }
+      this.openedChat.hasNewMessages = false;
       for (var i in this.bxNotifService.notifications.DIALOG) {
         if (this.openedChat.ID == i) { // if opened chat has notifications reload messages
           this.openedChat.hasNewMessages = true;
@@ -143,7 +144,7 @@ export class ChatComponent implements OnInit {
       this.recentChats = [];
       internalChats.forEach(element => {
         var obj = this.recentChats.find(x=>x["id"] == element["id"]) || null;
-        if (element["id"] == this.openedChat.ID) this.refreshChatMessages(true);
+        if (element["id"] == this.openedChat.ID && this.openedChat.hasNewMessages) this.refreshChatMessages(true);
         if (obj == null) // do not add duplicates
           this.recentChats.push(element);
       });
@@ -188,9 +189,9 @@ export class ChatComponent implements OnInit {
  }
 
  async refreshChatMessages(force:boolean = false) {
-   this.scrollMessagesToBottom();
    var msgsView = this.messagesView.nativeElement as HTMLElement;
   if (this.chatOpen) {
+    this.scrollMessagesToBottom();
     this.openedChat.hasNewMessages = false;
     await this.openChatByID(this.openedChat.ID,this.openedChat.type,false);
   }
