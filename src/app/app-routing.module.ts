@@ -35,7 +35,7 @@ const routes: Routes = [
   {path:"Drive/:id", component:DriveComponent},
   {path:"Profile", component:ProfileComponent},
   {path:"Sales", component:UnderconstructionComponent},
-  {path:"Reports", component:UnderconstructionComponent},
+  {path:"Reports", component:ReportsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent, outlet:"NotLoggedIn"},
   // {path:"Pricing", component:PricingComponent},

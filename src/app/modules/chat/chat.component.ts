@@ -79,8 +79,6 @@ export class ChatComponent implements OnInit {
   lastNotifCount:number = 0;
   async setIntervals() {
     this.recentChatsInterval = setInterval(async () => {
-      await this.getRecentChats();
-
       // if (this.bxNotifService.notifications.TYPE.DIALOG > this.lastNotifCount)
       // {
       //   this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
@@ -92,6 +90,9 @@ export class ChatComponent implements OnInit {
           break;
         }
       }
+
+      await this.getRecentChats();
+
       if (this.chatOpen && this.openedChat.hasNewMessages)
       this.refreshChatMessages();
     }, 4500);
@@ -144,7 +145,7 @@ export class ChatComponent implements OnInit {
       this.recentChats = [];
       internalChats.forEach(element => {
         var obj = this.recentChats.find(x=>x["id"] == element["id"]) || null;
-        if (element["id"] == this.openedChat.ID && this.openedChat.hasNewMessages) this.refreshChatMessages(true);
+        // if (element["id"] == this.openedChat.ID && this.openedChat.hasNewMessages) this.refreshChatMessages(true);
         if (obj == null) // do not add duplicates
           this.recentChats.push(element);
       });
