@@ -96,7 +96,7 @@ export class DriveComponent implements OnInit {
       if (params["id"] != null)
       this.openFolder(params["id"]);
     });
-    if (this.route.snapshot.params["id"] == null)
+    if (this.route.snapshot.params["id"] == null && Authuser.bxToken.length > 0)
       this.getRootFolder();
 
   }
@@ -117,6 +117,7 @@ export class DriveComponent implements OnInit {
   ngOnInit(): void {
     if (Authuser.bxToken.length == 0 && this.commonService.getCookie("questionnaire") != "1") {
       setTimeout(() => {
+        if (!location.href.includes("OrgDetails"))
         location.href = "/Chat";
       }, 7000);
     }

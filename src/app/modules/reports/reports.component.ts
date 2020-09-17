@@ -13,9 +13,7 @@ export class ReportsComponent implements OnInit {
   constructor(private commonService:CommonService) { }
 
   ngOnInit(): void {
-    this.commonService.post("Reports/GetReports",{},(data) => {
-      console.log(data);
-    })
+    
     // const httpOptions = {
     //   headers: new HttpHeaders({
     //     'Content-Type': 'application/json; charset=utf-8',

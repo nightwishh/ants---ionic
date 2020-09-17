@@ -33,13 +33,18 @@
     </div>
 </aside>
 
-<div class="activeWorkgroup" *ngIf="authUser.userLoggedIn()">
+<div class="activeWorkgroup" *ngIf="authUser.userLoggedIn()" (click)="workgroupCenterClick()">
     <span class="activeWgCenter">
-        <span class="wgName">
+        <span class="wgName" *ngIf="authUser.bxToken.length > 0;else addCompany">
             {{authUser.workgroup.name}}
         </span>
-        <i class="material-icons listWorkgroup">keyboard_arrow_down</i>
-        <div class="wgPanel">
+        <ng-template #addCompany>
+            <span (click)="navigate('OrgDetails')">
+                დაამატე კომპანია
+            </span>
+        </ng-template>
+        <i class="material-icons listWorkgroup">{{authUser.bxToken.length > 0 ? 'keyboard_arrow_down' : 'add'}}</i>
+        <div class="wgPanel" *ngIf="authUser.bxToken.length > 0">
             <app-workgroups></app-workgroups>
         </div>
     </span>

@@ -56,6 +56,10 @@ export class HeaderComponent implements OnInit {
     this.expandUserMenu = false;
     this.router.navigate([route]);
   }
+  workgroupCenterClick() {
+    if (Authuser.bxToken.length > 0) return;
+    this.navigate("OrgDetails");
+  }
   logoClick() {
     location.href = "/";	
   }

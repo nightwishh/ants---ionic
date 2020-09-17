@@ -84,6 +84,7 @@ export class TasksComponent implements OnInit {
     }
     if (Authuser.bxToken.length == 0 && this.commonService.getCookie("questionnaire") != "1") {
       setTimeout(() => {
+        if (!location.href.includes("OrgDetails"))
         location.href = "/Chat";
       }, 7000);
     }
