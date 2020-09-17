@@ -11,9 +11,14 @@
         margin-top: -20px;">შესვლა</span>
     </card-header>
     <card-content>
+    <div *ngIf="!isRecovering">
         <div *ngIf="!isRegistration;else registration">
         <p-input placeholder="ელ.ფოსტა" mIcon="mail" setClass="loginStyles" [(ngModel)]="userCredentials.email" ngDefaultControl></p-input>
         <p-input type="password" placeholder="პაროლი" mIcon="lock" setClass="loginStyles" [(ngModel)]="userCredentials.password" ngDefaultControl></p-input>
+        <p style="font-size: 13px;
+        color: var(--default-txt-color);
+        text-decoration: underline;
+        cursor: pointer;" (click)="this.isRecovering = true">დამავიწყდა პაროლი</p>
         <button style="float: right; margin-top: 15px; width: 150px; background: var(--main-green-color); color: var(--txt-white-color);" (click)="authenticate()">შესვლა</button>
         <button [attr.border]=false style="float: right;clear: both;width: 150px;" (click)="isRegistration = true">რეგისტრაცია</button>
         </div>
@@ -27,5 +32,11 @@
             <button class="registerBtn" (click)="register()">რეგისტრაცია</button>    
             <button class="loginBtn" [attr.border]=false style="float: right;clear: both;width: 150px;" (click)="isRegistration = false">შესვლა</button>    
         </ng-template>
+    </div>
+    <div *ngIf="isRecovering">
+        <p-input placeholder="ელ.ფოსტა" mIcon="mail" setClass="loginStyles" [(ngModel)]="recoverEmail" ngDefaultControl></p-input>
+        <button class="loginBtn" *ngIf="recoverStatusText.length == 0" [attr.border]=true style="float: right;clear: both;width: 150px;margin-top: 15px; background: var(--main-green-color); color: var(--txt-white-color);" (click)="recoverPassword()">პაროლის აღდგენა</button>    
+        <p style="color:var(--default-lighgreen-color)">{{recoverStatusText}}</p>
+    </div>
     </card-content>
 </card>

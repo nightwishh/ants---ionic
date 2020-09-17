@@ -34,6 +34,7 @@ const routes: Routes = [
   {path:"Drive", component:DriveComponent},
   {path:"Drive/:id", component:DriveComponent},
   {path:"Profile", component:ProfileComponent},
+  {path:"Profile/:tab", component:ProfileComponent},
   {path:"Sales", component:UnderconstructionComponent},
   {path:"Reports", component:ReportsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent},

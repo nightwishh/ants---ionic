@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Authuser } from 'src/app/common/authuser';
 import { UserRegistration, UserProfile, UserPasswords } from '../models/user.model';
 import { CommonService } from 'src/app/common/common.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private commonService:CommonService, private router:Router) {
-
+  constructor(private commonService:CommonService, private router:Router, private route:ActivatedRoute) {
+    var tab = route.snapshot.params["tab"];
+    if (tab == "changePassword") this.changePasswordPopup = true;
    }
   user:UserProfile = new UserProfile();
   profile:UserProfile = new UserProfile();
@@ -46,7 +47,7 @@ export class ProfileComponent implements OnInit {
   changePasswordClick() {
     this.commonService.post("Profile/ChangePassword",this.userPasswords,(data) => {
       window.alert(data.STATUS.TEXT);
-      location.reload();
+      location.href = "/Profile";
     })
   }
   navigate(route) {

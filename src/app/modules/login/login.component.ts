@@ -17,8 +17,12 @@ export class LoginComponent implements OnInit {
   constructor(private commonService:CommonService, private route:ActivatedRoute) { 
     var tab = route.snapshot.params["id"];
     if (tab == 1) this.isRegistration = true;
+    if (tab == 2) this.isRecovering = true;
   }
   isRegistration:boolean = false;
+  isRecovering:boolean = false;
+  recoverEmail:string = "";
+  recoverStatusText = "";
   ngOnInit(): void {
 
   }
@@ -28,6 +32,11 @@ export class LoginComponent implements OnInit {
   }
   register() {
     this.commonService.authenticate("Users/Register",this.userRegistration);
+  }
+  recoverPassword() {
+    this.commonService.post("Profile/RecoverPassword",this.recoverEmail,(data) => {
+      this.recoverStatusText = data.DATA;
+    })
   }
 
 }
