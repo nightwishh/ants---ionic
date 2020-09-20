@@ -16,6 +16,7 @@ export class GridComponent implements OnInit, AfterViewInit {
   // @Input() data:any[] = [];
   @Input() data:Observable<any[]>;
   @Input() webMethod:string = "";
+  @Input() view:string = "";
   @Input() pageSize:number = 10;
   @Input() setStyle:object;
   @Input() setClass:string;
@@ -91,6 +92,8 @@ export class GridComponent implements OnInit, AfterViewInit {
           }
           this.datasource.data = x["rootElement"]["DATA"]["Rows"];
           this.paginator.length = x["rootElement"]["DATA"]["Count"];
+        }).catch(err => {
+          window.alert(err);
         }).finally(() => {
           this.showLoader = false;
         })
@@ -100,6 +103,7 @@ export class GridComponent implements OnInit, AfterViewInit {
       this.gridService.setMaximumRows(this.pageSize);
       // this.gridService.changePage(this.page);
       this.gridService.webMethod = this.webMethod;
+      this.gridService.grid.view = this.view;
       this.gridService.GetData<Object>().toPromise().then(x=> {
         this.showLoader = false;
         
@@ -110,7 +114,11 @@ export class GridComponent implements OnInit, AfterViewInit {
         }
         this.datasource.data = x["rootElement"]["DATA"]["Rows"];
         this.paginator.length = x["rootElement"]["DATA"]["Count"];
-      });
+      }).catch(err => {
+        window.alert(err.error.STATUS.TEXT);
+      }).finally(()=> {
+        this.showLoader = false;
+      })
       //this.getData();
     }
   }
