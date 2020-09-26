@@ -38,3 +38,30 @@ button {
     margin-left: 80px;
     margin-bottom: 20px;
 }
+
+.tabs {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    height: 40px;
+    display: flex;
+    color: #ccc;
+}
+.tabs .tab {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    cursor: pointer;
+}
+.tabs .tab {
+    border-left: 1px solid #ccc;
+}
+.tabs .tab:first-child {
+    border: none;
+}
+.tab[selected=true] {
+    color: #656565;
+}
+.tabView {
+    margin-top: 20px;
+}

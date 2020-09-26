@@ -12,11 +12,11 @@ import { Authuser } from 'src/app/common/authuser';
 export class ReportsComponent implements OnInit {
 
   constructor(private commonService:CommonService) { 
-    this.currentBxWorkgroup = Authuser.workgroup.active ? Authuser.workgroup.name.trim() : "";
-    console.log(this.currentBxWorkgroup);
+
   }
   currentBxWorkgroup = "";
   ngOnInit(): void {
+    
     // const httpOptions = {
     //   headers: new HttpHeaders({
     //     'Content-Type': 'application/json; charset=utf-8',

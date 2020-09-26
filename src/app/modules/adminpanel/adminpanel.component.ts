@@ -20,11 +20,12 @@ export class newBxUser {
 })
 export class AdminpanelComponent implements OnInit {
   newBxUser:newBxUser = new newBxUser();
-  tab:number = 2;
+  tab:number = 2; // tab 1 = Grid of Users, tab 2 = editing of Users
+  editingTab:number = 1; // 1 Bitrix, 2 - 1C
   constructor(private commonService:CommonService, private route:ActivatedRoute) {
     this.checkAdmin();
   }
-  
+  user1C:User1C = new User1C();
   ngOnInit(): void {
     setInterval(() => {
       if (this.newBxUser.hasBitrix) return;
@@ -60,12 +61,26 @@ export class AdminpanelComponent implements OnInit {
         this.isAdmin = data.isAdmin;
       }),true);
     }
-
+    save1CUser() {
+      this.commonService.post("OneC/SetUser",this.user1C,()=> {
+        alert("ოპერაცია წარმატებით დასრულდა");
+        location.href = "/";
+      })
+    }
+  editingTabSelected(id:number) {
+    return this.editingTab == id;
+  }
   onRowClick(event:Users) {
     this.newBxUser.antsUserID = event.ID;
     this.newBxUser.email = event.bxEmail;
     this.newBxUser.antsEmail = event.email;
     this.newBxUser.hasBitrix = event.has_bx;
+    this.user1C.antsEmail = event.email;
     this.tab = 1;
   }
+}
+export class User1C {
+  public antsEmail:string = "";
+  public username:string = "";
+  public password:string = "";
 }

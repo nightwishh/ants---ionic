@@ -6,7 +6,7 @@
             <div> 
                 {{column.header}} 
             </div>
-            <input class="antsStyle" clickStopPropagation type="text" (keyup)="keyUpTimer(column.fieldName,$event.target.value)" />
+            <input *ngIf="column.filter" class="antsStyle" clickStopPropagation type="text" (keyup)="keyUpTimer(column.fieldName,$event.target.value)" />
         </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{column.cell(row)}} </mat-cell>
       </ng-container>

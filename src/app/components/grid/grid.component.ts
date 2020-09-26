@@ -127,6 +127,7 @@ export class GridComponent implements OnInit, AfterViewInit {
 export class GridColumn {
   public header:string;
   public fieldName:string;
+  public filter:boolean = false;
   public cell = (element: any) => `${element[this.fieldName]}`;
 }
 @Component({
@@ -137,6 +138,7 @@ export class ColumnComponent implements OnInit {
   @Input() fieldName:string;
   @Input() header:string;
   @Input() dataType:DataType = DataType.String;
+  @Input() filter:boolean = true;
 
   constructor(private grid:GridComponent) {
 
@@ -145,6 +147,7 @@ export class ColumnComponent implements OnInit {
     var grdCol:GridColumn = new GridColumn();
     grdCol.fieldName = this.fieldName;
     grdCol.header = this.header;
+    grdCol.filter = this.filter;
     this.grid.columns.push(grdCol);
   };
 }

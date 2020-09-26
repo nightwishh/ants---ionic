@@ -263,10 +263,12 @@ export class ChatComponent implements OnInit {
    this.openedChat.ID = chatID;
    this.openedChat.type = chatType;
    if (chatType == "user") {
+    this.openedChat.fullName = chat["title"] || chat["name"];
     this.openedChat.name = chat["title"] || chat["name"];
     this.openedChat.color = chat["color"] || chat["avatar"]["color"];
    }
    else {
+    this.openedChat.fullName = chat["name"] || chat["chat"]["name"];
     this.openedChat.name = chat["name"] || chat["chat"]["name"];
     this.openedChat.color = chat["color"] || chat["avatar"]["color"];
    }

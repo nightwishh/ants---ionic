@@ -18,6 +18,7 @@ export class recentChat {
     public set name(value:string) {
         this._name = value.replace(`Workgroup: "`,"").replace(`"`,"");
     }
+    public fullName:string;
     public color:string = "";
     
     public messages:message[];
