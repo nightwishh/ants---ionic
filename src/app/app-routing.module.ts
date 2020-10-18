@@ -40,6 +40,7 @@ const routes: Routes = [
   {path:"ReportsTesting123", component:ReportsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent},
   {path:"OrgDetails", component:OrgDetailsComponent, outlet:"NotLoggedIn"},
+  {path:"OrgDetails/:id", component:OrgDetailsComponent, outlet:"NotLoggedIn"},
   // {path:"Pricing", component:PricingComponent},
   {path:"AuthBitrix", component:AuthBitrixComponent},
   {path:"Admpnl", component:AdminpanelComponent},

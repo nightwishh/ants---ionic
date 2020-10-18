@@ -2,6 +2,16 @@
 <h1 style="font-family:BPG Nino Mtavruli; font-size: 29px;">ბუღალტრული მომსახურების შეთავაზების მისაღებად შეავსეთ კითხვარი</h1>
 <card class="orgDetails">
     <card-content class="orgDetails">
+        <label for="package">არჩეული პაკეტი</label>
+        <select [(ngModel)]="org.package" id="package" class="antsStyle">
+            <option value="სტარტაპერი">სტარტაპერი</option>
+            <option value="მცირე ბიზნესი">მცირე ბიზნესი</option>
+            <option value="ინდივიდუალური">ინდივიდუალური</option>
+        </select>
+    </card-content>
+</card>
+<card class="orgDetails">
+    <card-content class="orgDetails">
         <label for="tin">კომპანიის საიდენტიფიკაციო კოდი:</label>
         <input id="tin" [(ngModel)]="org.tin" class="antsStyle" type="text" />
     </card-content>
@@ -70,7 +80,7 @@
 
     </card-content>
 </card>
-<button class="saveDetails" (click)="saveOrgDetails()">შენახვა</button>
+<button class="saveDetails" (click)="saveOrgDetails()">გაგზავნა</button>
 </div>
 <ng-template #alreadySent>
     <h1 class="successMessage">კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში</h1>

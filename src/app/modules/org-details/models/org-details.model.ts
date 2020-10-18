@@ -9,4 +9,5 @@ export class Questionnaire {
    public fullName:string;
    public phone:string;
    public email:string;
+   public package:string;
 }

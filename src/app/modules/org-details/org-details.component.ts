@@ -5,6 +5,7 @@ import { write, accessSync } from 'fs';
 import { HttpRequest, HttpClient, HttpHeaders } from '@angular/common/http';
 import { strict } from 'assert';
 import { Authuser } from 'src/app/common/authuser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-org-details',
@@ -12,11 +13,19 @@ import { Authuser } from 'src/app/common/authuser';
   styleUrls: ['./org-details.component.css']
 })
 export class OrgDetailsComponent implements OnInit {
+  packagesAll = ["სტარტაპერი","მცირე ბიზნესი","ინდივიდუალური"];
 
-  constructor(private elementRef: ElementRef, private commonService:CommonService) { }
+  constructor(private elementRef: ElementRef, private commonService:CommonService, private route:ActivatedRoute) { 
+    route.params.subscribe(x=> {
+      if (x["id"]) {
+        if (this.packagesAll.indexOf(x["id"])>-1)
+        this.org.package = x["id"];
+      }
+    })
+  }
   org:Questionnaire = new Questionnaire();
   public sent:boolean = false;
-  userLoggedIn = Authuser.userLoggedIn()
+  userLoggedIn = Authuser.userLoggedIn();
   ngOnInit(): void {
     this.sent = false;
     if (this.commonService.getCookie("questionnaire") == "1") {
