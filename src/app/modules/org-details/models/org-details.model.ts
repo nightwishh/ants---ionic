@@ -11,3 +11,13 @@ export class Questionnaire {
    public email:string;
    public package:string;
 }
+export class Questionnaires {
+   public question:string = "";
+   public answer:string = "";
+   public answersList:IAnswers[] = [];
+   public title:string = "";
+}
+export interface IAnswers {
+   label:string,
+   value:any
+}

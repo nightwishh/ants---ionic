@@ -23,10 +23,11 @@
 ::ng-deep card.orgDetails .card {
   grid-template-rows: minmax(100px, auto) !important;
   height: auto;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  border-bottom: 1px solid #b1b1b1;
   background: transparent !important;
-  border-left: 1px solid var(--main-green-color);
-  border-right: 1px solid var(--main-green-color);
+  /* border-left: 1px solid var(--main-green-color); */
+  /* border-right: 1px solid var(--main-green-color); */
   box-shadow: none !important;
 }
 

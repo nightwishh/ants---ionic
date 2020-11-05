@@ -1,9 +1,21 @@
 <div *ngIf="!sent; else alreadySent">
 <h1 style="font-family:BPG Nino Mtavruli; font-size: 29px;">ბუღალტრული მომსახურების შეთავაზების მისაღებად შეავსეთ კითხვარი</h1>
-<card class="orgDetails">
+<card class="orgDetails" *ngFor="let q of list">
+    <h1 *ngIf="q.title">{{q.title}}</h1>
+    <card-content class="orgDetails">
+        <label for="package">{{q.question}}</label>
+        <input id="tin" [(ngModel)]="q.answer" class="antsStyle" type="text" *ngIf="q.answersList.length == 0;else drpdown" />
+        <ng-template #drpdown>
+        <select [(ngModel)]="q.answer" id="package" class="antsStyle">
+            <option [value]="ansList.value" *ngFor="let ansList of q.answersList">{{ansList.label}}</option>
+        </select>
+        </ng-template>
+    </card-content>
+</card>
+<!-- <card class="orgDetails">
     <card-content class="orgDetails">
         <label for="package">არჩეული პაკეტი</label>
-        <select [(ngModel)]="org.package" id="package" class="antsStyle">
+        <select [(ngModel)]="list[0].answer" id="package" class="antsStyle">
             <option value="სტარტაპერი">სტარტაპერი</option>
             <option value="მცირე ბიზნესი">მცირე ბიზნესი</option>
             <option value="ინდივიდუალური">ინდივიდუალური</option>
@@ -79,7 +91,8 @@
         <input id="email" [(ngModel)]="org.fullName" class="antsStyle" type="text" />
 
     </card-content>
-</card>
+</card> -->
+
 <button class="saveDetails" (click)="saveOrgDetails()">გაგზავნა</button>
 </div>
 <ng-template #alreadySent>
