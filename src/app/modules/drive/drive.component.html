@@ -2,52 +2,58 @@
     <card innerClass="driveCards" class="driveCards" (click)="clickUpload()">
         <card-content>
             <label class="noselect" style="font-family:BPG Nino Mtavruli; cursor: pointer;">
-            <i class="material-icons" style="color: #b9b9b9;">
-                cloud_upload
-            </i>
-            <br />
-            ატვირთე ფაილები
-        </label>
-            <input type="file" id="myFile" style="visibility: hidden;" (change)="fileSelect($event)" />
+                <i class="material-icons" style="color: #b9b9b9;">
+                    cloud_upload
+                </i>
+                <br />
+                ატვირთე ფაილები
+            </label>
+            <input type="file" id="myFile" style="visibility: hidden;" multiple (change)="fileSelect($event)" />
         </card-content>
     </card>
-    <card innerClass="driveCards" class="driveCards newFolder" [attr.active]="creatingNewFolder" (click)="creatingNewFolder = true">
+    <card innerClass="driveCards" class="driveCards newFolder" [attr.active]="creatingNewFolder"
+        (click)="creatingNewFolder = true">
         <card-content>
             <label class="noselect" style="font-family:BPG Nino Mtavruli; cursor: pointer;">
-            <i class="material-icons" style="color: #b9b9b9;">
-                create_new_folder
-            </i>
-            <br />
-            <p-label style="font-family:BPG Nino Mtavruli;" text="ახალი ფოლდერი" editBtnClass="newFolderBtn" [(ngModel)]="newFolderName" [(editing)]="creatingNewFolder" (confirmEdit)="createNewFolderClick()"></p-label>
-            <!-- <ng-template #creating>
+                <i class="material-icons" style="color: #b9b9b9;">
+                    create_new_folder
+                </i>
+                <br />
+                <p-label style="font-family:BPG Nino Mtavruli;" text="ახალი ფოლდერი" editBtnClass="newFolderBtn"
+                    [(ngModel)]="newFolderName" [(editing)]="creatingNewFolder" (confirmEdit)="createNewFolderClick()">
+                </p-label>
+                <!-- <ng-template #creating>
             <input type="text" [(ngModel)]="newFolderName" class="antsStyle" placeholder="ფოლდერის სახელი"/>
             <br />
             <button class="newFolderBtn" (click)="createNewFolderClick()" clickStopPropagation>შექმნა</button>
             </ng-template> -->
-            <p style="visibility: hidden; margin: 0px;">a</p>
-        </label>
+                <p style="visibility: hidden; margin: 0px;">a</p>
+            </label>
         </card-content>
     </card>
     <card innerClass="driveCards" class="driveCards" *ngIf="isAnythingCopied()" (click)="copyOrMoveToCurrentID()">
         <card-content>
             <label class="noselect" style="font-family:BPG Nino Mtavruli; cursor: pointer;">
-            <i class="material-icons" style="color: #b9b9b9;">
-                note_add
-            </i>
-            <br />
-            ჩააკოპირე / გადაიტანე
-        </label>
+                <i class="material-icons" style="color: #b9b9b9;">
+                    note_add
+                </i>
+                <br />
+                ჩააკოპირე / გადაიტანე
+            </label>
             <p style="visibility: hidden; margin: 0px;">a</p>
         </card-content>
     </card>
 </div>
 
 
-<card innerClass="driveCards" class="driveCards noselect" #myCard [attr.copied]="isCopied(st.id)" [selected]="st.isRenaming" [attr.objectID]="st.id" *ngFor="let st of storage; let i = index" (click)="clickObject(i)" [contextMenuItems]="contextMenuItems">
+<card innerClass="driveCards" class="driveCards noselect" #myCard [attr.copied]="isCopied(st.id)"
+    [selected]="st.isRenaming" [attr.objectID]="st.id" *ngFor="let st of storage; let i = index"
+    (click)="clickObject(i)" [contextMenuItems]="contextMenuItems">
     <card-content class="{{st.type}}">
         <i class="material-icons">{{st.type == 'file' ? 'insert_drive_file' : 'folder'}}</i>
         <!-- <p class="title">{{st.name}}</p> -->
-        <p-label clickStopPropagation [editBtnClass]="'btn' + st.type" [(ngModel)]="st.name" [(editing)]="st.isRenaming" (confirmEdit)="renameConfirmClick(st.id,st.name,st.type)"></p-label>
+        <p-label clickStopPropagation [editBtnClass]="'btn' + st.type" [(ngModel)]="st.name" [(editing)]="st.isRenaming"
+            (confirmEdit)="renameConfirmClick(st.id,st.name,st.type)"></p-label>
         <i class="material-icons moreIcon" clickStopPropagation (click)="clickMore($event,myCard)">more_horiz</i>
 
     </card-content>
@@ -58,10 +64,13 @@
         <p class="noselect">გასაზიარებელი ლინკი
             <i class="material-icons" style="float: right;cursor:pointer;" (click)="shareLink = null">close</i>
         </p>
-        <input class="antsStyle" type="text" style="width: 450px;height:50px;background:rgba(255,255,255,0.8); color: black;" disabled=true [value]="shareLink" />
+        <input class="antsStyle" type="text"
+            style="width: 450px;height:50px;background:rgba(255,255,255,0.8); color: black;" disabled=true
+            [value]="shareLink" />
         <br />
         <div class="copyShareLink" [attr.copied]="linkIsCopied" (click)="copyClipboard(shareLink)">
-            <span style="float: left;margin-top: 3px;margin-right: 5px;">{{linkIsCopied ? 'დაკოპირდა' : 'დააკოპირე'}}</span>
+            <span style="float: left;margin-top: 3px;margin-right: 5px;">{{linkIsCopied ? 'დაკოპირდა' :
+                'დააკოპირე'}}</span>
             <span class="material-icons">file_copy</span>
         </div>
     </div>

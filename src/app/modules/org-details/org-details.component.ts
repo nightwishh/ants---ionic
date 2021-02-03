@@ -76,6 +76,9 @@ export class OrgDetailsComponent implements OnInit {
     this.addQuestion(this.pipe.transform("დამატებითი საქმიანობა"));
     this.addQuestion(this.pipe.transform("სალარო აპარატების რაოდენობა"));
     this.addQuestion(
+      this.pipe.transform("საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე")
+    );
+    this.addQuestion(
       this.pipe.transform("ნაღდი ფულის ოპერაციების რაოდენობა (თვეში)")
     );
     this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
@@ -113,9 +116,6 @@ export class OrgDetailsComponent implements OnInit {
       this.pipe.transform(
         "გჭირდებათ თუ არა დახმარება, ინვოისების, ზედნადებების, მიღება-ჩაბარებების და სხვა პირველადი დოკუმენტების შექმნაში?"
       )
-    );
-    this.addQuestion(
-      this.pipe.transform("საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე")
     );
 
     this.sent = false;
