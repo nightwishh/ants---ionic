@@ -1,6 +1,6 @@
 <div class="inp" [ngStyle]="setStyle" [ngClass]="setClass" *ngIf="!inlineText;else inline">
     <i class="material-icons noselect">{{mIcon}}</i>
-    <input *ngIf="type!='textarea'" [type]="type" [placeholder]="placeholder" [disabled]="disabled" [(ngModel)]="ngModel" (keypress)="onKeyPress($event)"/>
+    <input *ngIf="type!='textarea'" [type]="type" [placeholder]="placeholder" [disabled]="disabled" [(ngModel)]="ngModel" (keyup.enter)="onEnter()"/>
     <textarea class="txtArea" *ngIf="type == 'textarea' && isEditing()" (focus)="onFocus()" (focusout)="onFocusOut()" [placeholder]="placeholder" [(ngModel)]="ngModel" [disabled]="disabled"></textarea>
     <pre class="textarea" (click)="startEditing()" (focusout)="onFocusOut()" *ngIf="type=='textarea' && !isEditing()" [innerHtml]="convertToRichText(ngModel)">
         <!-- <a *ngFor="let rt of ngModelRichText">{{rt.text}}</a> -->

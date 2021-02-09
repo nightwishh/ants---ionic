@@ -42,7 +42,7 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot":true,
+              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -72,7 +72,7 @@
           "configurations": {
             "production": {
               "browserTarget": "app:build:production"
-            },            
+            },
             "ci": {
               "progress": false
             }
@@ -164,7 +164,8 @@
   },
   "defaultProject": "app",
   "cli": {
-    "defaultCollection": "@ionic/angular-toolkit"
+    "defaultCollection": "@ionic/angular-toolkit",
+    "analytics": false
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {

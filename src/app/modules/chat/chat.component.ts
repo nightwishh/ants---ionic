@@ -84,17 +84,26 @@ export class ChatComponent implements OnInit {
       //   this.lastNotifCount = this.bxNotifService.notifications.TYPE.DIALOG;
       // }
       this.openedChat.hasNewMessages = false;
+
       for (var i in this.bxNotifService.notifications.DIALOG) {
         if (this.openedChat.ID == i) { // if opened chat has notifications reload messages
           this.openedChat.hasNewMessages = true;
           break;
         }
       }
-
+      for (var i in this.bxNotifService.notifications.CHAT) {
+        if (this.openedChat.ID == i) { // if opened chat has notifications reload messages
+          this.openedChat.hasNewMessages = true;
+          break;
+        }
+      }
       await this.getRecentChats();
-
-      if (this.chatOpen && this.openedChat.hasNewMessages)
-      this.refreshChatMessages();
+      console.log(this.recentChats);
+      if (this.chatOpen) {
+        var lastMessageID:number = this.recentChats.find(x=>x["id"] == this.openedChat.ID)["message"]["id"];
+        if (lastMessageID != this.openedChat.lastMessage.id)
+        this.refreshChatMessages();
+      }
     }, 4500);
   }
   ngOnDestroy() {

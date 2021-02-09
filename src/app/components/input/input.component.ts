@@ -53,6 +53,9 @@ export class InputComponent implements OnInit {
     if (event.code == "Enter")
       this.onEnterKey.emit();
   }
+  onEnter() {
+    this.onEnterKey.emit();
+  }
   convertToRichTextNew(text:string) {
     var returnStr = text;
     var regex = new RegExp(RichTextPatterns.BitrixLink);
