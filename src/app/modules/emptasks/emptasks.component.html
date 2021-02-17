@@ -1,0 +1,10 @@
+<div class="taskContainer" *ngFor="let company of ClientCompanies">
+    <div class="companyName">
+        <!-- <p *ngFor="let cmTask of CommonTasks">{{cmTask.name}}</p> -->
+        <p>{{company.name}}</p>
+    </div>
+    <div class="flex flex-direction-col flex-direction-col">
+        <p *ngFor="let Task of FilterTasksByCompany(company.id)">{{Task.name + " : " + Task.statusName}}</p>
+        <!-- <p>{{task.name + ":" + task.status}}</p> -->
+    </div>
+</div>

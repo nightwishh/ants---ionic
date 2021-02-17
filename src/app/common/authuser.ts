@@ -130,6 +130,8 @@ export class Module {
     public iconName:string;
     public iconType:string;
     public url:string;
+    public empOnly:string;
+
 }
 export class UserData extends UserRegistration {
     

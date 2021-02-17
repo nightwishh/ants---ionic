@@ -62,6 +62,7 @@ import { TestGridComponent } from "./modules/test-grid/test-grid.component";
 import { GetfileComponent } from "./modules/getfile/getfile.component";
 import { ReportsComponent } from "./modules/reports/reports.component";
 import { MlPipe } from "./pipes/ml.pipe";
+import { EmptasksComponent } from './modules/emptasks/emptasks.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { MlPipe } from "./pipes/ml.pipe";
     GetfileComponent,
     ReportsComponent,
     MlPipe,
+    EmptasksComponent,
   ],
   imports: [
     BrowserModule,

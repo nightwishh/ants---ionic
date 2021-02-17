@@ -17,6 +17,7 @@ import { AuthBitrixComponent } from "./modules/auth-bitrix/auth-bitrix.component
 import { TestGridComponent } from "./modules/test-grid/test-grid.component";
 import { GetfileComponent } from "./modules/getfile/getfile.component";
 import { ReportsComponent } from "./modules/reports/reports.component";
+import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 
 const routes: Routes = [
   { path: "", component: TasksComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: "Home/:id", component: TasksComponent },
   { path: "Chat", component: ChatComponent },
   { path: "Chat/:id", component: ChatComponent },
+  { path: "EmpTasks", component: EmptasksComponent },
   { path: "Tasks", component: TasksComponent },
   { path: "Tasks/:id", component: TasksComponent },
   //{path:"TestGrid", component:TestGridServiceComponent},

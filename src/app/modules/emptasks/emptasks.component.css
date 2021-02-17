@@ -1,0 +1,46 @@
+.taskContainer {
+    /* border: 1px solid; */
+    margin-top: 50px;
+    max-width: 300px;
+    min-width: 150px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.flex-direction-row {
+    flex-direction: row;
+}
+.flex-direction-col {
+    flex-direction: column;
+}
+.flex-direction-col > * {
+    flex: 0 0 auto !important;
+}
+.companyName {
+    font-weight: bold;
+    border: 1px solid;
+    box-sizing: border-box;
+    border-bottom: 0px;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+.companyName > * {
+    margin: 0;
+}
+.flex {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+}
+.flex > * {
+    flex: 0 0 150px;
+    border-left: 1px solid;
+    border-top: 1px solid;
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+}
+.flex.flex-direction-row > *:last-child {
+    border-right: 1px solid;
+}
