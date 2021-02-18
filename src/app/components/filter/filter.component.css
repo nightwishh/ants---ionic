@@ -1,0 +1,9 @@
+.filterContainer {
+  float: left;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.filterContainer > select {
+  height: 35px;
+}

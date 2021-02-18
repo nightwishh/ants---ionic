@@ -1,10 +1,128 @@
-<div class="taskContainer" *ngFor="let company of ClientCompanies">
-    <div class="companyName">
-        <!-- <p *ngFor="let cmTask of CommonTasks">{{cmTask.name}}</p> -->
-        <p>{{company.name}}</p>
-    </div>
-    <div class="flex flex-direction-col flex-direction-col">
-        <p *ngFor="let Task of FilterTasksByCompany(company.id)">{{Task.name + " : " + Task.statusName}}</p>
+<div class="container">
+  <div class="filters">
+    <app-filter
+      label="კატეგორია"
+      type="dropdown"
+      fieldName="taskCategoryId"
+      (onChange)="applyFilters($event)"
+      filterType="0"
+    >
+      <option value="0">ყველა</option>
+      <option
+        *ngFor="let category of categories$ | async"
+        [value]="category?.taskCategoryId"
+      >
+        {{ category?.name }}
+      </option>
+    </app-filter>
+    <app-filter
+      label="თვე - დან"
+      type="dropdown"
+      fieldName="ActiveStartMonth"
+      (onChange)="applyFilters($event)"
+      filterType="3"
+    >
+      <option value="">ყველა</option>
+      <option value="1">იანვარი</option>
+      <option value="2">თებერვალი</option>
+      <option value="3">მარტი</option>
+      <option value="4">აპრილი</option>
+      <option value="5">მაისი</option>
+      <option value="6">ივნისი</option>
+      <option value="7">ივლისი</option>
+      <option value="8">აგვისტო</option>
+      <option value="9">სექტემბერი</option>
+      <option value="10">ოქტომბერი</option>
+      <option value="11">ნოემბერი</option>
+      <option value="12">დეკემბერი</option>
+    </app-filter>
+    <app-filter
+      label="თვე - მდე"
+      type="dropdown"
+      fieldName="ActiveEndMonth"
+      (onChange)="applyFilters($event)"
+      filterType="5"
+    >
+      <option value="">ყველა</option>
+      <option value="1">იანვარი</option>
+      <option value="2">თებერვალი</option>
+      <option value="3">მარტი</option>
+      <option value="4">აპრილი</option>
+      <option value="5">მაისი</option>
+      <option value="6">ივნისი</option>
+      <option value="7">ივლისი</option>
+      <option value="8">აგვისტო</option>
+      <option value="9">სექტემბერი</option>
+      <option value="10">ოქტომბერი</option>
+      <option value="11">ნოემბერი</option>
+      <option value="12">დეკემბერი</option>
+    </app-filter>
+    <app-filter
+      label="წელი - დან"
+      type="dropdown"
+      fieldName="ActiveStartYear"
+      (onChange)="applyFilters($event)"
+      filterType="3"
+    >
+      <option *ngFor="let year of YearRange" [value]="year.value">
+        {{ year.value }}
+      </option>
+    </app-filter>
+    <app-filter
+      label="წელი - მდე"
+      type="dropdown"
+      fieldName="ActiveEndYear"
+      (onChange)="applyFilters($event)"
+      filterType="5"
+    >
+      <option *ngFor="let year of YearRange" [value]="year.value">
+        {{ year.value }}
+      </option>
+    </app-filter>
+  </div>
+  <ng-container *ngFor="let company of clientCompanies$ | async">
+    <div
+      class="taskContainer"
+      *ngIf="FilterTasksByCompany(company?.id).length > 0"
+    >
+      <div class="companyName">
+        <p>{{ company?.name }}</p>
+      </div>
+      <div class="flex flex-direction-col flex-direction-col">
+        <div *ngFor="let Task of FilterTasksByCompany(company?.id)">
+          {{ Task?.name }}
+          <div class="statusContainer">
+            <div class="status" [ngClass]="setStatusClass(Task)">
+              <select
+                class="statusDropdown"
+                [(ngModel)]="Task.status"
+                (ngModelChange)="changeStatus($event, Task)"
+              >
+                <option
+                  *ngFor="let status of statuses"
+                  [value]="status?.id | number"
+                >
+                  {{ status?.name }}
+                </option>
+              </select>
+              <!-- {{Task.statusName}} -->
+            </div>
+          </div>
+        </div>
         <!-- <p>{{task.name + ":" + task.status}}</p> -->
+      </div>
     </div>
+  </ng-container>
+  <ng-template #showLoader>
+    <div
+      style="
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: black;
+      "
+    ></div>
+  </ng-template>
 </div>
