@@ -38,7 +38,7 @@ export class EmpTasksService {
   }
   GetClientCompanies() {
     return this.http.get<ClientCompany[]>(
-      this.url + "EmpTasks/GetClientCompanies",
+      this.url + "EmpTasks/GetMyCompanies",
       this.httpOptions
     );
   }

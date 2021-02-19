@@ -18,6 +18,7 @@ import { TestGridComponent } from "./modules/test-grid/test-grid.component";
 import { GetfileComponent } from "./modules/getfile/getfile.component";
 import { ReportsComponent } from "./modules/reports/reports.component";
 import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
+import { ClientCompaniesComponent } from "./modules/adminpanel/client-companies/client-companies.component";
 
 const routes: Routes = [
   { path: "", component: TasksComponent },
@@ -59,6 +60,10 @@ const routes: Routes = [
   { path: "AuthBitrix", component: AuthBitrixComponent },
   { path: "Admpnl", component: AdminpanelComponent },
   { path: "Admpnl/:tabActive", component: AdminpanelComponent },
+  {
+    path: "Admpnl-ClientCompanies",
+    component: ClientCompaniesComponent,
+  },
   { path: "GetFile/:id", component: GetfileComponent },
   // {path:"TestGrid", component:TestGridComponent},
   { path: "**", redirectTo: "" },

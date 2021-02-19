@@ -7,7 +7,7 @@
       (onChange)="applyFilters($event)"
       filterType="0"
     >
-      <option value="0">ყველა</option>
+      <option value="">ყველა</option>
       <option
         *ngFor="let category of categories$ | async"
         [value]="category?.taskCategoryId"

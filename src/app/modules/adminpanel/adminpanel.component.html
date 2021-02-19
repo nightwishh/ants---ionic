@@ -1,69 +1,158 @@
-<div style="padding:40px;" *ngIf="isAdmin;else notAdmin">
-    <div class="container" *ngIf="tab==1">
-        <p class="backBtn" (click)="tab = 2"><span class="material-icons">arrow_back_ios</span>უკან დაბრუნება</p>
+<div style="padding: 40px" *ngIf="isAdmin; else notAdmin">
+  <div
+    class="adminPages"
+    style="border-bottom: 1px solid #000; margin-bottom: 30px"
+  >
+    <p>ადმინის გვერდები</p>
+    <div class="adminPagesContainer" style="margin-bottom: 20px">
+      <a href="Admpnl-ClientCompanies">კომპანიები</a>
+    </div>
+  </div>
+  <div class="container" *ngIf="tab == 1">
+    <p class="backBtn" (click)="tab = 2">
+      <span class="material-icons">arrow_back_ios</span>უკან დაბრუნება
+    </p>
 
-        <div class="tabs">
-            <div class="tab" (click)="editingTab = 1" [attr.selected]="editingTabSelected(1)">ბიტრიქსი</div>
-            <div class="tab" (click)="editingTab = 2" [attr.selected]="editingTabSelected(2)">1C</div>
-        </div>
-        <div class="tabView" *ngIf="editingTab==1">
-            <div class="userStatus" *ngIf="newBxUser.hasBitrix">აქტიური</div>
-            <p *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0" style="font-size: 14px; clear: both;">პორტალის
-                მეილი</p>
-            <input type="text" class="antsStyle" [(ngModel)]="newBxUser.antsEmail"
-                placeholder="მომხმარებლის(Ants) მეილი" disabled /><br />
-            <p *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0" style="font-size: 14px;">ბიტრიქსის მეილი</p>
-            <input type="text" class="antsStyle" [(ngModel)]="newBxUser.email" disabled
-                placeholder="ახალი მომხმარებლის(Bitrix) მეილი" /><br />
-            <input type="password" class="antsStyle" *ngIf="!newBxUser.hasBitrix" [(ngModel)]="newBxUser.password"
-                autocomplete="new-password" placeholder="ახალი მომხმარებლის(Bitrix) პაროლი" /> <br />
+    <div class="tabs">
+      <div
+        class="tab"
+        (click)="editingTab = 1"
+        [attr.selected]="editingTabSelected(1)"
+      >
+        ბიტრიქსი
+      </div>
+      <div
+        class="tab"
+        (click)="editingTab = 2"
+        [attr.selected]="editingTabSelected(2)"
+      >
+        1C
+      </div>
+    </div>
+    <div class="tabView" *ngIf="editingTab == 1">
+      <div class="userStatus" *ngIf="newBxUser.hasBitrix">აქტიური</div>
+      <p
+        *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0"
+        style="font-size: 14px; clear: both"
+      >
+        პორტალის მეილი
+      </p>
+      <input
+        type="text"
+        class="antsStyle"
+        [(ngModel)]="newBxUser.antsEmail"
+        placeholder="მომხმარებლის(Ants) მეილი"
+        disabled
+      /><br />
+      <p
+        *ngIf="newBxUser.hasBitrix && newBxUser.email.length > 0"
+        style="font-size: 14px"
+      >
+        ბიტრიქსის მეილი
+      </p>
+      <input
+        type="text"
+        class="antsStyle"
+        [(ngModel)]="newBxUser.email"
+        disabled
+        placeholder="ახალი მომხმარებლის(Bitrix) მეილი"
+      /><br />
+      <input
+        type="password"
+        class="antsStyle"
+        *ngIf="!newBxUser.hasBitrix"
+        [(ngModel)]="newBxUser.password"
+        autocomplete="new-password"
+        placeholder="ახალი მომხმარებლის(Bitrix) პაროლი"
+      />
+      <br />
 
-            <a class="authBx"
-                href="https://accountants.bitrix24.com/oauth/authorize/?response_type=code&client_id=local.5eec97f99a5dd3.72311743&redirect_uri=app_URL"
-                *ngIf="!newBxUser.email && !newBxUser.refreshToken && !newBxUser.hasBitrix" target="_blank">ბიტრიქსის
-                ავტორიზაცია</a>
-            <button *ngIf="newBxUser.email && newBxUser.refreshToken && !newBxUser.hasBitrix"
-                (click)="saveNewBxUser()">შენახვა</button>
-            <button *ngIf="newBxUser.hasBitrix && newBxUser.antsUserID > 0" (click)="deleteNewBxUser()"
-                style="margin-left:0px;background-color: red;">ბიტრიქსის წაშლა</button>
+      <a
+        class="authBx"
+        href="https://accountants.bitrix24.com/oauth/authorize/?response_type=code&client_id=local.5eec97f99a5dd3.72311743&redirect_uri=app_URL"
+        *ngIf="
+          !newBxUser.email && !newBxUser.refreshToken && !newBxUser.hasBitrix
+        "
+        target="_blank"
+        >ბიტრიქსის ავტორიზაცია</a
+      >
+      <button
+        *ngIf="
+          newBxUser.email && newBxUser.refreshToken && !newBxUser.hasBitrix
+        "
+        (click)="saveNewBxUser()"
+      >
+        შენახვა
+      </button>
+      <button
+        *ngIf="newBxUser.hasBitrix && newBxUser.antsUserID > 0"
+        (click)="deleteNewBxUser()"
+        style="margin-left: 0px; background-color: red"
+      >
+        ბიტრიქსის წაშლა
+      </button>
 
-            <div *ngIf="!newBxUser.hasBitrix"
-                style="border: 1px solid var(--main-blue-color); width: 320px; padding: 10px; margin-top: 70px;">
-                <p style="width: 300px;color: var(--main-blue-color);">გაიარე ავტორიზაცია ბიტრიქსის ახალი იუზერით შენ
-                    ბრაუზერში, დააჭირე <b>ბიტრიქსის ავტორიზაციას</b> და დაელოდე</p>
-                <p style="width: 300px;color: var(--main-red-color);">ქვედა (<span style="color: #48a6c3;">შიფრის
-                        ველი</span>) აუცილებელია და უნდა შეივსოს ავტომატურად.</p>
-                <input type="text" class="antsStyle" [(ngModel)]="newBxUser.refreshToken"
-                    placeholder="ახალი მომხმარებლის(Bitrix) refresh_token" disabled /><br />
-            </div>
-        </div>
-        <div class="tabView" *ngIf="editingTab==2">
-            <p style="font-size: 14px; clear: both;">პორტალის
-                მეილი</p>
-            <input type="text" class="antsStyle" [(ngModel)]="user1C.antsEmail" disabled
-                placeholder="მომხმარებლის(Ants) მეილი"  /><br />
-            <p style="font-size: 14px; clear: both;">1C
-                მომხმარებელი</p>
-            <input type="text" class="antsStyle" [(ngModel)]="user1C.username" placeholder="1C მომხმარებელი"
-                 /><br />
-                <p style="font-size: 14px; clear: both;">1C პაროლი
-                </p>
-            <input type="text" class="antsStyle" [(ngModel)]="user1C.password" placeholder="1C პაროლი"
-                 /><br />
-            <button (click)="save1CUser()">შენახვა</button>
+      <div
+        *ngIf="!newBxUser.hasBitrix"
+        style="
+          border: 1px solid var(--main-blue-color);
+          width: 320px;
+          padding: 10px;
+          margin-top: 70px;
+        "
+      >
+        <p style="width: 300px; color: var(--main-blue-color)">
+          გაიარე ავტორიზაცია ბიტრიქსის ახალი იუზერით შენ ბრაუზერში, დააჭირე
+          <b>ბიტრიქსის ავტორიზაციას</b> და დაელოდე
+        </p>
+        <p style="width: 300px; color: var(--main-red-color)">
+          ქვედა (<span style="color: #48a6c3">შიფრის ველი</span>) აუცილებელია და
+          უნდა შეივსოს ავტომატურად.
+        </p>
+        <input
+          type="text"
+          class="antsStyle"
+          [(ngModel)]="newBxUser.refreshToken"
+          placeholder="ახალი მომხმარებლის(Bitrix) refresh_token"
+          disabled
+        /><br />
+      </div>
+    </div>
+    <div class="tabView" *ngIf="editingTab == 2">
+      <p style="font-size: 14px; clear: both">პორტალის მეილი</p>
+      <input
+        type="text"
+        class="antsStyle"
+        [(ngModel)]="user1C.antsEmail"
+        disabled
+        placeholder="მომხმარებლის(Ants) მეილი"
+      /><br />
+      <p style="font-size: 14px; clear: both">1C მომხმარებელი</p>
+      <input
+        type="text"
+        class="antsStyle"
+        [(ngModel)]="user1C.username"
+        placeholder="1C მომხმარებელი"
+      /><br />
+      <p style="font-size: 14px; clear: both">1C პაროლი</p>
+      <input
+        type="text"
+        class="antsStyle"
+        [(ngModel)]="user1C.password"
+        placeholder="1C პაროლი"
+      /><br />
+      <button (click)="save1CUser()">შენახვა</button>
+    </div>
 
-        </div>
-
-        <!-- <iframe id="ifr" style="width:500px;height: 800px;"
+    <!-- <iframe id="ifr" style="width:500px;height: 800px;"
             src="https://accountants.bitrix24.com/oauth/authorize/?response_type=code&client_id=local.5eec97f99a5dd3.72311743&redirect_uri=app_URL">
         </iframe> -->
-    </div>
-    <div class="container" *ngIf="tab==2">
-        <app-grd-users (onRowClick)="onRowClick($event)"></app-grd-users>
-    </div>
-    <div class="container" *ngIf="tab==3">
-    </div>
+  </div>
+  <div class="container" *ngIf="tab == 2">
+    <app-grd-users (onRowClick)="onRowClick($event)"></app-grd-users>
+  </div>
+  <div class="container" *ngIf="tab == 3"></div>
 </div>
 <ng-template #notAdmin>
-    <h1>თქვენ არ გაქვთ ადმინის უფლებები.</h1>
+  <h1>თქვენ არ გაქვთ ადმინის უფლებები.</h1>
 </ng-template>

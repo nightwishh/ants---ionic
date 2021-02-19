@@ -64,6 +64,7 @@ import { ReportsComponent } from "./modules/reports/reports.component";
 import { MlPipe } from "./pipes/ml.pipe";
 import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { FilterComponent } from "./components/filter/filter.component";
+import { ClientCompaniesComponent } from './modules/adminpanel/client-companies/client-companies.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { FilterComponent } from "./components/filter/filter.component";
     MlPipe,
     EmptasksComponent,
     FilterComponent,
+    ClientCompaniesComponent,
   ],
   imports: [
     BrowserModule,
