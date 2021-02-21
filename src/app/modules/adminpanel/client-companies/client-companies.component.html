@@ -1,9 +1,40 @@
-<grid
-  #grud
-  webMethod="EmpTasks/GrdAllClientCompanies"
-  [pageSize]="5"
-  [setStyle]="{ margin: '10px 10px 10px 10px' }"
->
-  <column fieldName="Tin" header="საიდენტიფიკაციო"></column>
-  <column fieldName="Name" header="დასახელება"></column>
-</grid>
+<main style="margin-top: 30px">
+  <button
+    (click)="addNewCompany = true"
+    style="
+      background-color: var(--main-blue-color);
+      color: white;
+      margin-left: 10px;
+    "
+  >
+    ახალი კომპანია
+  </button>
+  <grid
+    (onRowClick)="onRowClick($event)"
+    #grud
+    webMethod="EmpTasks/GrdAllClientCompanies"
+    [pageSize]="5"
+    [setStyle]="{ margin: '10px 10px 10px 10px' }"
+  >
+    <column fieldName="Tin" header="საიდენტიფიკაციო"></column>
+    <column fieldName="Name" header="დასახელება"></column>
+  </grid>
+  <popup [(visible)]="addNewCompany" [setStyle]="{ height: 'auto' }">
+    <p-header>დაამატე კომპანია</p-header>
+    <p-content>
+      <div class="newCompanyDetails">
+        <input
+          type="text"
+          class="antsStyle"
+          placeholder="კომპანიის საიდენტიფიკაციო"
+        />
+        <input
+          type="text"
+          class="antsStyle"
+          placeholder="კომპანიის დასახელება"
+        />
+        <button>დამატება</button>
+      </div>
+    </p-content>
+  </popup>
+</main>

@@ -1,0 +1,52 @@
+<main style="margin-top: 30px; padding-top: 15px">
+  <h1 style="margin-left: 10px; font-family: 'BPG Nino Mtavruli'">
+    {{ this.selectedCompany?.name }} - ში მომუშავე გუნდი
+  </h1>
+  <div class="toolbar employeeTeams">
+    <button (click)="showGrdUsers = true">დაამატე თანამშრომელი</button>
+  </div>
+  <grid
+    #grdTeams
+    webMethod="EmpTasks/GrdEmployeeTeams"
+    [pageSize]="5"
+    [setStyle]="{ margin: '10px 10px 10px 10px' }"
+    [applyFilters]="filters"
+  >
+    <column fieldName="FullName" header="სახელი, გვარი"></column>
+    <column fieldName="RoleName" header="როლი"></column>
+    <column fieldName="CompanyName" header="კომპანიის დასახელება"></column>
+  </grid>
+</main>
+<popup [(visible)]="showGrdUsers" *ngIf="showGrdUsers">
+  <p-header>{{ this.selectedCompany?.name }}</p-header>
+  <p-content>
+    <p style="padding: 10px">
+      აირჩიე მომხმარებელი რომლის მიმაგრებაც გსურს ამ კოპმანიაზე.
+    </p>
+    <div class="rolesDropdownContainer">
+      <p>როლი</p>
+      <select
+        [(ngModel)]="empMember.RoleId"
+        *ngIf="userRoles$"
+        class="rolesDropdown"
+      >
+        <option
+          *ngFor="let role of userRoles$ | async as list"
+          [value]="role?.id"
+        >
+          {{ role?.name }}
+        </option>
+      </select>
+    </div>
+    <grid
+      #grd
+      webMethod="Users/GrdAllEmpUsers"
+      [pageSize]="5"
+      [setStyle]="{ margin: '10px 10px 10px 10px' }"
+      (onRowClick)="AddNewUserToCompany($event)"
+    >
+      <column fieldName="fullName" header="სახელი"></column>
+      <column fieldName="email" header="მეილი"></column>
+    </grid>
+  </p-content>
+</popup>

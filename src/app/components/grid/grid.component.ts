@@ -35,7 +35,7 @@ export class GridComponent implements OnInit, AfterViewInit {
   @Input() setStyle: object;
   @Input() setClass: string;
   @Output() onRowClick: EventEmitter<any> = new EventEmitter<any>();
-
+  @Input() applyFilters: FilterParam[] = [];
   datasource = new MatTableDataSource();
   // displayedColumns = ['name','name', 'email', 'phone', 'bxEmail'];
   columns: GridColumn[] = [];
@@ -62,6 +62,9 @@ export class GridComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     //this.getData();
     //this.dataObs = Observable.create(this.data);
+    this.gridService.grid = new Grid();
+    if (this.applyFilters.length > 0)
+      this.applyInitialFilters(this.applyFilters);
   }
   @ViewChild("paginator", { static: false }) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -77,6 +80,11 @@ export class GridComponent implements OnInit, AfterViewInit {
     gridFilter.FilterValue = filterValue;
     gridFilter.FilterType = 1;
     this.gridService.applyFilter(gridFilter);
+  }
+  applyInitialFilters(filters: FilterParam[]) {
+    filters.forEach((fp) => {
+      this.gridService.applyFilter(fp);
+    });
   }
   keyUpTimer(filterID: string, filterValue: string) {
     new CommonFunctions().timeoutAfterKeyPress(500, () => {

@@ -1,0 +1,16 @@
+.toolbar.employeeTeams {
+  padding-left: 10px;
+}
+.toolbar.employeeTeams button {
+  color: white;
+  background-color: var(--main-blue-color);
+}
+.rolesDropdown {
+  height: 30px;
+}
+.rolesDropdownContainer {
+  margin-left: 10px;
+}
+.rolesDropdownContainer p {
+  margin: 0;
+}

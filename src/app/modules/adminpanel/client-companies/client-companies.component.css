@@ -1,0 +1,18 @@
+.newCompanyDetails {
+  margin: auto;
+  width: 350px;
+  padding: 30px;
+}
+.newCompanyDetails > input,
+.newCompanyDetails > button {
+  height: 35px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+.newCompanyDetails > button {
+  color: white;
+  height: 50px;
+  background-color: var(--main-blue-color);
+}

@@ -65,6 +65,7 @@ import { MlPipe } from "./pipes/ml.pipe";
 import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { FilterComponent } from "./components/filter/filter.component";
 import { ClientCompaniesComponent } from './modules/adminpanel/client-companies/client-companies.component';
+import { CompanyDetailsComponent } from './modules/adminpanel/client-companies/company-details/company-details.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { ClientCompaniesComponent } from './modules/adminpanel/client-companies/
     EmptasksComponent,
     FilterComponent,
     ClientCompaniesComponent,
+    CompanyDetailsComponent,
   ],
   imports: [
     BrowserModule,

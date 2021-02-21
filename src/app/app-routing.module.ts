@@ -19,6 +19,7 @@ import { GetfileComponent } from "./modules/getfile/getfile.component";
 import { ReportsComponent } from "./modules/reports/reports.component";
 import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { ClientCompaniesComponent } from "./modules/adminpanel/client-companies/client-companies.component";
+import { CompanyDetailsComponent } from "./modules/adminpanel/client-companies/company-details/company-details.component";
 
 const routes: Routes = [
   { path: "", component: TasksComponent },
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: "Admpnl-ClientCompanies",
     component: ClientCompaniesComponent,
+  },
+  {
+    path: "Admpnl-ClientCompanies/:id",
+    component: CompanyDetailsComponent,
   },
   { path: "GetFile/:id", component: GetfileComponent },
   // {path:"TestGrid", component:TestGridComponent},

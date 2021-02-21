@@ -7,11 +7,11 @@ import {
   FilterType,
 } from "src/app/services/grid.service";
 import {
-  ClientCompany,
-  CommonTask,
-  Status,
-  Task,
-  TaskCategory,
+  IClientCompany,
+  ICommonTask,
+  IStatus,
+  ITask,
+  ITaskCategory,
 } from "./models/emptasks";
 
 @Component({
@@ -20,15 +20,15 @@ import {
 })
 export class EmptasksComponent implements OnInit {
   constructor(private empTasksService: EmpTasksService) {}
-  statuses: Status[];
-  tasks$: Observable<Task[]> = this.empTasksService.GetEmpTasks();
-  Tasks: Task[] = [];
+  statuses: IStatus[];
+  tasks$: Observable<ITask[]> = this.empTasksService.GetEmpTasks();
+  Tasks: ITask[] = [];
   vx: number = 0;
   clientCompanies$: Observable<
-    ClientCompany[]
+    IClientCompany[]
   > = this.empTasksService.GetClientCompanies();
   categories$: Observable<
-    TaskCategory[]
+    ITaskCategory[]
   > = this.empTasksService.GetCategories();
 
   YearRange: [{}] = [{}];
@@ -49,17 +49,17 @@ export class EmptasksComponent implements OnInit {
       this.Tasks = x;
     });
   }
-  FilterTasksByCompany(id: number): Task[] {
+  FilterTasksByCompany(id: number): ITask[] {
     return this.Tasks.filter((x) => x.clientCompanyId == id);
   }
 
-  setStatusClass(task: Task) {
+  setStatusClass(task: ITask) {
     var statusClass = {};
     statusClass[`status-${task.status}`] = true;
     return statusClass;
   }
 
-  changeStatus(value: number, task: Task) {
+  changeStatus(value: number, task: ITask) {
     task.status = Number(value);
     this.empTasksService.SetStatus(task).subscribe((x) => {});
   }

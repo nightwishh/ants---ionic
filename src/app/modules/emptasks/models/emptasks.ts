@@ -1,10 +1,10 @@
-export interface CommonTask {
+export interface ICommonTask {
   id: number;
   name: number;
   taskCategoryId: number;
 }
-export interface TaskCategory {}
-export interface Task {
+export interface ITaskCategory {}
+export interface ITask {
   id: number;
   clientCompanyId: number;
   status: number;
@@ -18,12 +18,27 @@ export interface Task {
   companyName: string;
   companyTin: string;
 }
-export interface ClientCompany {
+export interface IClientCompany {
   id: number;
   tin: string;
-  name: number;
+  name: string;
 }
-export interface Status {
+export interface IStatus {
   id: number;
   name: string;
+}
+export interface IUserRole extends IStatus {}
+
+export class ClientCompany implements IClientCompany {
+  id: number;
+  tin: string;
+  name: string;
+}
+export class EmployeeTeamMember {
+  public Id: number;
+  public FullName: string;
+  public RoleId: number;
+  public RoleName: string;
+  public CompanyId: number;
+  public CompanyName: string;
 }
