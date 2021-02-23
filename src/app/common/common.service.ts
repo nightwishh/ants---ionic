@@ -6,7 +6,7 @@ import {
   UserCredentials,
 } from "../modules/models/user.model";
 import { Authuser } from "./authuser";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
 // import { UserRegistration, UserCredentials } from '../modules/header/models/user.model';
 
 @Injectable({
@@ -75,6 +75,14 @@ export class CommonService {
       var error = err.error;
     }
 
+    let errorMessage = "";
+    if (typeof error.STATUS == "undefined") {
+      // client-side error
+      errorMessage = error.errors[Object.keys(error.errors)[0]];
+      window.alert(errorMessage);
+      return throwError(errorMessage);
+    }
+
     if (error.STATUS.ID == -5) {
       // You are not authorized. please authorize first
       //this.redirectToLogin();
@@ -87,7 +95,10 @@ export class CommonService {
 
     if (error.STATUS.ID < 0 && error.STATUS.ID != -5 && error.STATUS.ID != -6)
       alert(error.STATUS.TEXT);
+
+    return throwError(error.STATUS.TEXT);
   }
+  handle;
 
   handleBxErrors(err) {
     if (err == null || err.error == null) return;

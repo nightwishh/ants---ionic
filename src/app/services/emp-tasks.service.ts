@@ -2,14 +2,18 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CommonService } from "../common/common.service";
 import {
+  ClientCompany,
   IClientCompany,
   ICommonTask,
   IStatus,
   ITask,
   ITaskCategory,
   IUserRole,
+  RoleInCompany,
 } from "../modules/emptasks/models/emptasks";
 import { FilterParam } from "./grid.service";
+
+import { catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -65,6 +69,18 @@ export class EmpTasksService {
     return this.http.put(
       this.url + "EmpTasks/SetStatus",
       task,
+      this.httpOptions
+    );
+  }
+  AddCompany(company: ClientCompany) {
+    return this.http
+      .post(this.url + "EmpTasks/AddCompany", company, this.httpOptions)
+      .pipe(catchError(this.commonService.handleErrors));
+  }
+  AddUserToCompany(userAndCompany: RoleInCompany) {
+    return this.http.post(
+      this.url + "EmpTasks/AddUserToCompany",
+      userAndCompany,
       this.httpOptions
     );
   }

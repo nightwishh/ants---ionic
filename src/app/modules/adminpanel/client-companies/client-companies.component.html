@@ -27,13 +27,15 @@
           type="text"
           class="antsStyle"
           placeholder="კომპანიის საიდენტიფიკაციო"
+          [(ngModel)]="this.newCompany.tin"
         />
         <input
           type="text"
           class="antsStyle"
           placeholder="კომპანიის დასახელება"
+          [(ngModel)]="this.newCompany.name"
         />
-        <button>დამატება</button>
+        <button (click)="addCompany()">დამატება</button>
       </div>
     </p-content>
   </popup>

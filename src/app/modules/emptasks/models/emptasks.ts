@@ -34,11 +34,11 @@ export class ClientCompany implements IClientCompany {
   tin: string;
   name: string;
 }
-export class EmployeeTeamMember {
+export class RoleInCompany {
   public Id: number;
-  public FullName: string;
+  public Name: string;
   public RoleId: number;
   public RoleName: string;
-  public CompanyId: number;
-  public CompanyName: string;
+  public userId: number;
+  public userFullName: string;
 }

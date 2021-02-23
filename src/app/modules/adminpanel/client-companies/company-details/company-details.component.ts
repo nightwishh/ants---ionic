@@ -10,7 +10,7 @@ import { Observable } from "rxjs";
 import { GridComponent } from "src/app/components/grid/grid.component";
 import {
   ClientCompany,
-  EmployeeTeamMember,
+  RoleInCompany,
   IClientCompany,
   IUserRole,
 } from "src/app/modules/emptasks/models/emptasks";
@@ -31,7 +31,7 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
   filters: FilterParam[] = [];
   selectedCompany: ClientCompany = new ClientCompany();
   userRoles$: Observable<IUserRole[]> = this.empTaskService.GetUserRoles();
-  empMember: EmployeeTeamMember = new EmployeeTeamMember();
+  empMember: RoleInCompany = new RoleInCompany();
   private _showGrdUsers: boolean = false;
   public get showGrdUsers(): boolean {
     return this._showGrdUsers;
@@ -74,12 +74,14 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.empMember.Id = row["ID"];
-    this.empMember.FullName = row["fullName"];
-    this.empMember.CompanyId = this.selectedCompany.id;
-    this.empMember.CompanyName = this.selectedCompany.name;
-    console.log(this.empMember);
-    alert("Great");
+    this.empMember.userId = row["ID"];
+    this.empMember.userFullName = row["fullName"];
+    this.empMember.Id = this.selectedCompany.id;
+    this.empMember.Name = this.selectedCompany.name;
+    this.empMember.RoleId = Number(this.empMember.RoleId);
+    this.empTaskService.AddUserToCompany(this.empMember).subscribe((x) => {
+      location.reload();
+    });
   }
 
   ngOnDestroy() {
