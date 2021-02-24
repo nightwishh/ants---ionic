@@ -13,7 +13,7 @@ export interface ITask {
   activeStartMonth: number;
   activeEndYear: number;
   activeEndMonth: number;
-  name: number;
+  name: string;
   taskCategoryId: number;
   companyName: string;
   companyTin: string;

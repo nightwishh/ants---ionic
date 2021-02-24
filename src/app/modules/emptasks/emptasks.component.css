@@ -2,14 +2,18 @@
   margin-left: 20px;
   margin-top: 40px;
 }
+.tasksScrollView {
+  white-space: nowrap;
+  overflow: auto;
+}
 .taskContainer {
   /* border: 1px solid; */
   margin-top: 50px;
   max-width: 300px;
   min-width: 150px;
   display: inline-block;
-  margin-right: 10px;
-  box-shadow: var(--default-shadow-right);
+  /* margin-right: 10px; */
+  /* box-shadow: var(--default-shadow-right); */
 }
 .filters {
   display: flex;
@@ -31,11 +35,12 @@
   border-bottom: 0px;
   border-color: var(--input-bd-color);
   text-align: center;
-  height: 60px;
-  line-height: 60px;
+  height: 30px;
+  line-height: 30px;
 }
 .companyName > * {
   margin: 0;
+  font-size: 12px;
 }
 .flex {
   display: flex;
@@ -50,18 +55,27 @@
   border-top: 1px solid;
   border-color: var(--input-bd-color);
   margin: 0;
-  padding: 5px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex > * {
+}
+.flex > *:nth-child(2n) {
+  background-color: rgb(0, 0, 0, 0.1);
 }
 .flex.flex-direction-row > *:last-child {
   border-right: 1px solid;
 }
 .flex .status {
   border-radius: 40px;
-  padding: 5px 10px;
+  padding: 2px 5px;
   font-size: 12px;
-  margin: 10px 20px;
+  margin: 0px;
 }
 .flex .status .statusDropdown {
   background-color: transparent !important;
@@ -69,12 +83,13 @@
   outline: none;
   color: white;
   text-align: center;
+  font-size: 12px;
 }
 .flex .status .statusDropdown option {
   color: black;
 }
 .status.status-1 {
-  background: #e2e2e2;
+  background: #c2c2c2;
 }
 .status.status-1 > .statusDropdown {
   color: black !important;
@@ -93,4 +108,13 @@
 }
 .status.status-6 {
   background: var(--main-orange-color);
+}
+.taskContainer.headers {
+  display: none;
+}
+.taskContainer.headers.i0 {
+  display: inline-block;
+}
+.tasksContainerAll {
+  display: flex;
 }

@@ -30,10 +30,12 @@ export class EmptasksComponent implements OnInit {
   categories$: Observable<
     ITaskCategory[]
   > = this.empTasksService.GetCategories();
+  commonTasks: string[] = [];
 
   YearRange: [{}] = [{}];
   filters: Array<FilterParam> = [];
   selectedCategory: number = 0;
+  leftHeadersShown: boolean = false;
   ngOnInit(): void {
     this.YearRange[0]["value"] = new Date().getFullYear();
     for (var i = 1; i < 5; i++) {
@@ -47,6 +49,9 @@ export class EmptasksComponent implements OnInit {
   GetTasks() {
     this.empTasksService.GetEmpTasks().subscribe((x) => {
       this.Tasks = x;
+      this.Tasks.forEach((x) => {
+        if (!this.commonTasks.includes(x.name)) this.commonTasks.push(x.name);
+      });
     });
   }
   FilterTasksByCompany(id: number): ITask[] {
@@ -62,6 +67,10 @@ export class EmptasksComponent implements OnInit {
   changeStatus(value: number, task: ITask) {
     task.status = Number(value);
     this.empTasksService.SetStatus(task).subscribe((x) => {});
+  }
+
+  headersShown() {
+    this.leftHeadersShown = true;
   }
 
   // setFilter(value: string, fieldName: string) {

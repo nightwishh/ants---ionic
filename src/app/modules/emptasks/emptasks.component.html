@@ -80,39 +80,55 @@
       </option>
     </app-filter>
   </div>
-  <ng-container *ngFor="let company of clientCompanies$ | async">
-    <div
-      class="taskContainer"
-      *ngIf="FilterTasksByCompany(company?.id).length > 0"
-    >
-      <div class="companyName">
-        <p>{{ company?.name }}</p>
-      </div>
+  <div class="tasksContainerAll">
+    <div class="taskContainer headers i0" *ngIf="!leftHeadersShown">
+      <div class="companyName"></div>
       <div class="flex flex-direction-col flex-direction-col">
-        <div *ngFor="let Task of FilterTasksByCompany(company?.id)">
-          {{ Task?.name }}
-          <div class="statusContainer">
-            <div class="status" [ngClass]="setStatusClass(Task)">
-              <select
-                class="statusDropdown"
-                [(ngModel)]="Task.status"
-                (ngModelChange)="changeStatus($event, Task)"
-              >
-                <option
-                  *ngFor="let status of statuses"
-                  [value]="status?.id | number"
-                >
-                  {{ status?.name }}
-                </option>
-              </select>
-              <!-- {{Task.statusName}} -->
-            </div>
-          </div>
+        <div *ngFor="let taskName of commonTasks">
+          {{ taskName }}
         </div>
         <!-- <p>{{task.name + ":" + task.status}}</p> -->
       </div>
     </div>
-  </ng-container>
+    <div class="tasksScrollView">
+      <ng-container
+        *ngFor="let company of clientCompanies$ | async; let i = index"
+      >
+        <div
+          class="taskContainer"
+          *ngIf="FilterTasksByCompany(company?.id).length > 0"
+        >
+          <div class="companyName">
+            <p>{{ company?.name }}</p>
+          </div>
+          <div class="flex flex-direction-col flex-direction-col">
+            <div *ngFor="let Task of FilterTasksByCompany(company?.id)">
+              <!-- {{ Task?.name }} -->
+              <div class="statusContainer">
+                <div class="status" [ngClass]="setStatusClass(Task)">
+                  <select
+                    class="statusDropdown"
+                    [(ngModel)]="Task.status"
+                    (ngModelChange)="changeStatus($event, Task)"
+                  >
+                    <option
+                      *ngFor="let status of statuses"
+                      [value]="status?.id | number"
+                    >
+                      {{ status?.name }}
+                    </option>
+                  </select>
+                  <!-- {{Task.statusName}} -->
+                </div>
+              </div>
+            </div>
+            <!-- <p>{{task.name + ":" + task.status}}</p> -->
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
   <ng-template #showLoader>
     <div
       style="
