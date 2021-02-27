@@ -99,7 +99,9 @@
           *ngIf="FilterTasksByCompany(company?.id).length > 0"
         >
           <div class="companyName">
-            <p>{{ company?.name }}</p>
+            <p [title]="company?.name">
+              <span>{{ company?.name }}</span>
+            </p>
           </div>
           <div class="flex flex-direction-col flex-direction-col">
             <div *ngFor="let Task of FilterTasksByCompany(company?.id)">
