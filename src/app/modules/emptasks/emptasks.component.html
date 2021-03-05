@@ -7,8 +7,9 @@
         {{ category?.name }}
       </option>
     </app-filter>
-    <app-filter label="თვე" type="dropdown" fieldName="ActiveMonth" (onChange)="applyFilters($event)" filterType="0">
-      <option [value]="currentMonth" selected>მიმდინარე</option>
+    <app-filter label="თვე" type="dropdown" [selected]="currentMonth - 1" fieldName="ActiveMonth"
+      (onChange)="applyFilters($event)" filterType="0">
+      <!-- <option [value]="currentMonth - 1" selected>მიმდინარე (წინა თვე</option> -->
       <option value="1">იანვარი</option>
       <option value="2">თებერვალი</option>
       <option value="3">მარტი</option>
@@ -38,8 +39,9 @@
       <option value="11">ნოემბერი</option>
       <option value="12">დეკემბერი</option>
     </app-filter> -->
-    <app-filter label="წელი" type="dropdown" fieldName="ActiveYear" (onChange)="applyFilters($event)" filterType="0">
-      <option [value]="currentYear" selected>მიმდინარე</option>
+    <app-filter label="წელი" type="dropdown" [selected]="currentYear" fieldName="ActiveYear"
+      (onChange)="applyFilters($event)" filterType="0">
+      <!-- <option [value]="currentYear" selected>მიმდინარე</option> -->
       <option *ngFor="let year of YearRange" [value]="year.value">
         {{ year.value }}
       </option>
@@ -55,8 +57,8 @@
     <div class="taskContainer headers i0" *ngIf="!leftHeadersShown">
       <div class="companyName">{{noDataFound ? 'არ მოიძებნა' : ''}}</div>
       <div class="flex flex-direction-col flex-direction-col">
-        <div *ngFor="let taskName of commonTasks">
-          {{ taskName }}
+        <div *ngFor="let taskName of commonTasks" [title]="taskName">
+          <span class="taskHeader"> {{ taskName }} </span>
         </div>
         <!-- <p>{{task.name + ":" + task.status}}</p> -->
       </div>

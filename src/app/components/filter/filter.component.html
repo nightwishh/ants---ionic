@@ -1,11 +1,7 @@
 <div class="filterContainer">
   <p>{{ label }}</p>
-  <select
-    *ngIf="type == 'dropdown'; else showInput"
-    style="height: 35px"
-    [(ngModel)]="selected"
-    (ngModelChange)="setFilter($event, fieldName)"
-  >
+  <select *ngIf="type == 'dropdown'; else showInput" style="height: 27px" [(ngModel)]="selected"
+    (ngModelChange)="setFilter($event, fieldName)">
     <ng-content></ng-content>
   </select>
   <ng-template #showInput>

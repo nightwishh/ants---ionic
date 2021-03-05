@@ -13,7 +13,7 @@ import {
 })
 export class FilterComponent implements OnInit {
   constructor() {}
-  selected: any;
+  @Input() selected: any;
   @Input() label: string;
   @Input() type: string = "text";
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
