@@ -1,28 +1,14 @@
 <div class="container">
   <div class="filters">
-    <app-filter
-      label="კატეგორია"
-      type="dropdown"
-      fieldName="taskCategoryId"
-      (onChange)="applyFilters($event)"
-      filterType="0"
-    >
+    <app-filter label="კატეგორია" type="dropdown" fieldName="taskCategoryId" (onChange)="applyFilters($event)"
+      filterType="0">
       <option value="">ყველა</option>
-      <option
-        *ngFor="let category of categories$ | async"
-        [value]="category?.taskCategoryId"
-      >
+      <option *ngFor="let category of categories$ | async" [value]="category?.taskCategoryId">
         {{ category?.name }}
       </option>
     </app-filter>
-    <app-filter
-      label="თვე - დან"
-      type="dropdown"
-      fieldName="ActiveStartMonth"
-      (onChange)="applyFilters($event)"
-      filterType="3"
-    >
-      <option value="">ყველა</option>
+    <app-filter label="თვე" type="dropdown" fieldName="ActiveMonth" (onChange)="applyFilters($event)" filterType="0">
+      <option [value]="currentMonth" selected>მიმდინარე</option>
       <option value="1">იანვარი</option>
       <option value="2">თებერვალი</option>
       <option value="3">მარტი</option>
@@ -36,13 +22,8 @@
       <option value="11">ნოემბერი</option>
       <option value="12">დეკემბერი</option>
     </app-filter>
-    <app-filter
-      label="თვე - მდე"
-      type="dropdown"
-      fieldName="ActiveEndMonth"
-      (onChange)="applyFilters($event)"
-      filterType="5"
-    >
+    <!-- <app-filter label="თვე - მდე" type="dropdown" fieldName="ActiveEndMonth" (onChange)="applyFilters($event)"
+      filterType="5">
       <option value="">ყველა</option>
       <option value="1">იანვარი</option>
       <option value="2">თებერვალი</option>
@@ -56,33 +37,23 @@
       <option value="10">ოქტომბერი</option>
       <option value="11">ნოემბერი</option>
       <option value="12">დეკემბერი</option>
-    </app-filter>
-    <app-filter
-      label="წელი - დან"
-      type="dropdown"
-      fieldName="ActiveStartYear"
-      (onChange)="applyFilters($event)"
-      filterType="3"
-    >
+    </app-filter> -->
+    <app-filter label="წელი" type="dropdown" fieldName="ActiveYear" (onChange)="applyFilters($event)" filterType="0">
+      <option [value]="currentYear" selected>მიმდინარე</option>
       <option *ngFor="let year of YearRange" [value]="year.value">
         {{ year.value }}
       </option>
     </app-filter>
-    <app-filter
-      label="წელი - მდე"
-      type="dropdown"
-      fieldName="ActiveEndYear"
-      (onChange)="applyFilters($event)"
-      filterType="5"
-    >
+    <!-- <app-filter label="წელი - მდე" type="dropdown" fieldName="ActiveEndYear" (onChange)="applyFilters($event)"
+      filterType="5">
       <option *ngFor="let year of YearRange" [value]="year.value">
         {{ year.value }}
       </option>
-    </app-filter>
+    </app-filter> -->
   </div>
   <div class="tasksContainerAll">
     <div class="taskContainer headers i0" *ngIf="!leftHeadersShown">
-      <div class="companyName"></div>
+      <div class="companyName">{{noDataFound ? 'არ მოიძებნა' : ''}}</div>
       <div class="flex flex-direction-col flex-direction-col">
         <div *ngFor="let taskName of commonTasks">
           {{ taskName }}
@@ -91,13 +62,8 @@
       </div>
     </div>
     <div class="tasksScrollView">
-      <ng-container
-        *ngFor="let company of clientCompanies$ | async; let i = index"
-      >
-        <div
-          class="taskContainer"
-          *ngIf="FilterTasksByCompany(company?.id).length > 0"
-        >
+      <ng-container *ngFor="let company of clientCompanies$ | async; let i = index">
+        <div class="taskContainer" *ngIf="FilterTasksByCompany(company?.id).length > 0">
           <div class="companyName">
             <p [title]="company?.name">
               <span>{{ company?.name }}</span>
@@ -108,15 +74,8 @@
               <!-- {{ Task?.name }} -->
               <div class="statusContainer">
                 <div class="status" [ngClass]="setStatusClass(Task)">
-                  <select
-                    class="statusDropdown"
-                    [(ngModel)]="Task.status"
-                    (ngModelChange)="changeStatus($event, Task)"
-                  >
-                    <option
-                      *ngFor="let status of statuses"
-                      [value]="status?.id | number"
-                    >
+                  <select class="statusDropdown" [(ngModel)]="Task.status" (ngModelChange)="changeStatus($event, Task)">
+                    <option *ngFor="let status of statuses" [value]="status?.id | number">
                       {{ status?.name }}
                     </option>
                   </select>
@@ -131,16 +90,10 @@
     </div>
   </div>
 
-  <ng-template #showLoader>
-    <div
-      style="
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        background-color: black;
-      "
-    ></div>
-  </ng-template>
+  <!-- <ng-template #showLoader> -->
+
+  <!-- </ng-template> -->
+</div>
+<div *ngIf="loading" class="loadingContainer">
+  <app-loader class="empTasksLoader"></app-loader>
 </div>

@@ -405,3 +405,22 @@ input[type="number"] {
   -webkit-appearance: none;
   -moz-appearance: textfield;
 }
+
+.loadingContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 99;
+}
+
+.loadingContainer > * {
+  display: block;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+}

@@ -19,6 +19,7 @@ export class ClientCompaniesComponent implements OnInit {
   }
   addNewCompany: boolean = false;
   newCompany: ClientCompany = new ClientCompany();
+  loading: boolean = false;
   onRowClick(row) {
     this.companyService.selectedCompany.id = row.Id;
     this.companyService.selectedCompany.name = row.Name;
@@ -26,6 +27,8 @@ export class ClientCompaniesComponent implements OnInit {
     this.router.navigateByUrl(this.router.url + `/${row["Id"]}`);
   }
   addCompany() {
+    this.loading = true;
+    this.addNewCompany = false;
     this.empTasks.AddCompany(this.newCompany).subscribe((x) => {
       location.reload();
     });

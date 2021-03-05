@@ -36,8 +36,12 @@ export class EmptasksComponent implements OnInit {
   filters: Array<FilterParam> = [];
   selectedCategory: number = 0;
   leftHeadersShown: boolean = false;
+  currentMonth: number = new Date().getMonth() + 1;
+  currentYear: number = new Date().getFullYear();
+  noDataFound: boolean = false;
+  loading: boolean = true;
   ngOnInit(): void {
-    this.YearRange[0]["value"] = new Date().getFullYear();
+    this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {
       this.YearRange.push({ value: this.YearRange[0]["value"] - i });
     }
@@ -47,11 +51,20 @@ export class EmptasksComponent implements OnInit {
     });
   }
   GetTasks() {
+    this.Tasks = [];
+    this.loading = true;
     this.empTasksService.GetEmpTasks().subscribe((x) => {
       this.Tasks = x;
-      this.Tasks.forEach((x) => {
-        if (!this.commonTasks.includes(x.name)) this.commonTasks.push(x.name);
-      });
+      this.loading = false;
+      this.BuildCommonTasks(x);
+    });
+  }
+  BuildCommonTasks(Tasks: ITask[]) {
+    if (Tasks.length == 0) this.noDataFound = true;
+    else this.noDataFound = false;
+    this.commonTasks = [];
+    Tasks.forEach((x) => {
+      if (!this.commonTasks.includes(x.name)) this.commonTasks.push(x.name);
     });
   }
   FilterTasksByCompany(id: number): ITask[] {
@@ -92,8 +105,12 @@ export class EmptasksComponent implements OnInit {
     if (i > -1) this.filters.splice(i, 1);
 
     this.filters.push(event);
+    this.loading = true;
+
     this.empTasksService.GetEmpTasksF(this.filters).subscribe((x) => {
       this.Tasks = x;
+      this.loading = false;
+      this.BuildCommonTasks(x);
     });
   }
 }
