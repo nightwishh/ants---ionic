@@ -179,6 +179,12 @@ export class GridColumn {
   public fieldName: string;
   public filter: boolean = false;
   public cell = (element: any) => `${element[this.fieldName]}`;
+  public rowValue: string = null;
+  public onCellClick: EventEmitter<any> = new EventEmitter<any>();
+
+  public cellClick = (val: any) => {
+    this.onCellClick.emit(val);
+  };
 }
 @Component({
   selector: "column",
@@ -189,13 +195,16 @@ export class ColumnComponent implements OnInit {
   @Input() header: string;
   @Input() dataType: DataType = DataType.String;
   @Input() filter: boolean = true;
-
+  @Input() rowValue: string = null;
+  @Output() onCellClick: EventEmitter<any> = new EventEmitter<any>();
   constructor(private grid: GridComponent) {}
   ngOnInit() {
     var grdCol: GridColumn = new GridColumn();
     grdCol.fieldName = this.fieldName;
     grdCol.header = this.header;
     grdCol.filter = this.filter;
+    grdCol.rowValue = this.rowValue;
+    grdCol.onCellClick = this.onCellClick;
     this.grid.columns.push(grdCol);
   }
 }

@@ -84,4 +84,14 @@ export class EmpTasksService {
       this.httpOptions
     );
   }
+  DeleteUserFromCompany(userId: number, companyId: number) {
+    return this.http.delete(
+      this.url +
+        "EmpTasks/DeleteUserFromCompany?userId=" +
+        userId +
+        "&Id=" +
+        companyId,
+      this.httpOptions
+    );
+  }
 }

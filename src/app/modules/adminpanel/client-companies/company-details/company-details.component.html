@@ -5,19 +5,17 @@
   <div class="toolbar employeeTeams">
     <button (click)="showGrdUsers = true">დაამატე თანამშრომელი</button>
   </div>
-  <grid
-    #grdTeams
-    webMethod="EmpTasks/GrdEmployeeTeams"
-    [pageSize]="5"
-    [setStyle]="{ margin: '10px 10px 10px 10px' }"
-    [applyFilters]="filters"
-  >
+  <grid #grdTeams webMethod="EmpTasks/GrdEmployeeTeams" [pageSize]="5" [setStyle]="{ margin: '10px 10px 10px 10px' }"
+    [applyFilters]="filters">
     <column fieldName="FullName" header="სახელი, გვარი"></column>
     <column fieldName="RoleName" header="როლი"></column>
     <column fieldName="CompanyName" header="კომპანიის დასახელება"></column>
+    <column fieldName="aa" header=" " rowValue="<span class='material-icons'>close</span>" filter=false
+      (onCellClick)="deleteUserFromCompany($event)">
+    </column>
   </grid>
 </main>
-<popup [(visible)]="showGrdUsers" *ngIf="showGrdUsers">
+<popup [(visible)]="showGrdUsers" *ngIf="showGrdUsers" [setStyle]="{height:'auto'}">
   <p-header>{{ this.selectedCompany?.name }}</p-header>
   <p-content>
     <p style="padding: 10px">
@@ -25,26 +23,14 @@
     </p>
     <div class="rolesDropdownContainer">
       <p>როლი</p>
-      <select
-        [(ngModel)]="empMember.RoleId"
-        *ngIf="userRoles$"
-        class="rolesDropdown"
-      >
-        <option
-          *ngFor="let role of userRoles$ | async as list"
-          [value]="role?.id"
-        >
+      <select [(ngModel)]="empMember.RoleId" *ngIf="userRoles$" class="rolesDropdown">
+        <option *ngFor="let role of userRoles$ | async as list" [value]="role?.id">
           {{ role?.name }}
         </option>
       </select>
     </div>
-    <grid
-      #grd
-      webMethod="Users/GrdAllEmpUsers"
-      [pageSize]="5"
-      [setStyle]="{ margin: '10px 10px 10px 10px' }"
-      (onRowClick)="AddNewUserToCompany($event)"
-    >
+    <grid #grd webMethod="Users/GrdAllEmpUsers" [pageSize]="5" [setStyle]="{ margin: '10px 10px 10px 10px' }"
+      (onRowClick)="AddNewUserToCompany($event)">
       <column fieldName="fullName" header="სახელი"></column>
       <column fieldName="email" header="მეილი"></column>
     </grid>

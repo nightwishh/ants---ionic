@@ -83,6 +83,15 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
       location.reload();
     });
   }
+  deleteUserFromCompany(row) {
+    if (!confirm("ნამდვილად გსურთ წაშლა ?")) return;
+    this.empTaskService
+      .DeleteUserFromCompany(
+        row["Id"],
+        this.clientCompanyService.selectedCompany.id
+      )
+      .subscribe();
+  }
 
   ngOnDestroy() {
     this.clientCompanyService.selectedCompany = new ClientCompany();
