@@ -1,4 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  NgZone,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { Observable } from "rxjs";
 import { EmpTasksService } from "src/app/services/emp-tasks.service";
 import {
@@ -18,8 +26,12 @@ import {
   templateUrl: "./emptasks.component.html",
   styleUrls: ["./emptasks.component.css"],
 })
-export class EmptasksComponent implements OnInit {
-  constructor(private empTasksService: EmpTasksService) {}
+export class EmptasksComponent implements OnInit, AfterViewInit {
+  constructor(
+    private empTasksService: EmpTasksService,
+    private zone: NgZone,
+    private cdRef: ChangeDetectorRef
+  ) {}
   statuses: IStatus[];
   tasks$: Observable<ITask[]> = this.empTasksService.GetEmpTasks();
   Tasks: ITask[] = [];
@@ -27,6 +39,8 @@ export class EmptasksComponent implements OnInit {
   clientCompanies$: Observable<
     IClientCompany[]
   > = this.empTasksService.GetClientCompanies();
+  clientCompanies: IClientCompany[];
+
   categories$: Observable<
     ITaskCategory[]
   > = this.empTasksService.GetCategories();
@@ -40,6 +54,7 @@ export class EmptasksComponent implements OnInit {
   currentYear: number = new Date().getFullYear();
   noDataFound: boolean = false;
   loading: boolean = true;
+  showFixedHeaders: boolean = false;
   ngOnInit(): void {
     this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {
@@ -49,6 +64,69 @@ export class EmptasksComponent implements OnInit {
     this.empTasksService.GetStatuses().subscribe((x) => {
       this.statuses = x;
     });
+
+    this.zone.runOutsideAngular(() => {
+      // var msgsView = this.messagesView.nativeElement as HTMLElement;
+      var tasksScrollView = null;
+      document.addEventListener("scroll", (e) => {
+        if (document.documentElement.scrollTop >= 132) {
+          if (!this.showFixedHeaders) {
+            this.showFixedHeaders = true;
+            this.cdRef.detectChanges();
+            adjust(
+              this.tasksScrollView.nativeElement as HTMLElement,
+              this.companyHeadersPh.nativeElement as HTMLElement
+            );
+          }
+        } else if (this.showFixedHeaders) {
+          this.showFixedHeaders = false;
+          this.cdRef.detectChanges();
+        }
+        if (tasksScrollView == null) {
+          tasksScrollView = this.tasksScrollView.nativeElement as HTMLElement;
+          if (tasksScrollView == null || typeof tasksScrollView == "undefined")
+            return;
+
+          tasksScrollView.addEventListener("scroll", (e) => {
+            if (this.showFixedHeaders && this.companyHeadersPh != null) {
+              adjust(
+                tasksScrollView,
+                this.companyHeadersPh.nativeElement as HTMLElement
+              );
+            }
+          });
+        }
+      });
+      function adjust(
+        tasksScrollView: HTMLElement,
+        companyHeadersView: HTMLElement
+      ) {
+        try {
+          var tscroll = tasksScrollView;
+          var c = companyHeadersView;
+
+          var tscrollW = tscroll.scrollWidth;
+          var tscrollL = tscroll.scrollLeft;
+          var tPerc = tscrollL / tscrollW;
+
+          // var cscrollW = ;
+          // var cscrollL = c.scrollLeft;
+          // var cscrollPerc = cscrollL / cscrollW;
+
+          c.scroll(c.scrollWidth * tPerc, 0);
+        } catch {}
+      }
+    });
+  }
+
+  @ViewChild("companyHeadersScroll", { static: false })
+  private companyHeadersPh: ElementRef;
+  @ViewChild("tasksScrollView", { static: false }) tasksScrollView: ElementRef;
+
+  ngAfterViewInit() {
+    // console.log(this.companyHeadersPh.nativeElement);
+    // setTimeout(() => {
+    // }, 500);
   }
   GetTasks() {
     this.Tasks = [];
@@ -85,7 +163,9 @@ export class EmptasksComponent implements OnInit {
   headersShown() {
     this.leftHeadersShown = true;
   }
-
+  aaa() {
+    console.log(document.body.scrollTop);
+  }
   // setFilter(value: string, fieldName: string) {
   //   var i = this.filters.findIndex((x) => x.FieldName == fieldName);
   //   if (i > -1) this.filters.splice(i, 1);

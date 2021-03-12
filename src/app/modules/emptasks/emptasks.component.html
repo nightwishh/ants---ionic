@@ -53,8 +53,20 @@
       </option>
     </app-filter> -->
   </div>
-  <div class="tasksContainerAll">
-    <div class="taskContainer headers i0" *ngIf="!leftHeadersShown">
+  <div class="tasksContainerAll" *ngIf="(clientCompanies$ | async) as clientCompanies;">
+    <div class="companyHeadersContainer" #companyHeadersScroll *ngIf="showFixedHeaders">
+      <div class="companyHeaders">
+        <!-- <p>&nbsp;</p> -->
+        <div class="companyName" *ngFor="let company of clientCompanies" [title]="company?.name">
+          <p>
+            <span>
+              {{company?.name}}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="taskContainer headers i0">
       <div class="companyName">{{noDataFound ? 'არ მოიძებნა' : ''}}</div>
       <div class="flex flex-direction-col flex-direction-col">
         <div *ngFor="let taskName of commonTasks" [title]="taskName">
@@ -63,8 +75,8 @@
         <!-- <p>{{task.name + ":" + task.status}}</p> -->
       </div>
     </div>
-    <div class="tasksScrollView">
-      <ng-container *ngFor="let company of clientCompanies$ | async; let i = index">
+    <div class="tasksScrollView" #tasksScrollView>
+      <ng-container *ngFor="let company of clientCompanies; let i = index">
         <div class="taskContainer" *ngIf="FilterTasksByCompany(company?.id).length > 0">
           <div class="companyName">
             <p [title]="company?.name">
@@ -72,7 +84,7 @@
             </p>
           </div>
           <div class="flex flex-direction-col flex-direction-col">
-            <div *ngFor="let Task of FilterTasksByCompany(company?.id)">
+            <div *ngFor="let Task of FilterTasksByCompany(company?.id)" [title]="company?.name">
               <!-- {{ Task?.name }} -->
               <div class="statusContainer">
                 <div class="status" [ngClass]="setStatusClass(Task)">

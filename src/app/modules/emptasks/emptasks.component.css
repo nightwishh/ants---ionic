@@ -9,7 +9,7 @@
 .taskContainer {
   /* border: 1px solid; */
   margin-top: 20px;
-  max-width: 300px;
+  max-width: 150px;
   min-width: 150px;
   display: inline-block;
   /* margin-right: 10px; */
@@ -37,6 +37,7 @@
   text-align: center;
   height: 30px;
   line-height: 30px;
+  background-color: white;
 }
 .companyName > * {
   margin: 0;
@@ -138,4 +139,56 @@
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+}
+.companyHeadersContainer {
+  top: 70px;
+  width: auto;
+  display: flex;
+  overflow: hidden;
+  position: fixed;
+  flex-direction: row;
+  z-index: 9;
+  margin-left: 150px;
+  right: 0px;
+  left: 84px;
+  border-bottom: 1px solid;
+  border-color: var(--input-bd-color);
+}
+.companyHeaders {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 30px;
+  z-index: 9;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+/* .companyHeaders > p {
+  width: 150px;
+  text-align: center;
+  margin: 0;
+  background: white;
+  border-left: 2px solid;
+  box-sizing: border-box;
+  border-color: var(--input-bd-color);
+  padding: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  height: 30px;
+} */
+.companyHeaders > div {
+  min-width: 150px;
+  max-width: 150px;
+}
+/* .companyHeaders > p:first-child {
+  min-width: 150px;
+  max-width: 300px;
+} */
+.companyHeaders > p > span {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
