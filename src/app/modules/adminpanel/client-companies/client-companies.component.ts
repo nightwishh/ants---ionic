@@ -20,7 +20,9 @@ export class ClientCompaniesComponent implements OnInit {
   addNewCompany: boolean = false;
   newCompany: ClientCompany = new ClientCompany();
   loading: boolean = false;
+  isDeleting: boolean = false;
   onRowClick(row) {
+    if (this.isDeleting) return;
     this.companyService.selectedCompany.id = row.Id;
     this.companyService.selectedCompany.name = row.Name;
     this.companyService.selectedCompany.tin = row.Tin;
@@ -33,5 +35,19 @@ export class ClientCompaniesComponent implements OnInit {
       location.reload();
     });
   }
+  deleteCompany(row) {
+    this.isDeleting = true;
+    if (!confirm("ნამდვილად გსურთ წაშლა ?")) {
+      setTimeout(() => {
+        this.isDeleting = false;
+      }, 1000);
+      return;
+    }
+    this.loading = true;
+    this.empTasks.DeleteCompany(row["Id"]).subscribe((x) => {
+      location.reload();
+    });
+  }
+
   ngOnInit(): void {}
 }

@@ -105,7 +105,7 @@
   background: var(--main-lightgreen-color);
 }
 .status.status-3 {
-  background: var(--main-blue-color);
+  background: #616161;
 }
 .status.status-4 {
   background: var(--main-red-color);

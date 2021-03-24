@@ -90,7 +90,9 @@ export class CompanyDetailsComponent implements OnInit, OnDestroy {
         row["Id"],
         this.clientCompanyService.selectedCompany.id
       )
-      .subscribe();
+      .subscribe((x) => {
+        location.reload();
+      });
   }
 
   ngOnDestroy() {

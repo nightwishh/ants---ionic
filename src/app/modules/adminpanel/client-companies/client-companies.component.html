@@ -10,6 +10,9 @@
     [setStyle]="{ margin: '10px 10px 10px 10px' }">
     <column fieldName="Tin" header="საიდენტიფიკაციო"></column>
     <column fieldName="Name" header="დასახელება"></column>
+    <column fieldName=" " filter=false header=" " rowValue="<span class='material-icons'>close</span>" filter=false
+      (onCellClick)="deleteCompany($event)">
+    </column>
   </grid>
   <popup [(visible)]="addNewCompany" [setStyle]="{ height: 'auto' }">
     <p-header>დაამატე კომპანია</p-header>
