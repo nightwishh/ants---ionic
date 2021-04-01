@@ -1,0 +1,44 @@
+<main>
+    <button class="AntsStyle" style="background-color: var(--main-blue-color); color: white; margin-bottom: 20px;"
+        (click)="addNewTask=true">დაამატე თასქი</button>
+    <grid webMethod="EmpTasks/GrdCommonTasks">
+        <column fieldName="Name" header="დასახელება"></column>
+        <column fieldName="taskCategoryName" header="კატეგორია"></column>
+        <column fieldName="ActiveStartMonthStr" header="აქტიური თვე(დან)"></column>
+        <column fieldName="ActiveEndMonthStr" header="აქტიური თვე(მდე, ჩათვლით)"></column>
+    </grid>
+</main>
+<popup [(visible)]="addNewTask" (onHide)="clearNewTask()" [setStyle]="{height:'auto'}">
+    <p-header>დაამატე თასქი</p-header>
+    <p-content>
+        <input type="text" placeholder="თასქის დასახელება" [(ngModel)]="commonTask.name" class="antsStyle"
+            style="width:100%;height:40px;margin-top: 20px;">
+        <select [(ngModel)]="commonTask.taskCategoryId" style="height: 40px;width:100%; margin: 0; margin-top:10px"
+            class="antsStyle">
+            <option value="" disabled selected>თასქის კატეგორია</option>
+            <option *ngFor="let category of taskCategories$ | async" [ngValue]="category?.taskCategoryId">
+                {{ category?.name }}
+            </option>
+        </select>
+        <div class="activePeriod">
+            <h3>აქტიური პერიოდი</h3>
+            <p>დან</p>
+            <select [(ngModel)]="commonTask.activeStartMonth" style="height: 30px;">
+                <option *ngFor="let month of geoMonths" [ngValue]="month?.index">
+                    {{ month?.value }}
+                </option>
+            </select>
+            <p>მდე (ჩათვლით)</p>
+            <select [(ngModel)]="commonTask.activeEndMonth" style="height: 30px;">
+                <option *ngFor="let month of geoMonths" [ngValue]="month?.index">
+                    {{ month?.value }}
+                </option>
+            </select>
+        </div>
+        <button class="save" (click)="saveCommonTask()"
+            style="background-color: var(--main-lightgreen-color);color: white;margin-bottom: 20px;">შენახვა</button>
+    </p-content>
+</popup>
+<div *ngIf="loading" class="loadingContainer">
+    <app-loader></app-loader>
+</div>

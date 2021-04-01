@@ -1,0 +1,15 @@
+main {
+  padding: 40px;
+}
+.activePeriod {
+  padding: 20px 0px;
+}
+.activePeriod > div {
+  height: 25px;
+}
+input {
+  box-sizing: border-box;
+}
+::ng-deep .AddCommonTaskPopup input {
+  margin-top: 20px;
+}

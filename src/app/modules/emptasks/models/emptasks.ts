@@ -3,6 +3,14 @@ export interface ICommonTask {
   name: number;
   taskCategoryId: number;
 }
+export class CommonTask implements ICommonTask {
+  public id: number;
+  public name: number;
+  public taskCategoryId: number;
+  public activeStartMonth: number = 1;
+  public activeEndMonth: number = 12;
+}
+
 export interface ITaskCategory {}
 export interface ITask {
   id: number;

@@ -66,6 +66,7 @@ import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { FilterComponent } from "./components/filter/filter.component";
 import { ClientCompaniesComponent } from './modules/adminpanel/client-companies/client-companies.component';
 import { CompanyDetailsComponent } from './modules/adminpanel/client-companies/company-details/company-details.component';
+import { CommonTasksComponent } from './modules/adminpanel/common-tasks/common-tasks.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { CompanyDetailsComponent } from './modules/adminpanel/client-companies/c
     FilterComponent,
     ClientCompaniesComponent,
     CompanyDetailsComponent,
+    CommonTasksComponent,
   ],
   imports: [
     BrowserModule,

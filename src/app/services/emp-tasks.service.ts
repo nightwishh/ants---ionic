@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { CommonService } from "../common/common.service";
 import {
   ClientCompany,
+  CommonTask,
   IClientCompany,
   ICommonTask,
   IStatus,
@@ -99,5 +100,10 @@ export class EmpTasksService {
       this.url + "EmpTasks/DeleteCompany?Id=" + +companyId,
       this.httpOptions
     );
+  }
+  AddCommonTask(commonTask: CommonTask) {
+    return this.http
+      .post(this.url + "EmpTasks/AddCommonTask", commonTask, this.httpOptions)
+      .pipe(catchError(this.commonService.handleErrors));
   }
 }

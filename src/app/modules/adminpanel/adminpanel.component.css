@@ -1,67 +1,70 @@
 input {
-    margin-bottom: 10px;
-    height: 40px;
-    width: 300px;
-    color: var(--input-txt-color);
+  margin-bottom: 10px;
+  height: 40px;
+  width: 300px;
+  color: var(--input-txt-color);
 }
 button {
-    background-color: var(--main-blue-color);
-    color: #fff;
+  background-color: var(--main-blue-color);
+  color: #fff;
 }
 .backBtn {
-    font-size: 18px;
-    font-family: BPG Nino Mtavruli;
-    cursor: pointer;
+  font-size: 18px;
+  font-family: BPG Nino Mtavruli;
+  cursor: pointer;
 }
 .backBtn > span.material-icons {
-    font-size: 16px;
+  font-size: 16px;
 }
 .authBx {
-    border: 1px solid;
-    padding: 10px;
-    float: left;
-    margin-top: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    color: white;
-    background: var(--main-blue-color);
-    text-decoration: none;
-    font-family: BPG Nino Mtavruli;
-    font-size: 14px;
+  border: 1px solid;
+  padding: 10px;
+  float: left;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  background: var(--main-blue-color);
+  text-decoration: none;
+  font-family: BPG Nino Mtavruli;
+  font-size: 14px;
 }
 .userStatus {
-    float: left;
-    background: var(--main-lightgreen-color);
-    color: white;
-    border-radius: 30px;
-    padding: 10px 30px;
-    margin-left: 80px;
-    margin-bottom: 20px;
+  float: left;
+  background: var(--main-lightgreen-color);
+  color: white;
+  border-radius: 30px;
+  padding: 10px 30px;
+  margin-left: 80px;
+  margin-bottom: 20px;
 }
 
 .tabs {
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    height: 40px;
-    display: flex;
-    color: #ccc;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  height: 40px;
+  display: flex;
+  color: #ccc;
 }
 .tabs .tab {
-    width: 50%;
-    margin: auto;
-    text-align: center;
-    cursor: pointer;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  cursor: pointer;
 }
 .tabs .tab {
-    border-left: 1px solid #ccc;
+  border-left: 1px solid #ccc;
 }
 .tabs .tab:first-child {
-    border: none;
+  border: none;
 }
-.tab[selected=true] {
-    color: #656565;
+.tab[selected="true"] {
+  color: #656565;
 }
 .tabView {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+.adminPagesContainer a {
+  margin-right: 20px;
 }
