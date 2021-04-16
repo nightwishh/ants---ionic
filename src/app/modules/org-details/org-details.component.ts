@@ -78,9 +78,7 @@ export class OrgDetailsComponent implements OnInit {
     this.addQuestion(
       this.pipe.transform("საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე")
     );
-    this.addQuestion(
-      this.pipe.transform("ნაღდი ფულის ოპერაციების რაოდენობა (თვეში)")
-    );
+    this.addQuestion(this.pipe.transform("ჩეკების რაოდენობა თვეში"));
     this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
     this.addQuestion(this.pipe.transform("თანამშრომლების რაოდენობა"));
     this.addQuestion(
