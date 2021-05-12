@@ -6,6 +6,9 @@
         <column fieldName="taskCategoryName" header="კატეგორია"></column>
         <column fieldName="ActiveStartMonthStr" header="აქტიური თვე(დან)"></column>
         <column fieldName="ActiveEndMonthStr" header="აქტიური თვე(მდე, ჩათვლით)"></column>
+        <column fieldName=" " filter=false header=" " rowValue="<span class='material-icons'>close</span>" filter=false
+            (onCellClick)="deleteCommonTask($event)">
+        </column>
     </grid>
 </main>
 <popup [(visible)]="addNewTask" (onHide)="clearNewTask()" [setStyle]="{height:'auto'}">

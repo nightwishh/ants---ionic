@@ -48,8 +48,8 @@ export class langDictionary {
       "Operations (supplementary service package)",
     "საბანკო გადარიცხვებს თქვენ გააკეთებთ თუ ჩვენი დახმარება გჭირდებათ?":
       "Do you plan to perform bank transfers on your own or would you like us to assist you?",
-    "გჭირდებათ თუ არა დახმარება, ინვოისების, ზედნადებების, მიღება-ჩაბარებების და სხვა პირველადი დოკუმენტების შექმნაში?":
-      "Do you need our assistance in preparing invoices, act-of acceptances and other documents?",
+    "გჭირდებათ თუ არა ადგილზე ბუღალტერი, ინვოისების, ზედნადებების, მიღება-ჩაბარებების და სხვა პირველადი დოკუმენტების შექმნაში დასახმარებლად?":
+      "Do you need accountants on-site to assist in preparing invoices, act-of acceptances, and other documents",
     "საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე":
       "What is your business’ average monthly revenue excluding VAT?",
     "კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში":

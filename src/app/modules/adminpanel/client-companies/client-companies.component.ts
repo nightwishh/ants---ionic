@@ -50,4 +50,7 @@ export class ClientCompaniesComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  ngOnDestroy() {
+    // this.clientCompanyService.selectedCompany = new ClientCompany();
+  }
 }

@@ -97,7 +97,13 @@ export class EmpTasksService {
   }
   DeleteCompany(companyId: number) {
     return this.http.delete(
-      this.url + "EmpTasks/DeleteCompany?Id=" + +companyId,
+      this.url + "EmpTasks/DeleteCompany?Id=" + companyId,
+      this.httpOptions
+    );
+  }
+  DeleteTask(commonTaskSerialized: string) {
+    return this.http.delete(
+      this.url + "EmpTasks/DeleteTask?" + commonTaskSerialized,
       this.httpOptions
     );
   }

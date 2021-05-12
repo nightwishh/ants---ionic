@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Calendar } from "src/app/common/calendar";
+import { CommonFunctions } from "src/app/common/common-functions";
 import { EmpTasksService } from "src/app/services/emp-tasks.service";
 import {
   CommonTask,
@@ -68,5 +69,19 @@ export class CommonTasksComponent implements OnInit {
         this.loading = false;
       }
     );
+  }
+  deleteCommonTask(row) {
+    if (!confirm("ნამდვილად გსურთ თასქის წაშლა?")) return;
+    var commonTask = (({ Id, Name, taskCategoryId }) => ({
+      Id,
+      Name,
+      taskCategoryId,
+    }))(row);
+    this.loading = true;
+    this.emptask
+      .DeleteTask(new CommonFunctions().serializeObjToQuery(commonTask))
+      .subscribe((x) => {
+        location.reload();
+      });
   }
 }
