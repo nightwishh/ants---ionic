@@ -63,8 +63,6 @@ export class GridComponent implements OnInit, AfterViewInit {
     //this.getData();
     //this.dataObs = Observable.create(this.data);
     this.gridService.grid = new Grid();
-    if (this.applyFilters.length > 0)
-      this.applyInitialFilters(this.applyFilters);
   }
   @ViewChild("paginator", { static: false }) paginator: MatPaginator;
   ngAfterViewInit() {
@@ -82,6 +80,7 @@ export class GridComponent implements OnInit, AfterViewInit {
     this.gridService.applyFilter(gridFilter);
   }
   applyInitialFilters(filters: FilterParam[]) {
+    this.gridService.grid.FilterParams = [];
     filters.forEach((fp) => {
       this.gridService.applyFilter(fp);
     });
@@ -102,6 +101,7 @@ export class GridComponent implements OnInit, AfterViewInit {
   }
 
   public getData() {
+    this.applyInitialFilters(this.applyFilters);
     setTimeout(() => {
       this.showLoader = true;
     }, 1);

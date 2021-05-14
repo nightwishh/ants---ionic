@@ -1,14 +1,15 @@
 export interface ICommonTask {
   id: number;
-  name: number;
+  name: string;
   taskCategoryId: number;
 }
 export class CommonTask implements ICommonTask {
   public id: number;
-  public name: number;
+  public name: string;
   public taskCategoryId: number;
   public activeStartMonth: number = 1;
   public activeEndMonth: number = 12;
+  public deadlineDay: number = 0;
 }
 
 export interface ITaskCategory {}
@@ -25,6 +26,7 @@ export interface ITask {
   taskCategoryId: number;
   companyName: string;
   companyTin: string;
+  deadlineDay: number;
 }
 export interface IClientCompany {
   id: number;

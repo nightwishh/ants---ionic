@@ -69,8 +69,10 @@
     <div class="taskContainer headers i0">
       <div class="companyName">{{noDataFound ? 'არ მოიძებნა' : ''}}</div>
       <div class="flex flex-direction-col flex-direction-col">
-        <div *ngFor="let taskName of commonTasks" [title]="taskName">
-          <span class="taskHeader"> {{ taskName }} </span>
+        <div *ngFor="let commonTask of commonTasks" [title]="commonTask.name">
+          <span class="taskHeader"> {{ commonTask.name }} </span>
+          <span class="taskDeadlineDay" *ngIf="commonTask.deadlineDay > 0" title="დედლაინი(რიცხვი)"> {{
+            commonTask.deadlineDay }} </span>
         </div>
         <!-- <p>{{task.name + ":" + task.status}}</p> -->
       </div>

@@ -414,7 +414,7 @@ input[type="number"] {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
-  z-index: 99;
+  z-index: 99999;
 }
 
 .loadingContainer > * {

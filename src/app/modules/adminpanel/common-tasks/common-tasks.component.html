@@ -6,6 +6,7 @@
         <column fieldName="taskCategoryName" header="კატეგორია"></column>
         <column fieldName="ActiveStartMonthStr" header="აქტიური თვე(დან)"></column>
         <column fieldName="ActiveEndMonthStr" header="აქტიური თვე(მდე, ჩათვლით)"></column>
+        <column fieldName="deadlineDay" header="დედლაინი(რიცხვი)"></column>
         <column fieldName=" " filter=false header=" " rowValue="<span class='material-icons'>close</span>" filter=false
             (onCellClick)="deleteCommonTask($event)">
         </column>
@@ -25,6 +26,9 @@
         </select>
         <div class="activePeriod">
             <h3>აქტიური პერიოდი</h3>
+            <p>დედლაინი(რიცხვი)</p>
+            <input type="number" min="0" max="31" style="width: 100px;" class="antsStyle"
+                [(ngModel)]="commonTask.deadlineDay" />
             <p>დან</p>
             <select [(ngModel)]="commonTask.activeStartMonth" style="height: 30px;">
                 <option *ngFor="let month of geoMonths" [ngValue]="month?.index">

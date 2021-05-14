@@ -15,6 +15,7 @@ import {
   FilterType,
 } from "src/app/services/grid.service";
 import {
+  CommonTask,
   IClientCompany,
   ICommonTask,
   IStatus,
@@ -44,7 +45,7 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   categories$: Observable<
     ITaskCategory[]
   > = this.empTasksService.GetCategories();
-  commonTasks: string[] = [];
+  commonTasks: CommonTask[] = [];
 
   YearRange: [{}] = [{}];
   filters: Array<FilterParam> = [];
@@ -142,7 +143,12 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     else this.noDataFound = false;
     this.commonTasks = [];
     Tasks.forEach((x) => {
-      if (!this.commonTasks.includes(x.name)) this.commonTasks.push(x.name);
+      if (this.commonTasks.findIndex((a) => a.name == x.name) == -1) {
+        var n = new CommonTask();
+        n.name = x.name;
+        n.deadlineDay = x.deadlineDay;
+        this.commonTasks.push(n);
+      }
     });
   }
   FilterTasksByCompany(id: number): ITask[] {

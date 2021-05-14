@@ -129,6 +129,14 @@
   overflow: hidden;
   padding: 10px;
 }
+.taskContainer.headers > .flex > * > span.taskDeadlineDay {
+  padding: 6px;
+  background: #4c87bb;
+  border-radius: 100px;
+  height: 4px;
+  line-height: 5px;
+  color: white;
+}
 .tasksContainerAll {
   display: flex;
 }
