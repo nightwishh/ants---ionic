@@ -80,8 +80,18 @@ export class GridComponent implements OnInit, AfterViewInit {
     this.gridService.applyFilter(gridFilter);
   }
   applyInitialFilters(filters: FilterParam[]) {
-    this.gridService.grid.FilterParams = [];
+    this.gridService.grid.FilterParams.filter(
+      (x) => x.isInitialFilter == true
+    ).forEach((x) =>
+      this.gridService.grid.FilterParams.splice(
+        this.gridService.grid.FilterParams.findIndex(
+          (a) => a.FieldName == x.FieldName && a.isInitialFilter == true
+        ),
+        1
+      )
+    );
     filters.forEach((fp) => {
+      fp.isInitialFilter = true;
       this.gridService.applyFilter(fp);
     });
   }
