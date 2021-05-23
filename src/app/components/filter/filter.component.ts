@@ -19,6 +19,8 @@ export class FilterComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
   @Input() fieldName = "";
   @Input() filterType: FilterType = FilterType.Equal;
+  @Input() disabled: boolean = false;
+
   ngOnInit(): void {}
 
   setFilter(value: string, fieldName: string) {

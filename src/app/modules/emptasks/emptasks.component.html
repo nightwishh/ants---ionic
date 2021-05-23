@@ -1,10 +1,17 @@
 <div class="container">
   <div class="filters">
-    <app-filter label="კატეგორია" type="dropdown" fieldName="taskCategoryId" (onChange)="applyFilters($event)"
-      filterType="0">
+    <app-filter label="კატეგორია" type="dropdown" fieldName="taskCategoryId" [disabled]="activeFilter == 2"
+      (onChange)="applyFilters($event); $event.FilterValue == '' ? activeFilter = 0 : activeFilter = 1" filterType="0">
       <option value="">ყველა</option>
       <option *ngFor="let category of categories$ | async" [value]="category?.taskCategoryId">
         {{ category?.name }}
+      </option>
+    </app-filter>
+    <app-filter label="როლი" type="dropdown" fieldName="taskCategoryId" [disabled]="activeFilter == 1"
+      (onChange)="applyFilters($event); $event.FilterValue == '' ? activeFilter = 0 : activeFilter = 2" filterType="1">
+      <option value="">ყველა</option>
+      <option *ngFor="let role of userRoles$ | async" [value]="role?.taskCategoryIds">
+        {{ role?.roleName }}
       </option>
     </app-filter>
     <app-filter label="თვე" type="dropdown" [selected]="currentMonth - 1" fieldName="ActiveMonth"

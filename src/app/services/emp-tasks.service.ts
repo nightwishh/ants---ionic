@@ -11,6 +11,7 @@ import {
   ITaskCategory,
   IUserRole,
   RoleInCompany,
+  UserRoleWithCategories,
 } from "../modules/emptasks/models/emptasks";
 import { FilterParam } from "./grid.service";
 
@@ -57,6 +58,12 @@ export class EmpTasksService {
   GetUserRoles() {
     return this.http.get<IUserRole[]>(
       this.url + "EmpTasks/GetUserRoles",
+      this.httpOptions
+    );
+  }
+  GetUserRolesWithCategories() {
+    return this.http.get<UserRoleWithCategories[]>(
+      this.url + "EmpTasks/GetUserRolesWithCategories",
       this.httpOptions
     );
   }

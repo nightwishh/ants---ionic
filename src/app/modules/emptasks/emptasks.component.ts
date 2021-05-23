@@ -21,6 +21,8 @@ import {
   IStatus,
   ITask,
   ITaskCategory,
+  IUserRole,
+  UserRoleWithCategories,
 } from "./models/emptasks";
 
 @Component({
@@ -35,16 +37,16 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   ) {}
   statuses: IStatus[];
   tasks$: Observable<ITask[]> = this.empTasksService.GetEmpTasks();
+  userRoles$: Observable<UserRoleWithCategories[]> =
+    this.empTasksService.GetUserRolesWithCategories();
   Tasks: ITask[] = [];
   vx: number = 0;
-  clientCompanies$: Observable<
-    IClientCompany[]
-  > = this.empTasksService.GetClientCompanies();
+  clientCompanies$: Observable<IClientCompany[]> =
+    this.empTasksService.GetClientCompanies();
   clientCompanies: IClientCompany[];
 
-  categories$: Observable<
-    ITaskCategory[]
-  > = this.empTasksService.GetCategories();
+  categories$: Observable<ITaskCategory[]> =
+    this.empTasksService.GetCategories();
   commonTasks: CommonTask[] = [];
 
   YearRange: [{}] = [{}];
@@ -56,6 +58,9 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   noDataFound: boolean = false;
   loading: boolean = true;
   showFixedHeaders: boolean = false;
+
+  activeFilter: number = 0;
+
   ngOnInit(): void {
     this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {

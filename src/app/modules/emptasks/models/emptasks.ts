@@ -38,6 +38,10 @@ export interface IStatus {
   name: string;
 }
 export interface IUserRole extends IStatus {}
+export class UserRoleWithCategories {
+  public roleId: number;
+  public taskCategoryIds: Array<number> = [];
+}
 
 export class ClientCompany implements IClientCompany {
   id: number;
