@@ -130,10 +130,10 @@
 <popup [(visible)]="showCompanyDetails" class="companyDetailsPopup" [setStyle]="{height:'auto'}">
   <p-header>კომპანიის შესახებ</p-header>
   <p-content>
-    <div *ngFor="let cd of companyDetails">
-      <p>კომპანიის დასახელება: <b>{{cd.companyName}}</b></p>
-      <p>კომპანიის საიდენტიფიკაციო: <b>{{cd.companyTin}}</b></p>
-      <p>მენეჯერი: <b>{{cd.fullName}}</b></p>
+    <div *ngFor="let cd of companyDetails; let i=index">
+      <p *ngIf="i == 0">კომპანიის დასახელება: <b>{{cd.companyName}}</b></p>
+      <p *ngIf="i == 0">კომპანიის საიდენტიფიკაციო: <b>{{cd.companyTin}}</b></p>
+      <p>{{cd.roleId == 2 ? 'მენეჯერი' : cd.roleId == 3 ? 'ბუღალტერი' : ''}}: <b>{{cd.fullName}}</b></p>
     </div>
   </p-content>
 </popup>
