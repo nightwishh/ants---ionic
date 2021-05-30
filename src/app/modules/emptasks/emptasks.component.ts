@@ -8,6 +8,7 @@ import {
   ViewChild,
 } from "@angular/core";
 import { Observable } from "rxjs";
+import { Authuser } from "src/app/common/authuser";
 import { EmpTasksService } from "src/app/services/emp-tasks.service";
 import {
   DataType,
@@ -23,6 +24,7 @@ import {
   ITaskCategory,
   IUserRole,
   UserRoleWithCategories,
+  vEmployeeTeam,
 } from "./models/emptasks";
 
 @Component({
@@ -36,6 +38,7 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     private cdRef: ChangeDetectorRef
   ) {}
   statuses: IStatus[];
+  managers$: Observable<vEmployeeTeam[]> = this.empTasksService.GetManagers();
   tasks$: Observable<ITask[]> = this.empTasksService.GetEmpTasks();
   userRoles$: Observable<UserRoleWithCategories[]> =
     this.empTasksService.GetUserRolesWithCategories();
@@ -60,8 +63,10 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   showFixedHeaders: boolean = false;
 
   activeFilter: number = 0;
-
+  managerFilterId: number = 0;
   ngOnInit(): void {
+    this.checkAdmin();
+
     this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {
       this.YearRange.push({ value: this.YearRange[0]["value"] - i });
@@ -70,7 +75,10 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     this.empTasksService.GetStatuses().subscribe((x) => {
       this.statuses = x;
     });
-
+    this.empTasksService.GetManagers().subscribe((x) => {
+      console.log(x);
+    });
+    console.log("Admin: " + this.isAdmin);
     this.zone.runOutsideAngular(() => {
       // var msgsView = this.messagesView.nativeElement as HTMLElement;
       var tasksScrollView = null;
@@ -134,6 +142,13 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     // setTimeout(() => {
     // }, 500);
   }
+
+  isAdmin: boolean = false;
+  checkAdmin() {
+    Authuser.getUserData((data) => {
+      this.isAdmin = data.isAdmin;
+    }, true);
+  }
   GetTasks() {
     this.Tasks = [];
     this.loading = true;
@@ -191,6 +206,11 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   //   }
   //   this.applyFilters(this.filters);
   // }
+
+  managerFilter(event: FilterParam) {
+    this.managerFilterId = Number(event.FilterValue);
+    this.applyFilters(event);
+  }
   applyFilters(event: FilterParam) {
     var i = this.filters.findIndex((x) => x.FieldName == event.FieldName);
     if (i > -1) this.filters.splice(i, 1);
@@ -201,7 +221,20 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     this.empTasksService.GetEmpTasksF(this.filters).subscribe((x) => {
       this.Tasks = x;
       this.loading = false;
+      this.clientCompanies$ = this.empTasksService.GetClientCompanies(
+        this.managerFilterId
+      );
+
       this.BuildCommonTasks(x);
+    });
+  }
+  showCompanyDetails: boolean = false;
+  companyDetails: vEmployeeTeam[] = [];
+  GetCompanyDetails(id: number) {
+    this.showCompanyDetails = true;
+    this.empTasksService.GetCompanyDetails(id).subscribe((x) => {
+      this.companyDetails = x;
+      console.log(x);
     });
   }
 }

@@ -7,11 +7,18 @@
         {{ category?.name }}
       </option>
     </app-filter>
-    <app-filter label="როლი" type="dropdown" fieldName="taskCategoryId" [disabled]="activeFilter == 1"
+    <!-- <app-filter label="როლი" type="dropdown" fieldName="taskCategoryId" [disabled]="activeFilter == 1"
       (onChange)="applyFilters($event); $event.FilterValue == '' ? activeFilter = 0 : activeFilter = 2" filterType="1">
       <option value="">ყველა</option>
       <option *ngFor="let role of userRoles$ | async" [value]="role?.taskCategoryIds">
         {{ role?.roleName }}
+      </option>
+    </app-filter> -->
+    <app-filter label="მენეჯერები" *ngIf="isAdmin" type="dropdown" fieldName="ManagerUserId"
+      [disabled]="activeFilter == 1" (onChange)="managerFilter($event);" filterType="1">
+      <option value="0">ჩემი თასქები</option>
+      <option *ngFor="let man of managers$ | async" [value]="man?.userId">
+        {{ man?.fullname }}
       </option>
     </app-filter>
     <app-filter label="თვე" type="dropdown" [selected]="currentMonth - 1" fieldName="ActiveMonth"
@@ -64,7 +71,8 @@
     <div class="companyHeadersContainer" #companyHeadersScroll *ngIf="showFixedHeaders">
       <div class="companyHeaders">
         <!-- <p>&nbsp;</p> -->
-        <div class="companyName" *ngFor="let company of clientCompanies" [title]="company?.name">
+        <div class="companyName" *ngFor="let company of clientCompanies" [title]="company?.name"
+          (click)="GetCompanyDetails(company?.id)">
           <p>
             <span>
               {{company?.name}}
@@ -87,9 +95,11 @@
     <div class="tasksScrollView" #tasksScrollView>
       <ng-container *ngFor="let company of clientCompanies; let i = index">
         <div class="taskContainer" *ngIf="FilterTasksByCompany(company?.id).length > 0">
-          <div class="companyName">
+          <div class="companyName" (click)="GetCompanyDetails(company?.id)">
             <p [title]="company?.name">
-              <span>{{ company?.name }}</span>
+              <span>{{ company?.name }}
+                <span class="questionMark">?</span>
+              </span>
             </p>
           </div>
           <div class="flex flex-direction-col flex-direction-col">
@@ -117,6 +127,16 @@
 
   <!-- </ng-template> -->
 </div>
+<popup [(visible)]="showCompanyDetails" class="companyDetailsPopup" [setStyle]="{height:'auto'}">
+  <p-header>კომპანიის შესახებ</p-header>
+  <p-content>
+    <div *ngFor="let cd of companyDetails">
+      <p>კომპანიის დასახელება: <b>{{cd.companyName}}</b></p>
+      <p>კომპანიის საიდენტიფიკაციო: <b>{{cd.companyTin}}</b></p>
+      <p>მენეჯერი: <b>{{cd.fullName}}</b></p>
+    </div>
+  </p-content>
+</popup>
 <div *ngIf="loading" class="loadingContainer">
   <app-loader class="empTasksLoader"></app-loader>
 </div>

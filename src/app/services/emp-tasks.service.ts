@@ -12,6 +12,7 @@ import {
   IUserRole,
   RoleInCompany,
   UserRoleWithCategories,
+  vEmployeeTeam,
 } from "../modules/emptasks/models/emptasks";
 import { FilterParam } from "./grid.service";
 
@@ -43,9 +44,12 @@ export class EmpTasksService {
       this.httpOptions
     );
   }
-  GetClientCompanies() {
+  GetClientCompanies(userId: number = null) {
+    var params = "";
+    if (userId != null && userId > 0) params = "?userId=" + userId;
+
     return this.http.get<IClientCompany[]>(
-      this.url + "EmpTasks/GetMyCompanies",
+      this.url + "EmpTasks/GetMyCompanies" + params,
       this.httpOptions
     );
   }
@@ -118,5 +122,18 @@ export class EmpTasksService {
     return this.http
       .post(this.url + "EmpTasks/AddCommonTask", commonTask, this.httpOptions)
       .pipe(catchError(this.commonService.handleErrors));
+  }
+  GetManagers() {
+    return this.http.get<vEmployeeTeam[]>(
+      this.url + "EmpTasks/GetManagersByCompany",
+      this.httpOptions
+    );
+  }
+  GetCompanyDetails(companyId: number) {
+    if (companyId == 0) return;
+    return this.http.get<vEmployeeTeam[]>(
+      this.url + "EmpTasks/GetCompanyDetails?companyId=" + companyId,
+      this.httpOptions
+    );
   }
 }

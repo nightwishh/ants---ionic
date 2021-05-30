@@ -56,3 +56,11 @@ export class RoleInCompany {
   public userId: number;
   public userFullName: string;
 }
+export class vEmployeeTeam {
+  public UserId: number;
+  public RoleId: number;
+  public CompanyId: number;
+  public CompanyTin: number;
+  public CompanyName: number;
+  public fullname: string;
+}

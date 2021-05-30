@@ -38,6 +38,7 @@
   height: 30px;
   line-height: 30px;
   background-color: white;
+  cursor: pointer;
 }
 .companyName > * {
   margin: 0;
@@ -199,4 +200,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: block;
+}
+.questionMark {
+  transition: all 1s ease-in-out;
+  font-weight: bolder;
+  font-size: 15px;
+  cursor: pointer;
+  color: #3f7cb1;
+  display: contents !important;
 }
