@@ -31,6 +31,6 @@
     <mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="onRowClickEvent(row)"></mat-row>
 
   </mat-table>
-  <mat-paginator #paginator [pageSizeOptions]="[2, 5, 10, 20]" [pageSize]="pageSize" (page)="onPage($event)"
+  <mat-paginator #paginator [pageSizeOptions]="[2, 5, 10, 20, 100, 200]" [pageSize]="pageSize" (page)="onPage($event)"
     showFirstLastButtons></mat-paginator>
 </div>

@@ -14,9 +14,10 @@ import { Observable, throwError } from "rxjs";
 })
 export class CommonService {
   constructor(private http: HttpClient, private cookie: CookieService) {}
+  // Build command ng build --base-href / --prod
   get baseUrl(): string {
     if (location.href.includes("localhost")) {
-      // return "https://apiants.azurewebsites.net/";;
+      // return "https://apiants.azurewebsites.net/";
       // return "http://localhost:51731/";
       return "https://localhost:5002/";
     } else return "https://apiants.azurewebsites.net/";
