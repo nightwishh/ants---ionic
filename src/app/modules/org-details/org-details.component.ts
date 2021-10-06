@@ -78,7 +78,9 @@ export class OrgDetailsComponent implements OnInit {
     this.addQuestion(
       this.pipe.transform("საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე")
     );
-    this.addQuestion(this.pipe.transform("ნაღდი ფულით შესყიდვების რაოდენობა"));
+    this.addQuestion(
+      this.pipe.transform("ნაღდი ფულით შესყიდვის ჩეკების რაოდენობა (თვეში)")
+    );
     this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
     this.addQuestion(this.pipe.transform("თანამშრომლების რაოდენობა"));
     this.addQuestion(
@@ -102,6 +104,16 @@ export class OrgDetailsComponent implements OnInit {
     this.addQuestion(this.pipe.transform("საკონტაქტო მეილი"));
     this.addQuestion(this.pipe.transform("საკონტაქტო მობილურის ნომერი"));
     this.addQuestion(this.pipe.transform("სახელი, გვარი"));
+    this.addQuestion(this.pipe.transform("საიდან გაიგეთ ჩვენს შესახებ?"), [
+      { label: "Facebook", value: "Facebook" },
+      { label: "Google", value: "Google" },
+      { label: "LinkedIn", value: "LinkedIn" },
+      {
+        label: this.pipe.transform("ახლობელმა მირჩია"),
+        value: "ახლობელმა მირჩია",
+      },
+      { label: this.pipe.transform("სხვა"), value: "სხვა" },
+    ]);
     this.addQuestion(this.pipe.transform("დამატებითი ინფორმაცია"));
 
     this.addQuestion(

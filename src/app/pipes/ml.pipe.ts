@@ -55,5 +55,11 @@ export class langDictionary {
     "კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში":
       "Questionnaire has sent successfully. wait for our offer soon",
     გაგზავნა: "Send",
+    "ნაღდი ფულით შესყიდვის ჩეკების რაოდენობა (თვეში)":
+      "Number of purchased receipts by cash (monthly)",
+    "საიდან გაიგეთ ჩვენს შესახებ?": "How did you hear about us?",
+    "ახლობელმა მირჩია": "Someone referred to me",
+    სხვა: "Other",
+    "დამატებითი ინფორმაცია": "Additional Info",
   };
 }
