@@ -74,14 +74,18 @@ export class OrgDetailsComponent implements OnInit {
 
     this.addQuestion(this.pipe.transform("ძირითადი საქმიანობა"));
     this.addQuestion(this.pipe.transform("დამატებითი საქმიანობა"));
-    this.addQuestion(this.pipe.transform("სალარო აპარატების რაოდენობა"));
+    // this.addQuestion(this.pipe.transform("სალარო აპარატების რაოდენობა"));
     this.addQuestion(
-      this.pipe.transform("საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე")
+      this.pipe.transform("ყოველთვიური საშუალო შემოსავალი დღგ-ს გარეშე")
     );
+    // this.addQuestion(
+    //   this.pipe.transform("ნაღდი ფულით შესყიდვის ჩეკების რაოდენობა (თვეში)")
+    // );
+    // this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
     this.addQuestion(
-      this.pipe.transform("ნაღდი ფულით შესყიდვის ჩეკების რაოდენობა (თვეში)")
+      this.pipe.transform("საბანკო გადარიცხვების რაოდენობა თვეში")
     );
-    this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
+
     this.addQuestion(this.pipe.transform("თანამშრომლების რაოდენობა"));
     this.addQuestion(
       this.pipe.transform("შესყიდვის ინვოისების რაოდენობა (თვეში)")
@@ -96,9 +100,6 @@ export class OrgDetailsComponent implements OnInit {
       this.pipe.transform("გაქვს თუ არა წარმოება, კომპლექტაცია?")
     );
     this.addQuestion(this.pipe.transform("საწყობების რაოდენობა"));
-    this.addQuestion(
-      this.pipe.transform("იყენებთ თუ არა საწვავს საქმიანობაში?")
-    );
 
     this.addQuestion(this.pipe.transform("კომპანიის საიდენტიფიკაციო კოდი"));
     this.addQuestion(this.pipe.transform("საკონტაქტო მეილი"));
@@ -125,7 +126,7 @@ export class OrgDetailsComponent implements OnInit {
     );
     this.addQuestion(
       this.pipe.transform(
-        "გჭირდებათ თუ არა ადგილზე ბუღალტერი, ინვოისების, ზედნადებების, მიღება-ჩაბარებების და სხვა პირველადი დოკუმენტების შექმნაში დასახმარებლად?"
+        "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ამაში ბუღალტრის დახმარება გჭირდებათ?"
       )
     );
 
@@ -159,7 +160,7 @@ export class OrgDetailsComponent implements OnInit {
         this.sent = true;
         this.commonService.setCookie("questionnaire", "1");
         setTimeout(() => {
-          location.href = "/";
+          location.href = "https://ants.ge";
         }, 3000);
       }
     );

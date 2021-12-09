@@ -50,8 +50,8 @@ export class langDictionary {
       "Do you plan to perform bank transfers on your own or would you like us to assist you?",
     "გჭირდებათ თუ არა ადგილზე ბუღალტერი, ინვოისების, ზედნადებების, მიღება-ჩაბარებების და სხვა პირველადი დოკუმენტების შექმნაში დასახმარებლად?":
       "Do you need accountants on-site to assist in preparing invoices, act-of acceptances, and other documents",
-    "საშუალო ყოველთვიური შემოსავალი დღგ-ს გარეშე":
-      "What is your business’ average monthly revenue excluding VAT?",
+    "ყოველთვიური საშუალო შემოსავალი დღგ-ს გარეშე":
+      "Average monthly revenue excluding VAT?",
     "კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში":
       "Questionnaire has sent successfully. wait for our offer soon",
     გაგზავნა: "Send",
@@ -61,5 +61,9 @@ export class langDictionary {
     "ახლობელმა მირჩია": "Someone referred to me",
     სხვა: "Other",
     "დამატებითი ინფორმაცია": "Additional Info",
+    "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ამაში ბუღალტრის დახმარება გჭირდებათ?":
+      "Do you need accountants to assist in preparing invoices, act-of acceptances and other documents",
+    "საბანკო გადარიცხვების რაოდენობა თვეში":
+      "Quantity of Bank Payment operations Per month",
   };
 }
