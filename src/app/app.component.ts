@@ -16,9 +16,9 @@ export class AppComponent implements OnInit {
   userLoggedIn: Boolean = false;
   isBxUser: boolean = false;
   showBxNotAuthorized: boolean = false;
+  showOrgDetails: boolean = false;
   // constructor(private push: Push, private platform: Platform) {
   constructor() {
-
     this.userLoggedIn = Authuser.userLoggedIn();
     this.isBxUser = Authuser.bxToken.length > 0;
 
@@ -27,6 +27,9 @@ export class AppComponent implements OnInit {
     // }))
   }
   ngOnInit() {
+    if (location.href.includes("(Q:O")) {
+      this.showOrgDetails = true;
+    }
     // setTimeout(() => {
     //   console.log("Hey");
     //   if (this.platform.is("android") || this.platform.is("ios"))

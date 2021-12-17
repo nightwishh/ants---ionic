@@ -33,23 +33,19 @@ export class OrgDetailsComponent implements OnInit {
         else this.commonService.setCookie("lang", "GEO");
       } else this.commonService.setCookie("lang", "GEO");
     });
-    this.packagesAll = [
-      this.pipe.transform("სტარტაპერი"),
-      this.pipe.transform("მცირე ბიზნესი"),
-      this.pipe.transform("ინდივიდუალური"),
-    ];
+    this.packagesAll = ["startup", "small", "ind"];
     this.addQuestion(this.pipe.transform("აირჩიეთ პაკეტი"), [
       {
         label: this.pipe.transform("სტარტაპერი"),
-        value: this.pipe.transform("სტარტაპერი"),
+        value: "startup",
       },
       {
         label: this.pipe.transform("მცირე ბიზნესი"),
-        value: this.pipe.transform("მცირე ბიზნესი"),
+        value: "small",
       },
       {
         label: this.pipe.transform("ინდივიდუალური"),
-        value: this.pipe.transform("ინდივიდუალური"),
+        value: "ind",
       },
     ]);
     route.params.subscribe((x) => {
