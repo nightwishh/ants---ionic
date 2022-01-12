@@ -11,6 +11,7 @@ import { strict } from "assert";
 import { Authuser } from "src/app/common/authuser";
 import { ActivatedRoute } from "@angular/router";
 import { MlPipe } from "src/app/pipes/ml.pipe";
+declare let fbq: Function;
 
 @Component({
   selector: "app-org-details",
@@ -148,6 +149,7 @@ export class OrgDetailsComponent implements OnInit {
     this.elementRef.nativeElement.remove();
   }
   saveOrgDetails() {
+    fbq("track", "Lead");
     this.commonService.post(
       "Questionnaire/SaveQuestionnaireNew",
       this.list,
