@@ -67,6 +67,13 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.checkAdmin();
 
+    var fp = new FilterParam();
+    fp.FieldName = "ActiveYear";
+    fp.DataType = DataType.String;
+    fp.FilterType = Number(0);
+    fp.FilterValue = String(this.currentYear);
+    this.applyFilters(fp); // set default filter for current year
+
     this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {
       this.YearRange.push({ value: this.YearRange[0]["value"] - i });
