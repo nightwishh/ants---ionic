@@ -84,4 +84,18 @@ export class CommonTasksComponent implements OnInit {
         location.reload();
       });
   }
+  fileSelected(files: FileList) {
+    var fileToUpload: File | null = null;
+    fileToUpload = files.item(0);
+    this.loading = true;
+    this.emptask.UploadCommonTasksExcel(fileToUpload).subscribe(
+      (x) => {
+        alert("ექსელი წარმატებით აიტვირთა");
+        this.loading = false;
+      },
+      (err) => {
+        this.loading = false;
+      }
+    );
+  }
 }

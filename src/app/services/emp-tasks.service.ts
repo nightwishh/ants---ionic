@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CommonService } from "../common/common.service";
 import {
@@ -135,5 +135,21 @@ export class EmpTasksService {
       this.url + "EmpTasks/GetCompanyDetails?companyId=" + companyId,
       this.httpOptions
     );
+  }
+  UploadCommonTasksExcel(file: File) {
+    var formData: FormData = new FormData();
+    formData.append("uploadFile", file, file.name);
+    var options = this.httpOptions;
+    var httpOptions = this.httpOptions;
+    var headers: Headers = this.httpOptions["headers"] as Headers;
+
+    var newheaders = new HttpHeaders({
+      Authorization: headers.get("authorization"),
+    });
+    httpOptions["headers"] = newheaders;
+
+    return this.http
+      .post(this.url + "EmpTasks/UploadCommonTasksExcel", formData, httpOptions)
+      .pipe(catchError(this.commonService.handleErrors));
   }
 }

@@ -21,6 +21,7 @@ import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { ClientCompaniesComponent } from "./modules/adminpanel/client-companies/client-companies.component";
 import { CompanyDetailsComponent } from "./modules/adminpanel/client-companies/company-details/company-details.component";
 import { CommonTasksComponent } from "./modules/adminpanel/common-tasks/common-tasks.component";
+import { XWaybillComponent } from "./modules/x-waybill/x-waybill.component";
 
 const routes: Routes = [
   { path: "", component: TasksComponent },
@@ -76,6 +77,10 @@ const routes: Routes = [
   },
   { path: "GetFile/:id", component: GetfileComponent },
   // {path:"TestGrid", component:TestGridComponent},
+  {
+    path: "xWaybill",
+    component: XWaybillComponent,
+  },
   { path: "**", redirectTo: "" },
   // {path:"Login", component:LoginComponent},
   // {path:"Header", component:HeaderComponent, canActivate:[Authuser]}

@@ -1,6 +1,12 @@
 <main>
     <button class="AntsStyle" style="background-color: var(--main-blue-color); color: white; margin-bottom: 20px;"
         (click)="addNewTask=true">დაამატე თასქი</button>
+    <button class="AntsStyle"
+        style="background-color: var(--main-green-color); color: white; margin-bottom: 20px;float:right"
+        (click)="uploadFile.click()">ატვირთე ექსელის ფაილი</button>
+    <input type="file" name="commonTaskXls" style="display: none;"
+        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        (change)="fileSelected($event.target.files)" #uploadFile />
     <grid webMethod="EmpTasks/GrdCommonTasks">
         <column fieldName="Name" header="დასახელება"></column>
         <column fieldName="taskCategoryName" header="კატეგორია"></column>
@@ -48,4 +54,5 @@
 </popup>
 <div *ngIf="loading" class="loadingContainer">
     <app-loader></app-loader>
+    <p style="color: white;">გთხოვთ არ დახუროთ ფანჯარა</p>
 </div>
