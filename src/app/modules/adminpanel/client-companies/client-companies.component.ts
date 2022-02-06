@@ -31,9 +31,15 @@ export class ClientCompaniesComponent implements OnInit {
   addCompany() {
     this.loading = true;
     this.addNewCompany = false;
-    this.empTasks.AddCompany(this.newCompany).subscribe((x) => {
-      location.reload();
-    });
+    this.empTasks.AddCompany(this.newCompany).subscribe(
+      (x) => {
+        location.reload();
+      },
+      (err) => {
+        this.loading = false;
+        alert("კომპანია ვერ დაემატა.");
+      }
+    );
   }
   deleteCompany(row) {
     this.isDeleting = true;
@@ -44,9 +50,15 @@ export class ClientCompaniesComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.empTasks.DeleteCompany(row["Id"]).subscribe((x) => {
-      location.reload();
-    });
+    this.empTasks.DeleteCompany(row["Id"]).subscribe(
+      (x) => {
+        location.reload();
+      },
+      (err) => {
+        this.loading = false;
+        alert("კომპანია ვერ წაიშალა.");
+      }
+    );
   }
 
   ngOnInit(): void {}
