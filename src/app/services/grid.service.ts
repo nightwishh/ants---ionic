@@ -52,7 +52,7 @@ export class Grid {
 }
 export class FilterParam {
   public FieldName: string;
-  public FilterValue: string;
+  public FilterValue: string | any;
   public DataType: DataType;
   public FilterType: FilterType;
   public isInitialFilter: boolean = false;

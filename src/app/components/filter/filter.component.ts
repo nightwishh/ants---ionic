@@ -19,6 +19,7 @@ export class FilterComponent implements OnInit {
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
   @Input() fieldName = "";
   @Input() filterType: FilterType = FilterType.Equal;
+  @Input() dataType: DataType = DataType.String;
   @Input() disabled: boolean = false;
 
   ngOnInit(): void {}
@@ -27,7 +28,7 @@ export class FilterComponent implements OnInit {
     // if (value != null && Number(value) > 0) {
     var fp = new FilterParam();
     fp.FieldName = fieldName;
-    fp.DataType = DataType.String;
+    fp.DataType = this.dataType;
     fp.FilterType = Number(this.filterType);
     fp.FilterValue = value;
     // }

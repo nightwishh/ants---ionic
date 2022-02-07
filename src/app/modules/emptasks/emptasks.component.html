@@ -54,7 +54,7 @@
       <option value="12">დეკემბერი</option>
     </app-filter> -->
     <app-filter label="წელი" type="dropdown" [selected]="currentYear" fieldName="ActiveYear"
-      (onChange)="applyFilters($event)" filterType="0">
+      (onChange)="applyFilters($event)" [dataType]="1" filterType="0">
       <!-- <option [value]="currentYear" selected>მიმდინარე</option> -->
       <option *ngFor="let year of YearRange" [value]="year.value">
         {{ year.value }}
