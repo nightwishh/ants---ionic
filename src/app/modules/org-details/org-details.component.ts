@@ -128,9 +128,9 @@ export class OrgDetailsComponent implements OnInit {
     );
 
     this.sent = false;
-    if (this.commonService.getCookie("questionnaire") == "1") {
-      this.sent = true;
-    }
+    // if (this.commonService.getCookie("questionnaire") == "1") {
+    //   this.sent = true;
+    // }
   }
 
   addQuestion(
@@ -156,7 +156,7 @@ export class OrgDetailsComponent implements OnInit {
       () => {
         alert("ოპერაცია წარმატებით დასრულდა.");
         this.sent = true;
-        this.commonService.setCookie("questionnaire", "1");
+        // this.commonService.setCookie("questionnaire", "1");
         setTimeout(() => {
           location.href = "https://ants.ge";
         }, 3000);
