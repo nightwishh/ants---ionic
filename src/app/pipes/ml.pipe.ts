@@ -61,7 +61,7 @@ export class langDictionary {
     "ახლობელმა მირჩია": "Someone referred to me",
     სხვა: "Other",
     "დამატებითი ინფორმაცია": "Additional Info",
-    "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ამაში ბუღალტრის დახმარება გჭირდებათ?":
+    "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ბუღალტერმა უნდა მოამზადოს?":
       "Do you need accountants to assist in preparing invoices, act-of acceptances and other documents",
     "საბანკო გადარიცხვების რაოდენობა თვეში":
       "Quantity of Bank Payment operations Per month",
