@@ -80,13 +80,15 @@ export class OrgDetailsComponent implements OnInit {
     // );
     // this.addQuestion(this.pipe.transform("იმპორტების რაოდენობა (თვეში)"));
     this.addQuestion(
-      this.pipe.transform("საბანკო გადარიცხვების რაოდენობა თვეში")
+      this.pipe.transform(
+        "ოპერაციების რაოდენობა ბანკში და სალაროში საშუალოდ თვეში"
+      )
     );
 
     this.addQuestion(this.pipe.transform("თანამშრომლების რაოდენობა"));
-    this.addQuestion(
-      this.pipe.transform("შესყიდვის ინვოისების რაოდენობა (თვეში)")
-    );
+    // this.addQuestion(
+    //   this.pipe.transform("შესყიდვის ინვოისების რაოდენობა (თვეში)")
+    // );
     this.addQuestion(
       this.pipe.transform("ხართ თუ არა დღგ-ს გადამხდელად რეგისტრირებული?")
     );

@@ -65,5 +65,7 @@ export class langDictionary {
       "Do you need accountants to assist in preparing invoices, act-of acceptances and other documents",
     "საბანკო გადარიცხვების რაოდენობა თვეში":
       "Quantity of Bank Payment operations Per month",
+    "ოპერაციების რაოდენობა ბანკში და სალაროში საშუალოდ თვეში":
+      "Quantity of Bank and Cash operations Per month",
   };
 }
