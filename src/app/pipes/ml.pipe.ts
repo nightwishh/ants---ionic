@@ -58,7 +58,7 @@ export class langDictionary {
     "ნაღდი ფულით შესყიდვის ჩეკების რაოდენობა (თვეში)":
       "Number of purchased receipts by cash (monthly)",
     "საიდან გაიგეთ ჩვენს შესახებ?": "How did you hear about us?",
-    "ახლობელმა მირჩია": "Someone referred to me",
+    "ახლობელმა მირჩია": "Recommendation",
     სხვა: "Other",
     "დამატებითი ინფორმაცია": "Additional Info",
     "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ბუღალტერმა უნდა მოამზადოს?":
@@ -67,5 +67,7 @@ export class langDictionary {
       "Quantity of Bank Payment operations Per month",
     "ოპერაციების რაოდენობა ბანკში და სალაროში საშუალოდ თვეში":
       "Quantity of Bank and Cash operations Per month",
+    "კინოთეატრის რეკლამა": "Cinema Ads",
+    ბილბორდი: "Billboards",
   };
 }

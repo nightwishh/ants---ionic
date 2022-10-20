@@ -108,6 +108,15 @@ export class OrgDetailsComponent implements OnInit {
       { label: "Facebook", value: "Facebook" },
       { label: "Google", value: "Google" },
       { label: "LinkedIn", value: "LinkedIn" },
+      { label: "Youtube", value: "Youtube" },
+      {
+        label: this.pipe.transform("ბილბორდი"),
+        value: this.pipe.transform("ბილბორდი"),
+      },
+      {
+        label: this.pipe.transform("კინოთეატრის რეკლამა"),
+        value: this.pipe.transform("კინოთეატრის რეკლამა"),
+      },
       {
         label: this.pipe.transform("ახლობელმა მირჩია"),
         value: "ახლობელმა მირჩია",
@@ -123,11 +132,13 @@ export class OrgDetailsComponent implements OnInit {
       [],
       this.pipe.transform("საოპერაციო საქმიანობა (დამატებითი პაკეტი)")
     );
-    this.addQuestion(
-      this.pipe.transform(
-        "პირველად დოკუმენტაციას ( ზედნადები, ინვოისები, მიღება-ჩაბარებები და სხვა) თქვენ მოამზადებთ თუ ჩვენი დახმარება დაგჭირდებათ?"
-      )
-    );
+    if (this.lang != "ENG") {
+      this.addQuestion(
+        this.pipe.transform(
+          "ზედნადებების გაწერა გჭირდებათ? თქვენ გაწერთ თუ ბუღალტერმა უნდა გაწეროს?"
+        )
+      );
+    }
 
     this.sent = false;
     // if (this.commonService.getCookie("questionnaire") == "1") {
