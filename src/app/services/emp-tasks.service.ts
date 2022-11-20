@@ -129,6 +129,18 @@ export class EmpTasksService {
       this.httpOptions
     );
   }
+  GetAccountants() {
+    return this.http.get<vEmployeeTeam[]>(
+      this.url + "EmpTasks/GetAccountants",
+      this.httpOptions
+    );
+  }
+  GetAssistants() {
+    return this.http.get<vEmployeeTeam[]>(
+      this.url + "EmpTasks/GetAssistants",
+      this.httpOptions
+    );
+  }
   GetCompanyDetails(companyId: number) {
     if (companyId == 0) return;
     return this.http.get<vEmployeeTeam[]>(

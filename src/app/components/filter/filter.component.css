@@ -7,3 +7,28 @@
 .filterContainer > select {
   height: 35px;
 }
+.multipleContainer {
+  display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.multipleContainer span.material-icons {
+  margin-top: -3px;
+  cursor: pointer;
+}
+
+.multipleLabels {
+  background-color: #ececec;
+  position: absolute;
+  border: 1px solid #d0d0d0;
+  margin-top: -10px;
+}
+
+.multipleLabels p {
+  padding: 10px;
+  margin: 0;
+}
+.multipleLabels p:hover {
+  background: #c8e5ff;
+  cursor: pointer;
+}

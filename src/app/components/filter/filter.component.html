@@ -1,5 +1,10 @@
 <div class="filterContainer">
-  <p>{{ label }}</p>
+  <p *ngIf="!multipleFilter">{{ label }}</p>
+  <p class="multipleContainer selectedFilter" *ngIf="multipleFilter">{{ labels[selectedFilterIndex] }} <span
+      class="material-icons" (click)="showLabelsDropdown = !showLabelsDropdown">keyboard_arrow_down</span></p>
+  <div class="multipleLabels" *ngIf="showLabelsDropdown">
+    <p *ngFor="let lb of labels;let i = index" (click)="selectFilter(i)">{{ lb }}</p>
+  </div>
   <select *ngIf="type == 'dropdown'; else showInput" style="height: 27px" [(ngModel)]="selected"
     (ngModelChange)="setFilter($event, fieldName)" [disabled]="disabled">
     <ng-content></ng-content>

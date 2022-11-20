@@ -39,6 +39,10 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   ) {}
   statuses: IStatus[];
   managers$: Observable<vEmployeeTeam[]> = this.empTasksService.GetManagers();
+  accountants$: Observable<vEmployeeTeam[]> =
+    this.empTasksService.GetAccountants();
+  assistants$: Observable<vEmployeeTeam[]> =
+    this.empTasksService.GetAssistants();
   // tasks$: Observable<ITask[]> = this.empTasksService.GetEmpTasks();
   userRoles$: Observable<UserRoleWithCategories[]> =
     this.empTasksService.GetUserRolesWithCategories();
@@ -64,8 +68,11 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
 
   activeFilter: number = 0;
   managerFilterId: number = 0;
+
+  selectedUserFilter: number = 0;
+  userTypeLabels = ["მენეჯერები", "ბუღალტრები", "დამხმარეები"];
   ngOnInit(): void {
-    this.checkAdmin();
+    this.checkUserRole();
 
     this.YearRange[0]["value"] = this.currentYear;
     for (var i = 1; i < 5; i++) {
@@ -143,10 +150,35 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     // }, 500);
   }
 
+  userId: number = 0;
   isAdmin: boolean = false;
-  checkAdmin() {
+  isManager: boolean = false;
+  isAssistant: boolean = false;
+  checkUserRole() {
     Authuser.getUserData((data) => {
       this.isAdmin = data.isAdmin;
+      this.userId = data.userId;
+      if (this.isAdmin) {
+        this.userTypeLabels = ["მენეჯერები", "ბუღალტრები", "დამხმარეები"];
+        return;
+      }
+      this.managers$.subscribe((data: Array<any>) => {
+        this.isManager = data.find((a) => a.userId == this.userId) != null;
+        if (this.isManager) {
+          this.userTypeLabels = ["ბუღალტრები", "დამხმარეები"];
+          return;
+        }
+        this.userTypeLabels = ["დამხმარეები"];
+
+        this.assistants$.subscribe((dt: Array<any>) => {
+          this.isAssistant = dt.find((a) => a.userId == this.userId) != null;
+          if (this.isAssistant) {
+            var i = this.statuses.findIndex((q) => q.id == 2); // დასრულებული არ უნდა ქონდეთ დამხმარეებს
+            if (i > -1) this.statuses.splice(i, 1);
+            this.userTypeLabels = null;
+          }
+        });
+      });
     }, true);
   }
   GetTasks() {
@@ -249,15 +281,20 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     if (reloadData == true) {
       this.loading = true;
 
-      this.empTasksService.GetEmpTasksF(this.filters).subscribe((x) => {
-        this.Tasks = x;
-        this.loading = false;
-        this.clientCompanies$ = this.empTasksService.GetClientCompanies(
-          this.managerFilterId
-        );
+      this.empTasksService.GetEmpTasksF(this.filters).subscribe(
+        (x) => {
+          this.Tasks = x;
+          this.loading = false;
+          this.clientCompanies$ = this.empTasksService.GetClientCompanies(
+            this.managerFilterId
+          );
 
-        this.BuildCommonTasks(x);
-      });
+          this.BuildCommonTasks(x);
+        },
+        (err) => {
+          this.loading = false;
+        }
+      );
     }
   }
   showCompanyDetails: boolean = false;

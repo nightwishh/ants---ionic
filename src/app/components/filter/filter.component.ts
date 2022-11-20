@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SkipSelf,
+} from "@angular/core";
 
 import {
   DataType,
@@ -15,12 +22,19 @@ export class FilterComponent implements OnInit {
   constructor() {}
   @Input() selected: any;
   @Input() label: string;
+  @Input() labels: Array<string> = [];
   @Input() type: string = "text";
   @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
   @Input() fieldName = "";
   @Input() filterType: FilterType = FilterType.Equal;
   @Input() dataType: DataType = DataType.String;
   @Input() disabled: boolean = false;
+  @Input() multipleFilter: boolean = false;
+
+  showLabelsDropdown: boolean = false;
+  @Input() selectedFilterIndex: number = 0;
+  @Output() selectedFilterIndexChange: EventEmitter<any> =
+    new EventEmitter<any>();
 
   ngOnInit(): void {}
 
@@ -34,5 +48,11 @@ export class FilterComponent implements OnInit {
     // }
     this.onChange.emit(fp);
     // this.applyFilters(this.filters);
+  }
+
+  selectFilter(i) {
+    this.selectedFilterIndex = i;
+    this.selectedFilterIndexChange.emit(this.selectedFilterIndex);
+    this.showLabelsDropdown = false;
   }
 }

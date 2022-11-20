@@ -14,12 +14,25 @@
         {{ role?.roleName }}
       </option>
     </app-filter> -->
-    <app-filter label="მენეჯერები" *ngIf="isAdmin" type="dropdown" fieldName="ManagerUserId"
-      [disabled]="activeFilter == 1" (onChange)="managerFilter($event);" filterType="1">
+    <app-filter multipleFilter=true [(selectedFilterIndex)]="selectedUserFilter" [labels]="userTypeLabels"
+      type="dropdown" fieldName="ManagerUserId" [disabled]="activeFilter == 1" (onChange)="managerFilter($event);"
+      filterType="1" *ngIf="userTypeLabels != null">
       <option value="0">ჩემი თასქები</option>
-      <option *ngFor="let man of managers$ | async" [value]="man?.userId">
-        {{ man?.fullname }}
-      </option>
+      <ng-container *ngIf="userTypeLabels[selectedUserFilter] == 'მენეჯერები'">
+        <option *ngFor="let man of managers$ | async" [value]="man?.userId">
+          {{ man?.fullname }}
+        </option>
+      </ng-container>
+      <ng-container *ngIf="userTypeLabels[selectedUserFilter] == 'ბუღალტრები'">
+        <option *ngFor="let man of accountants$ | async" [value]="man?.userId">
+          {{ man?.fullname }}
+        </option>
+      </ng-container>
+      <ng-container *ngIf="userTypeLabels[selectedUserFilter] == 'დამხმარეები'">
+        <option *ngFor="let man of assistants$ | async" [value]="man?.userId">
+          {{ man?.fullname }}
+        </option>
+      </ng-container>
     </app-filter>
     <app-filter label="თვე" type="dropdown" [selected]="currentMonth - 1" fieldName="ActiveMonth"
       (onChange)="applyFilters($event)" filterType="0">
