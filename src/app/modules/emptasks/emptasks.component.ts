@@ -297,6 +297,7 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
       );
     }
   }
+
   showCompanyDetails: boolean = false;
   companyDetails: vEmployeeTeam[] = [];
   GetCompanyDetails(id: number) {
@@ -305,5 +306,19 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
       this.companyDetails = x;
       console.log(x);
     });
+  }
+
+  showComments: boolean = false;
+  selectedChecklist: HTMLElement = null;
+  showCommentsPopup(task: ITask, checklist: HTMLElement) {
+    this.showComments = true;
+    this.selectedChecklist = checklist;
+    if (!checklist.classList.contains("selected"))
+      checklist.classList.add("selected");
+  }
+
+  closeComments() {
+    if (this.selectedChecklist.classList.contains("selected"))
+      this.selectedChecklist.classList.remove("selected");
   }
 }

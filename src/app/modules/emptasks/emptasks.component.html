@@ -116,7 +116,8 @@
             </p>
           </div>
           <div class="flex flex-direction-col flex-direction-col">
-            <div *ngFor="let Task of FilterTasksByCompany(company?.id)" [title]="company?.name">
+            <div *ngFor="let Task of FilterTasksByCompany(company?.id)" #checklist class="checklist"
+              [title]="company?.name">
               <!-- {{ Task?.name }} -->
               <div class="statusContainer">
                 <div class="status" [ngClass]="setStatusClass(Task)">
@@ -128,6 +129,7 @@
                   <!-- {{Task.statusName}} -->
                 </div>
               </div>
+              <span class="material-icons alertIcon" (click)="showCommentsPopup(Task, checklist)">priority_high</span>
             </div>
             <!-- <p>{{task.name + ":" + task.status}}</p> -->
           </div>
@@ -147,6 +149,29 @@
       <p *ngIf="i == 0">კომპანიის დასახელება: <b>{{cd.companyName}}</b></p>
       <p *ngIf="i == 0">კომპანიის საიდენტიფიკაციო: <b>{{cd.companyTin}}</b></p>
       <p>{{cd.roleId == 2 ? 'მენეჯერი' : cd.roleId == 3 ? 'ბუღალტერი' : ''}}: <b>{{cd.fullName}}</b></p>
+    </div>
+  </p-content>
+</popup>
+<popup [(visible)]="showComments" class="companyDetailsPopup" [modalBlur]="false" (onHide)="closeComments()"
+  [draggable]="true" [setStyle]="{height:'auto'}">
+  <p-header>კომენტარები - </p-header>
+  <p-content>
+    <div class="messages">
+      <div class="messageContainer">
+        <p class="sender">Zura</p>
+        <p class="message">one</p>
+      </div>
+      <div class="messageContainer">
+        <p class="sender">GIgi</p>
+        <p class="message">one</p>
+      </div>
+      <div class="messageContainer">
+        <p class="message">one</p>
+      </div>
+    </div>
+    <div class="typeMessageContainer">
+      <textarea class="typeMessage"></textarea>
+      <button class="antsStyle" style="background-color: var(--main-blue-color); color:white">გაგზავნა</button>
     </div>
   </p-content>
 </popup>

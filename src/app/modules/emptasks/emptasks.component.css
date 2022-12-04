@@ -209,3 +209,64 @@
   color: #3f7cb1;
   display: contents !important;
 }
+
+.checklist {
+  position: relative;
+}
+.checklist:hover .alertIcon {
+  visibility: visible;
+  opacity: 1;
+}
+.checklist.selected {
+  background-color: var(--main-blue-color) !important;
+}
+.alertIcon {
+  position: absolute;
+  font-size: 17px;
+  right:-5px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+.alertIcon:hover {
+  font-size: 19px;
+}
+.alertIcon.alert {
+  color: red;
+}
+.messageContainer {
+  background: #e4e4e4;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.messageContainer p {
+  margin: 0;
+  padding: 0;
+}
+.messageContainer .sender {
+  font-weight: bold;
+}
+.messageContainer.mymessage {
+  background-color: #3f7cb1;
+  color: white;
+}
+.messages {
+  max-height: 350px;
+  overflow-y: auto;
+}
+.typeMessage {
+box-sizing: border-box;
+outline: none;
+resize: none;
+}
+.typeMessageContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 110px;
+  gap: 20px;
+  border-top: 1px solid #000;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

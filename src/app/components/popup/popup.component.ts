@@ -33,7 +33,7 @@ export class PopupComponent implements OnInit {
       }, 1);
 
       setTimeout(() => {
-        this.blurClass = "blur";
+        if (this.modalBlur == true) this.blurClass = "blur";
       }, 1);
     } else {
       document.body.classList.remove("overflowHidden");
@@ -46,6 +46,7 @@ export class PopupComponent implements OnInit {
 
   @Output() onHide: EventEmitter<any> = new EventEmitter<any>();
 
+  @Input() modalBlur: boolean = true;
   ngOnInit(): void {
     var html = document.getElementById("darkbg");
     var length = document.body.querySelectorAll("body > .darkbg").length;
