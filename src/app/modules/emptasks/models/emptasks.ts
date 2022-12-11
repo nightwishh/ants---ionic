@@ -27,6 +27,8 @@ export interface ITask {
   companyName: string;
   companyTin: string;
   deadlineDay: number;
+  lastCommentId: number;
+  lastCommentSender: number;
 }
 export interface IClientCompany {
   id: number;
@@ -63,4 +65,10 @@ export class vEmployeeTeam {
   public CompanyTin: number;
   public CompanyName: number;
   public fullname: string;
+}
+export class Comment {
+  public comment: string;
+  public fullname: string;
+  public mymessage: boolean;
+  public date: Date;
 }

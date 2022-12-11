@@ -164,4 +164,19 @@ export class EmpTasksService {
       .post(this.url + "EmpTasks/UploadCommonTasksExcel", formData, httpOptions)
       .pipe(catchError(this.commonService.handleErrors));
   }
+  GetComments(checklistId: number) {
+    if (checklistId == 0) return;
+    return this.http.get<Comment[]>(
+      this.url + "EmpTasks/GetComments?checklistId=" + checklistId,
+      this.httpOptions
+    );
+  }
+  AddComment(checklistId: number, comment: string) {
+    if (checklistId == 0) return;
+    return this.http.post<Comment[]>(
+      this.url + "EmpTasks/AddComment",
+      { checklistId: checklistId, comment: comment },
+      this.httpOptions
+    );
+  }
 }

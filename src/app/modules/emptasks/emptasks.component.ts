@@ -15,6 +15,7 @@ import {
   FilterParam,
   FilterType,
 } from "src/app/services/grid.service";
+import { Comment } from "../emptasks/models/emptasks";
 import {
   CommonTask,
   IClientCompany,
@@ -309,16 +310,44 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   }
 
   showComments: boolean = false;
-  selectedChecklist: HTMLElement = null;
-  showCommentsPopup(task: ITask, checklist: HTMLElement) {
+  selectedChecklistDiv: HTMLElement = null;
+  selectedChecklistId: number = 0;
+  checklistComments: Comment[] = [];
+  typeComment: string = "";
+  showCommentsPopup(task: ITask, checklistDiv: HTMLElement) {
     this.showComments = true;
-    this.selectedChecklist = checklist;
-    if (!checklist.classList.contains("selected"))
-      checklist.classList.add("selected");
+    this.selectedChecklistDiv = checklistDiv;
+    if (!checklistDiv.classList.contains("selected"))
+      checklistDiv.classList.add("selected");
+    this.selectedChecklistId = task.id;
+    this.getComments(task.id);
+  }
+  getComments(checklistId: number) {
+    this.empTasksService.GetComments(checklistId).subscribe((data: any) => {
+      this.checklistComments = <Comment[]>data;
+    });
+  }
+  addComments() {
+    this.empTasksService
+      .AddComment(this.selectedChecklistId, this.typeComment)
+      .subscribe((data: any) => {
+        this.getComments(this.selectedChecklistId);
+      });
+    this.typeComment = "";
   }
 
   closeComments() {
-    if (this.selectedChecklist.classList.contains("selected"))
-      this.selectedChecklist.classList.remove("selected");
+    if (this.selectedChecklistDiv.classList.contains("selected"))
+      this.selectedChecklistDiv.classList.remove("selected");
+    this.checklistComments = [];
+    this.selectedChecklistId = 0;
+    this.typeComment = "";
+  }
+  onKeyPress(event) {
+    if (this.selectedChecklistId > 0)
+      if (event.code == "Enter") {
+        this.addComments();
+        event.preventDefault();
+      }
   }
 }

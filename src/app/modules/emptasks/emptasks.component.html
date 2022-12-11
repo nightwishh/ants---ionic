@@ -116,7 +116,7 @@
             </p>
           </div>
           <div class="flex flex-direction-col flex-direction-col">
-            <div *ngFor="let Task of FilterTasksByCompany(company?.id)" #checklist class="checklist"
+            <div *ngFor="let Task of FilterTasksByCompany(company?.id)" #checklistDiv class="checklist"
               [title]="company?.name">
               <!-- {{ Task?.name }} -->
               <div class="statusContainer">
@@ -129,7 +129,9 @@
                   <!-- {{Task.statusName}} -->
                 </div>
               </div>
-              <span class="material-icons alertIcon" (click)="showCommentsPopup(Task, checklist)">priority_high</span>
+              <span class="material-icons alertIcon"
+                [ngClass]="{sent:Task.lastCommentSender == 1, alert:Task.lastCommentSender == 2}"
+                (click)="showCommentsPopup(Task, checklistDiv)">priority_high</span>
             </div>
             <!-- <p>{{task.name + ":" + task.status}}</p> -->
           </div>
@@ -157,21 +159,22 @@
   <p-header>კომენტარები - </p-header>
   <p-content>
     <div class="messages">
-      <div class="messageContainer">
-        <p class="sender">Zura</p>
-        <p class="message">one</p>
+      <div class="messageContainer" [ngClass]="{mymessage:comment.mymessage}" *ngFor="let comment of checklistComments">
+        <p class="sender">{{comment.fullname}}</p>
+        <p class="message">{{comment.comment}}</p>
       </div>
-      <div class="messageContainer">
+      <!-- <div class="messageContainer">
         <p class="sender">GIgi</p>
         <p class="message">one</p>
       </div>
       <div class="messageContainer">
         <p class="message">one</p>
-      </div>
+      </div> -->
     </div>
     <div class="typeMessageContainer">
-      <textarea class="typeMessage"></textarea>
-      <button class="antsStyle" style="background-color: var(--main-blue-color); color:white">გაგზავნა</button>
+      <textarea class="typeMessage" (keypress)="onKeyPress($event)" [(ngModel)]="typeComment"></textarea>
+      <button class="antsStyle" (click)="addComments()"
+        style="background-color: var(--main-blue-color); color:white">გაგზავნა</button>
     </div>
   </p-content>
 </popup>

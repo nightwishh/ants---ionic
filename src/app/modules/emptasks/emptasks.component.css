@@ -234,6 +234,13 @@
 }
 .alertIcon.alert {
   color: red;
+  opacity: 1;
+  visibility: visible;
+}
+.alertIcon.sent {
+  color: #3f7cb1;
+  opacity: 1;
+  visibility: visible;
 }
 .messageContainer {
   background: #e4e4e4;
@@ -260,13 +267,14 @@
 box-sizing: border-box;
 outline: none;
 resize: none;
+border:1px solid #cbcbcb;
 }
 .typeMessageContainer {
   width: 100%;
   display: grid;
   grid-template-columns: auto 110px;
   gap: 20px;
-  border-top: 1px solid #000;
+  border-top: 1px solid #e4e4e4;
   padding-top: 10px;
   padding-bottom: 10px;
 }
