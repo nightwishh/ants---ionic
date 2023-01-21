@@ -93,7 +93,7 @@ export class OrgDetailsComponent implements OnInit {
       this.pipe.transform("ხართ თუ არა დღგ-ს გადამხდელად რეგისტრირებული?")
     );
     this.addQuestion(
-      this.pipe.transform("რამდენი სახეობის კომერციული მარაგი გაქვთ?")
+      this.pipe.transform("რამდენი სახეობის მზა პროდუქცია და ნედლეული გაქვთ?")
     );
     this.addQuestion(
       this.pipe.transform("გაქვს თუ არა წარმოება, კომპლექტაცია?")
@@ -101,8 +101,13 @@ export class OrgDetailsComponent implements OnInit {
     this.addQuestion(this.pipe.transform("საწყობების რაოდენობა"));
 
     this.addQuestion(this.pipe.transform("კომპანიის საიდენტიფიკაციო კოდი"));
-    this.addQuestion(this.pipe.transform("საკონტაქტო მეილი"));
-    this.addQuestion(this.pipe.transform("საკონტაქტო მობილურის ნომერი"));
+    this.addQuestion(this.pipe.transform("საკონტაქტო მეილი"), [], null, true);
+    this.addQuestion(
+      this.pipe.transform("საკონტაქტო მობილურის ნომერი"),
+      [],
+      null,
+      true
+    );
     this.addQuestion(this.pipe.transform("სახელი, გვარი"));
     this.addQuestion(this.pipe.transform("საიდან გაიგეთ ჩვენს შესახებ?"), [
       { label: "Facebook", value: "Facebook" },
@@ -149,11 +154,13 @@ export class OrgDetailsComponent implements OnInit {
   addQuestion(
     question: string,
     answersList: IAnswers[] = [],
-    title: string = ""
+    title: string = "",
+    required: boolean = false
   ) {
     var q = new Questionnaires();
     q.question = question;
     q.title = title;
+    q.required = required;
     if (answersList.length > 0) q.answersList = answersList;
     this.list.push(q);
   }
@@ -162,7 +169,14 @@ export class OrgDetailsComponent implements OnInit {
     this.elementRef.nativeElement.remove();
   }
   saveOrgDetails() {
-    fbq("track", "Lead");
+    var invalidFields = this.list.filter(
+      (x) => x.required == true && x.answer.length == 0
+    );
+    if (invalidFields.length > 0) {
+      alert("შეავსეთ სავალდებულო კითხვა: " + invalidFields[0].question);
+      return;
+    }
+    // fbq("track", "Lead");
     this.commonService.post(
       "Questionnaire/SaveQuestionnaireNew",
       this.list,

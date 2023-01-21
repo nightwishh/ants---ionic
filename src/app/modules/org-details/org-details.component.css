@@ -58,3 +58,6 @@ card-content.orgDetails {
     color: var(--main-lightgreen-color);
     font-size: 20px;
 }
+.requiredSymbol {
+  color: red;
+}

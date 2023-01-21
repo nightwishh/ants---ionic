@@ -33,7 +33,7 @@ export class langDictionary {
       "Number of purchase invoices (monthly)",
     "ხართ თუ არა დღგ-ს გადამხდელად რეგისტრირებული?":
       "Is your business registered as a VAT payer?",
-    "რამდენი სახეობის კომერციული მარაგი გაქვთ?":
+    "რამდენი სახეობის მზა პროდუქცია და ნედლეული გაქვთ?":
       "How many types of inventories does your business have?",
     "გაქვს თუ არა წარმოება, კომპლექტაცია?":
       "Does your business have manufacturing?",

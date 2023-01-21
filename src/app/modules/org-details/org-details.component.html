@@ -5,14 +5,11 @@
   <card class="orgDetails" *ngFor="let q of list">
     <h1 *ngIf="q.title">{{ q.title }}</h1>
     <card-content class="orgDetails">
-      <label for="package">{{ q.question }}</label>
-      <input
-        id="tin"
-        [(ngModel)]="q.answer"
-        class="antsStyle"
-        type="text"
-        *ngIf="q.answersList.length == 0; else drpdown"
-      />
+      <label for="package">{{ q.question }}
+        <span class="requiredSymbol" *ngIf="q.required">*</span>
+      </label>
+      <input id="tin" [(ngModel)]="q.answer" class="antsStyle" type="text"
+        *ngIf="q.answersList.length == 0; else drpdown" />
       <ng-template #drpdown>
         <select [(ngModel)]="q.answer" id="package" class="antsStyle">
           <option [value]="ansList.value" *ngFor="let ansList of q.answersList">
@@ -110,8 +107,8 @@
 <ng-template #alreadySent>
   <h1 class="successMessage">
     {{
-      "კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში"
-        | ml
+    "კითხვარი წარმატებით გადაიგზავნა და შეთავაზებას გამოგიგზავნით უახლოეს მომავალში"
+    | ml
     }}
   </h1>
 </ng-template>
