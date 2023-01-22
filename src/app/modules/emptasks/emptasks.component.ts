@@ -308,12 +308,22 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
       console.log(x);
     });
   }
+  showSettings: boolean = false;
 
   showComments: boolean = false;
   selectedChecklistDiv: HTMLElement = null;
   selectedChecklistId: number = 0;
   checklistComments: Comment[] = [];
   typeComment: string = "";
+
+  showSettingsPopup(task: ITask, checklistDiv: HTMLElement) {
+    this.showSettings = true;
+    this.selectedChecklistDiv = checklistDiv;
+    if (!checklistDiv.classList.contains("selected"))
+      checklistDiv.classList.add("selected");
+    this.selectedChecklistId = task.id;
+  }
+
   showCommentsPopup(task: ITask, checklistDiv: HTMLElement) {
     this.showComments = true;
     this.selectedChecklistDiv = checklistDiv;

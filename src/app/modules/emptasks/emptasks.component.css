@@ -213,24 +213,33 @@
 .checklist {
   position: relative;
 }
-.checklist:hover .alertIcon {
+.checklist:hover .settingsIcon, .checklist:hover .alertIcon  {
   visibility: visible;
   opacity: 1;
 }
 .checklist.selected {
   background-color: var(--main-blue-color) !important;
 }
-.alertIcon {
+.alertIcon, .settingsIcon {
   position: absolute;
-  font-size: 17px;
+  font-size: 16px;
   right:-5px;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
   visibility: hidden;
   opacity: 0;
 }
+.settingsIcon {
+  font-size: 14px;
+  margin-top: -29px;
+  margin-right: 5px;
+  z-index: 9;
+}
+.settingsIcon:hover {
+  color: #3f7cb1;
+}
 .alertIcon:hover {
-  font-size: 19px;
+  font-size: 17px;
 }
 .alertIcon.alert {
   color: red;
