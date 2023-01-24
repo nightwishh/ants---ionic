@@ -120,7 +120,8 @@
               [title]="company?.name">
               <!-- {{ Task?.name }} -->
               <div class="statusContainer">
-                <div class="status" [ngClass]="setStatusClass(Task)">
+                <div class="status" [ngClass]="setStatusClass(Task)"
+                  [attr.emptyCell]="!(Task?.id != null && Task?.id > 0)">
                   <select class="statusDropdown" [(ngModel)]="Task.status" (ngModelChange)="changeStatus($event, Task)">
                     <option *ngFor="let status of statuses" [value]="status?.id | number">
                       {{ status?.name }}
@@ -132,7 +133,7 @@
               <span class="material-icons alertIcon"
                 [ngClass]="{sent:Task.lastCommentSender == 1, alert:Task.lastCommentSender == 2}"
                 (click)="showCommentsPopup(Task, checklistDiv)">priority_high</span>
-              <span class="material-icons settingsIcon"
+              <span class="material-icons settingsIcon" *ngIf="this.isAdmin || this.isManager || this.isAccountant"
                 [ngClass]="{sent:Task.lastCommentSender == 1, alert:Task.lastCommentSender == 2}"
                 (click)="showSettingsPopup(Task, checklistDiv)">settings</span>
             </div>

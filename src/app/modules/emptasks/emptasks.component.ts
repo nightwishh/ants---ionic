@@ -154,6 +154,7 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   userId: number = 0;
   isAdmin: boolean = false;
   isManager: boolean = false;
+  isAccountant: boolean = false;
   isAssistant: boolean = false;
   checkUserRole() {
     Authuser.getUserData((data) => {
@@ -169,6 +170,9 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
           this.userTypeLabels = ["ბუღალტრები", "დამხმარეები"];
           return;
         }
+        this.accountants$.subscribe((data: Array<any>) => {
+          this.isAccountant = data.find((a) => a.userId == this.userId) != null;
+        });
         this.userTypeLabels = ["დამხმარეები"];
 
         this.assistants$.subscribe((dt: Array<any>) => {

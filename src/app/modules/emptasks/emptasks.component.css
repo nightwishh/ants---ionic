@@ -287,3 +287,8 @@ border:1px solid #cbcbcb;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+[emptyCell=true] {
+  visibility: hidden;
+  opacity: 0;
+}
