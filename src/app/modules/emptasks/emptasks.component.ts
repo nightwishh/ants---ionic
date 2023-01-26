@@ -275,6 +275,18 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
 
   managerFilter(event: FilterParam) {
     this.managerFilterId = Number(event.FilterValue);
+    if (this.userTypeLabels[this.selectedUserFilter] != "ბუღალტრები") {
+      var hasfilter = this.filters.findIndex(
+        (a) => a.FieldName == "AdditionalUserId"
+      );
+      if (hasfilter != null) {
+        this.filters.splice(hasfilter, 1);
+      }
+    }
+    this.applyFilters(event);
+  }
+  additionalFilter(event: FilterParam) {
+    this.managerFilterId = Number(event.FilterValue);
     this.applyFilters(event);
   }
   applyFilters(event: FilterParam, reloadData: boolean = true) {
@@ -320,12 +332,21 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   checklistComments: Comment[] = [];
   typeComment: string = "";
 
+  settingsUsersFilters: FilterParam[] = [];
+
   showSettingsPopup(task: ITask, checklistDiv: HTMLElement) {
     this.showSettings = true;
     this.selectedChecklistDiv = checklistDiv;
     if (!checklistDiv.classList.contains("selected"))
       checklistDiv.classList.add("selected");
     this.selectedChecklistId = task.id;
+    this.settingsUsersFilters = [];
+    var f = new FilterParam();
+    f.FieldName = "taskId";
+    f.FilterType = FilterType.Equal;
+    f.DataType = DataType.Number;
+    f.FilterValue = this.selectedChecklistId.toString();
+    this.settingsUsersFilters.push(f);
   }
 
   showCommentsPopup(task: ITask, checklistDiv: HTMLElement) {

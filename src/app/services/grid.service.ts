@@ -31,8 +31,9 @@ export class GridService {
     );
     if (index > -1) this.grid.FilterParams.splice(index, 1);
 
-    if (filter.FilterValue.trim().length == 0) return;
-
+    if (typeof filter.FilterValue != "number") {
+      if (filter.FilterValue.trim().length == 0) return;
+    }
     this.grid.FilterParams.push(filter);
   }
   setMaximumRows(max: number) {

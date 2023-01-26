@@ -160,9 +160,9 @@ export class DriveComponent implements OnInit {
       Authuser.bxToken.length == 0 &&
       this.commonService.getCookie("questionnaire") != "1"
     ) {
-      setTimeout(() => {
-        if (!location.href.includes("OrgDetails")) location.href = "/Chat";
-      }, 7000);
+      // setTimeout(() => {
+      //   if (!location.href.includes("OrgDetails")) location.href = "/Chat";
+      // }, 7000);
     }
   }
   getRootFolder() {
