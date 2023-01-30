@@ -12,6 +12,7 @@ import {
   IUserRole,
   RoleInCompany,
   UserRoleWithCategories,
+  UserTaskPermission,
   vEmployeeTeam,
 } from "../modules/emptasks/models/emptasks";
 import { FilterParam } from "./grid.service";
@@ -176,6 +177,14 @@ export class EmpTasksService {
     return this.http.post<Comment[]>(
       this.url + "EmpTasks/AddComment",
       { checklistId: checklistId, comment: comment },
+      this.httpOptions
+    );
+  }
+  AddUserTaskPermission(taskPerm: UserTaskPermission) {
+    if (taskPerm == null) return;
+    return this.http.post<Comment[]>(
+      this.url + "EmpTasks/AddUserTaskPermission",
+      taskPerm,
       this.httpOptions
     );
   }

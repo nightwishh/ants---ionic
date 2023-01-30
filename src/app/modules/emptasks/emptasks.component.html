@@ -34,8 +34,10 @@
         </option>
       </ng-container>
     </app-filter>
-    <app-filter *ngIf="userTypeLabels[selectedUserFilter] == 'ბუღალტრები'" label="დამხმარე" type="dropdown"
-      fieldName="AdditionalUserId" [disabled]="activeFilter == 1" (onChange)="additionalFilter($event);" filterType="1">
+    <app-filter
+      *ngIf="userTypeLabels != null && userTypeLabels[selectedUserFilter] != null && userTypeLabels[selectedUserFilter] == 'ბუღალტრები' && !this.isAssistant"
+      label="დამხმარე" type="dropdown" fieldName="AdditionalUserId" [disabled]="activeFilter == 1"
+      (onChange)="additionalFilter($event);" filterType="1">
       <option value="0"> </option>
       <ng-container>
         <option *ngFor="let man of assistants$ | async" [value]="man?.userId">
@@ -163,7 +165,9 @@
     <div *ngFor="let cd of companyDetails; let i=index">
       <p *ngIf="i == 0">კომპანიის დასახელება: <b>{{cd.companyName}}</b></p>
       <p *ngIf="i == 0">კომპანიის საიდენტიფიკაციო: <b>{{cd.companyTin}}</b></p>
-      <p>{{cd.roleId == 2 ? 'მენეჯერი' : cd.roleId == 3 ? 'ბუღალტერი' : ''}}: <b>{{cd.fullName}}</b></p>
+      <p>{{cd.roleId == 2 ? 'მენეჯერი' : cd.roleId == 3 ? 'ბუღალტერი' : cd.roleId == 4 ? 'დამხმარე' : ''}}:
+        <b>{{cd.fullName}}</b>
+      </p>
     </div>
   </p-content>
 </popup>
@@ -198,16 +202,27 @@
     <div class="manageVisibility"><span class="material-icons">visibility</span> <span>ვის გამოუჩნდეს ეს თასქი.</span>
     </div>
 
-    <button (click)="null" style="background-color: var(--main-blue-color);">დაამატე</button>
+    <button (click)="showUsersListF()" style=" background-color: var(--main-blue-color);">დაამატე</button>
 
     <grid *ngIf="showSettings" #grdTeams webMethod="EmpTasks/GrdTaskPermissionUsers" [pageSize]="5"
       [setStyle]="{ margin: '10px 10px 10px 10px' }" [applyFilters]="settingsUsersFilters">
       <column fieldName="fullname" header="სახელი, გვარი"></column>
-      <column fieldName="aa" header=" " [filter]="false" rowValue="<span class='material-icons'>close</span>"
-        filter=false (onCellClick)="null">
-      </column>
+      <!-- <column fieldName="aa" header=" " [filter]="false" rowValue="<span class='material-icons'>close</span>"
+        filter=false (onCellClick)="deleteUserTaskPermission()">
+      </column> -->
     </grid>
-
+    <popup [(visible)]="showUsersList" class="companyDetailsPopup" [modalBlur]="false"
+      (onHide)="this.showUsersList = false" [draggable]=" true" [setStyle]="{height:'auto'}">
+      <p-header>აირჩიე დამხმარე</p-header>
+      <p-content>
+        <grid *ngIf="showUsersList" (onRowClick)="usersListRowClick($event)" #grdTeams
+          webMethod="EmpTasks/grdEmployeeTeams" [pageSize]="5" [setStyle]="{ margin: '10px 10px 10px 10px' }"
+          [applyFilters]="usersListFilters">
+          <column fieldName="FullName" header="სახელი, გვარი"></column>
+          <column fieldName="CompanyName" header="კომპანია"></column>
+        </grid>
+      </p-content>
+    </popup>
   </p-content>
 </popup>
 <div *ngIf="loading" class="loadingContainer">

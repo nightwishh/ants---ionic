@@ -15,7 +15,7 @@ import {
   FilterParam,
   FilterType,
 } from "src/app/services/grid.service";
-import { Comment } from "../emptasks/models/emptasks";
+import { Comment, UserTaskPermission } from "../emptasks/models/emptasks";
 import {
   CommonTask,
   IClientCompany,
@@ -285,8 +285,9 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
     }
     this.applyFilters(event);
   }
+  additionalFilterId: number = 0;
   additionalFilter(event: FilterParam) {
-    this.managerFilterId = Number(event.FilterValue);
+    this.additionalFilterId = Number(event.FilterValue);
     this.applyFilters(event);
   }
   applyFilters(event: FilterParam, reloadData: boolean = true) {
@@ -303,7 +304,9 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
           this.Tasks = x;
           this.loading = false;
           this.clientCompanies$ = this.empTasksService.GetClientCompanies(
-            this.managerFilterId
+            this.additionalFilterId > 0
+              ? this.additionalFilterId
+              : this.managerFilterId
           );
 
           this.BuildCommonTasks(x);
@@ -329,17 +332,20 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   showComments: boolean = false;
   selectedChecklistDiv: HTMLElement = null;
   selectedChecklistId: number = 0;
+  selectedCompanyId: number = 0;
   checklistComments: Comment[] = [];
   typeComment: string = "";
 
   settingsUsersFilters: FilterParam[] = [];
-
+  showUsersList: boolean = false;
   showSettingsPopup(task: ITask, checklistDiv: HTMLElement) {
+    if (task.id == 0 || task.id == null) return;
     this.showSettings = true;
     this.selectedChecklistDiv = checklistDiv;
     if (!checklistDiv.classList.contains("selected"))
       checklistDiv.classList.add("selected");
     this.selectedChecklistId = task.id;
+    this.selectedCompanyId = task.clientCompanyId;
     this.settingsUsersFilters = [];
     var f = new FilterParam();
     f.FieldName = "taskId";
@@ -350,6 +356,8 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
   }
 
   showCommentsPopup(task: ITask, checklistDiv: HTMLElement) {
+    if (task.id == 0 || task.id == null) return;
+
     this.showComments = true;
     this.selectedChecklistDiv = checklistDiv;
     if (!checklistDiv.classList.contains("selected"))
@@ -376,6 +384,7 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
       this.selectedChecklistDiv.classList.remove("selected");
     this.checklistComments = [];
     this.selectedChecklistId = 0;
+    this.selectedCompanyId = 0;
     this.typeComment = "";
   }
   onKeyPress(event) {
@@ -384,5 +393,42 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
         this.addComments();
         event.preventDefault();
       }
+  }
+  usersListFilters: FilterParam[] = [];
+  showUsersListF() {
+    this.usersListFilters = [];
+
+    var f = new FilterParam();
+    f.FieldName = "companyId";
+    f.FilterType = FilterType.Equal;
+    f.DataType = DataType.Number;
+    f.FilterValue = this.selectedCompanyId.toString();
+    var r = new FilterParam();
+    r.FieldName = "roleId";
+    r.FilterType = FilterType.Equal;
+    r.DataType = DataType.Number;
+    r.FilterValue = "4"; //დამხმარე
+    this.usersListFilters.push(f);
+    this.usersListFilters.push(r);
+    this.showUsersList = true;
+  }
+  taskPerm: UserTaskPermission = new UserTaskPermission();
+  usersListRowClick(ev) {
+    this.taskPerm.taskId = this.selectedChecklistId;
+    this.taskPerm.userId = ev.userId;
+    this.loading = true;
+    this.empTasksService.AddUserTaskPermission(this.taskPerm).subscribe(
+      (data) => {
+        this.loading = false;
+        alert("ოპერაცია წარმატებით განხორციელდა");
+        this.showUsersList = false;
+      },
+      (err) => {
+        this.loading = false;
+      }
+    );
+  }
+  deleteUserTaskPermission() {
+    if (!confirm("ნამდვილად გსურთ წაშლა ?")) return;
   }
 }

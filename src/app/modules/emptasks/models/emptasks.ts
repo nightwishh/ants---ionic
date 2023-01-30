@@ -72,3 +72,7 @@ export class Comment {
   public mymessage: boolean;
   public date: Date;
 }
+export class UserTaskPermission {
+  public userId: number;
+  public taskId: number;
+}
