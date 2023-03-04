@@ -22,8 +22,8 @@ export class langDictionary {
     "მცირე ბიზნესი": "Small business",
     ინდივიდუალური: "Individual",
     "აირჩიეთ პაკეტი": "Select service package",
-    "ძირითადი საქმიანობა": "Key business area",
-    "დამატებითი საქმიანობა": "Supplementary business area",
+    "ძირითადი საქმიანობის აღწერა": "Key business area",
+    "დამატებითი საქმიანობის აღწერა": "Supplementary business area",
     "სალარო აპარატების რაოდენობა": "Number of cash machines in the business",
     "ნაღდი ფულის ოპერაციების რაოდენობა (თვეში)":
       "Number of cash operations (monthly)",

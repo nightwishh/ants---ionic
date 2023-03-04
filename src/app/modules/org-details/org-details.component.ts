@@ -69,8 +69,8 @@ export class OrgDetailsComponent implements OnInit {
       pkgs.push({ label: x, value: x });
     });
 
-    this.addQuestion(this.pipe.transform("ძირითადი საქმიანობა"));
-    this.addQuestion(this.pipe.transform("დამატებითი საქმიანობა"));
+    this.addQuestion(this.pipe.transform("ძირითადი საქმიანობის აღწერა"));
+    this.addQuestion(this.pipe.transform("დამატებითი საქმიანობის აღწერა"));
     // this.addQuestion(this.pipe.transform("სალარო აპარატების რაოდენობა"));
     this.addQuestion(
       this.pipe.transform("ყოველთვიური საშუალო შემოსავალი დღგ-ს გარეშე")
