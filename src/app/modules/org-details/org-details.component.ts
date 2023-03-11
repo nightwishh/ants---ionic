@@ -96,7 +96,7 @@ export class OrgDetailsComponent implements OnInit {
       this.pipe.transform("რამდენი სახეობის მზა პროდუქცია და ნედლეული გაქვთ?")
     );
     this.addQuestion(
-      this.pipe.transform("გაქვს თუ არა წარმოება, კომპლექტაცია?")
+      this.pipe.transform("გაქვთ თუ არა წარმოება, კომპლექტაცია?")
     );
     this.addQuestion(this.pipe.transform("საწყობების რაოდენობა"));
 
