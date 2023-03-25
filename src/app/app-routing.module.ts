@@ -22,6 +22,7 @@ import { ClientCompaniesComponent } from "./modules/adminpanel/client-companies/
 import { CompanyDetailsComponent } from "./modules/adminpanel/client-companies/company-details/company-details.component";
 import { CommonTasksComponent } from "./modules/adminpanel/common-tasks/common-tasks.component";
 import { XWaybillComponent } from "./modules/x-waybill/x-waybill.component";
+import { OrgDetailsTaxComponent } from "./modules/org-details-tax/org-details-tax.component";
 
 const routes: Routes = [
   { path: "", component: TasksComponent },
@@ -57,6 +58,17 @@ const routes: Routes = [
   {
     path: "O/:id/:lang",
     component: OrgDetailsComponent,
+    outlet: "Q",
+  },
+  { path: "T", component: OrgDetailsTaxComponent, outlet: "Q" },
+  {
+    path: "T/:id",
+    component: OrgDetailsTaxComponent,
+    outlet: "Q",
+  },
+  {
+    path: "T/:id/:lang",
+    component: OrgDetailsTaxComponent,
     outlet: "Q",
   },
   // {path:"Pricing", component:PricingComponent},

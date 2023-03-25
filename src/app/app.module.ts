@@ -64,9 +64,10 @@ import { ReportsComponent } from "./modules/reports/reports.component";
 import { MlPipe } from "./pipes/ml.pipe";
 import { EmptasksComponent } from "./modules/emptasks/emptasks.component";
 import { FilterComponent } from "./components/filter/filter.component";
-import { ClientCompaniesComponent } from './modules/adminpanel/client-companies/client-companies.component';
-import { CompanyDetailsComponent } from './modules/adminpanel/client-companies/company-details/company-details.component';
-import { CommonTasksComponent } from './modules/adminpanel/common-tasks/common-tasks.component';
+import { ClientCompaniesComponent } from "./modules/adminpanel/client-companies/client-companies.component";
+import { CompanyDetailsComponent } from "./modules/adminpanel/client-companies/company-details/company-details.component";
+import { CommonTasksComponent } from "./modules/adminpanel/common-tasks/common-tasks.component";
+import { OrgDetailsTaxComponent } from "./modules/org-details-tax/org-details-tax.component";
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { CommonTasksComponent } from './modules/adminpanel/common-tasks/common-t
     ClientCompaniesComponent,
     CompanyDetailsComponent,
     CommonTasksComponent,
+    OrgDetailsTaxComponent,
   ],
   imports: [
     BrowserModule,

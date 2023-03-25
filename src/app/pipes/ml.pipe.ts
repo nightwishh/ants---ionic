@@ -69,5 +69,9 @@ export class langDictionary {
       "Quantity of Bank and Cash operations Per month",
     "კინოთეატრის რეკლამა": "Cinema Ads",
     ბილბორდი: "Billboards",
+    "საგადასახადო მომსახურების განაცხადი": "Tax service application form",
+    "სტარტაპ პაკეტი": "Startup Package",
+    "საბაზისო პაკეტი": "Basic Package",
+    "პრემიუმ პაკეტი": "Premium Package",
   };
 }

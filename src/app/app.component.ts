@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     // }))
   }
   ngOnInit() {
-    if (location.href.includes("(Q:O")) {
+    if (location.href.includes("(Q:")) {
       this.showOrgDetails = true;
     }
     // setTimeout(() => {

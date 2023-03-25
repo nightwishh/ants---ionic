@@ -9,6 +9,7 @@
     <app-header logoPosition="center" [sideBar]="false"></app-header>
     <router-outlet name="NotLoggedIn" *ngIf="!this.showOrgDetails"></router-outlet>
     <router-outlet name="Q" *ngIf="this.showOrgDetails"></router-outlet>
+    <router-outlet name="W" *ngIf="this.showOrgDetails"></router-outlet>
 </ng-template>
 <app-modal class="request-modal-loader">
     <!-- main modal with loader in it (REquest Loader) -->
