@@ -421,14 +421,22 @@ export class EmptasksComponent implements OnInit, AfterViewInit {
       (data) => {
         this.loading = false;
         alert("ოპერაცია წარმატებით განხორციელდა");
+        this.closeComments();
         this.showUsersList = false;
+        this.showSettings = false;
       },
       (err) => {
         this.loading = false;
       }
     );
   }
-  deleteUserTaskPermission() {
+  deleteUserTaskPermission(ev) {
     if (!confirm("ნამდვილად გსურთ წაშლა ?")) return;
+    this.empTasksService.DeleteUserTaskPermission(ev).subscribe((data: any) => {
+      alert("თასქი წარმატებით წაიშალა დამხმარის თასქებიდან");
+      this.closeComments();
+      this.showComments = false;
+      this.showSettings = false;
+    });
   }
 }

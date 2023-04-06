@@ -188,4 +188,12 @@ export class EmpTasksService {
       this.httpOptions
     );
   }
+  DeleteUserTaskPermission(taskPerm: UserTaskPermission) {
+    if (taskPerm == null) return;
+    return this.http.post<Comment[]>(
+      this.url + "EmpTasks/DeleteUserTaskPermission",
+      taskPerm,
+      this.httpOptions
+    );
+  }
 }

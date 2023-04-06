@@ -207,6 +207,9 @@
     <grid *ngIf="showSettings" #grdTeams webMethod="EmpTasks/GrdTaskPermissionUsers" [pageSize]="5"
       [setStyle]="{ margin: '10px 10px 10px 10px' }" [applyFilters]="settingsUsersFilters">
       <column fieldName="fullname" header="სახელი, გვარი"></column>
+      <column fieldName=" " filter=false header=" " rowValue="<span class='material-icons'>close</span>" filter=false
+        (onCellClick)="deleteUserTaskPermission($event)">
+      </column>
       <!-- <column fieldName="aa" header=" " [filter]="false" rowValue="<span class='material-icons'>close</span>"
         filter=false (onCellClick)="deleteUserTaskPermission()">
       </column> -->
